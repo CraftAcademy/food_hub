@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: food_hub_development
+
+test:
+  <<: *default
+  database: food_hub_test
+
+production:
+  <<: *default
+  database: food_hub_production
+  username: food_hub
+  password: <%= ENV['FOOD_HUB_DATABASE_PASSWORD'] %>
