@@ -5,7 +5,7 @@ Feature: Index page shows a list of recipes
 
 Background:
   Given We have the following list:
-    | title | decsription     | ingredients           | directions   |
+    | title | description     | ingredients           | directions   |
     | Pizza | An italian dish | flour, tomato sauce  | bake in oven |
 
 Scenario: User views recipes on home page
@@ -14,4 +14,4 @@ Scenario: User views recipes on home page
   And I should see "Pizza"
   And I should see "An italian dish"
   And I should see "flour, tomato sauce"
-  And I should see "bake in oven" 
+  And I should see "bake in oven"
