@@ -18,6 +18,7 @@ group :development, :test do
   gem 'cucumber-rails', '~> 1.6', require: false
   gem 'database_cleaner'
   gem 'rspec-rails'
+  gem 'shoulda-matchers', '~> 3.1'
 end
 
 group :development do
