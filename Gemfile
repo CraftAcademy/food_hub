@@ -15,6 +15,7 @@ gem "haml-rails", "~> 1.0"
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
+  gem 'cucumber'
 end
 
 group :development do
