@@ -1,1 +1,7 @@
 %h1 Recipes
+
+- @recipes.each do |recipe|
+  %h3= recipe.title
+  %p= recipe.decsription
+  %p= recipe.ingredients
+  %p= recipe.directions
