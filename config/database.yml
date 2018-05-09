@@ -7,7 +7,7 @@ development:
   <<: *default
   database: food_hub_development
 
-test:
+test: &test
   <<: *default
   database: food_hub_test
 
@@ -16,3 +16,6 @@ production:
   database: food_hub_production
   username: food_hub
   password: <%= ENV['FOOD_HUB_DATABASE_PASSWORD'] %>
+
+cucumber:
+  <<: *test
