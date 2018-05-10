@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Recipe, type: :model do
-  recipe = FactoryBot.create(:recipe)
+  let(:recipe) {FactoryBot.create(:recipe)}
 
   describe 'Database table' do
     it {is_expected.to have_db_column :title}

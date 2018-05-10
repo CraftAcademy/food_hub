@@ -1,8 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-
-  user = FactoryBot.create(:user)
+  let(:user){FactoryBot.create(:user)}
   describe 'Database table' do
     it { is_expected.to have_db_column :email }
     it { should validate_presence_of(:email) }
