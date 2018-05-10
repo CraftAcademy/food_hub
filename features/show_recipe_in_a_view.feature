@@ -4,13 +4,13 @@ Feature: Show recipe in a view (User views recipe in detail)
   I should be able to view a single recipe with all details
 
   Background:
-    Given the following recipe exist
+    Given we have the following list
       | title       	| description                 | ingredients        | directions              |
       | Meatball-Stew | This will make you sick     | Meat, onion, stuff | Stir it, mix it, eat it |
 
 
   Scenario: User views recipe in detail
-    Given I am on the site
+    Given I visit the site
     And I click on a "Meatball-Stew"
     And I should see "Meatball-Stew"
     Then I should see "This will make you sick"
