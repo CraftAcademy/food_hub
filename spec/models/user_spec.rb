@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+
   user = FactoryBot.create(:user)
   describe 'Database table' do
     it { is_expected.to have_db_column :email }
@@ -16,10 +17,6 @@ RSpec.describe User, type: :model do
   describe "Validations" do
     it "is not valid without a email" do
       user.email = nil
-      expect(user).to_not be_valid
-    end
-    it "is not valid with bad formatted email" do
-      user.password = 'something@something'
       expect(user).to_not be_valid
     end
     it "is not valid without a password" do
