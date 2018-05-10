@@ -4,14 +4,14 @@ RSpec.describe Recipe, type: :model do
   let(:recipe) {FactoryBot.create(:recipe)}
 
   describe 'Database table' do
-    it {is_expected.to have_db_column :title}
-    it { should validate_presence_of(:title) }
-    it {is_expected.to have_db_column :description}
-    it { should validate_presence_of(:description) }
-    it {is_expected.to have_db_column :ingredients}
-    it { should validate_presence_of(:ingredients) }
-    it {is_expected.to have_db_column :directions}
-    it { should validate_presence_of(:directions) }
+    it { is_expected.to have_db_column :title}
+    it { is_expected.to validate_presence_of(:title) }
+    it { is_expected.to have_db_column :description}
+    it { is_expected.to validate_presence_of(:description) }
+    it { is_expected.to have_db_column :ingredients}
+    it { is_expected.to validate_presence_of(:ingredients) }
+    it { is_expected.to have_db_column :directions}
+    it { is_expected.to validate_presence_of(:directions) }
   end
 
   describe 'Factory' do
