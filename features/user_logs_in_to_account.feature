@@ -23,3 +23,11 @@ Scenario: User provides invalid credentials
    And I fill in "Password" with "101dream"
    And I click "Log in"
    And I should see "Invalid Email or password."
+
+Scenario: User fails to provide email
+    Given I visit the site
+    And I click "Login"
+    And I fill in "Email" with ""
+    And I fill in "Password" with "12345678"
+    And I click "Log in"
+    And I should see "Invalid Email or password."
