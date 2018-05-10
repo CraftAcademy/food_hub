@@ -4,8 +4,11 @@ RSpec.describe User, type: :model do
   let(:user){FactoryBot.create(:user)}
   describe 'Database table' do
     it { is_expected.to have_db_column :email }
-    it { is_expected.to validate_presence_of(:email) }
     it { is_expected.to have_db_column :encrypted_password }
+  end
+
+  describe 'Validation' do
+    it { is_expected.to validate_presence_of(:email) }
     it { is_expected.to validate_presence_of(:password) }
   end
 
