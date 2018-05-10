@@ -13,10 +13,11 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem "haml-rails", "~> 1.0"
 
 group :development, :test do
-  gem 'pry-byebug'
-  gem 'pry-rails'
+  gem 'coveralls', require: false
   gem 'cucumber-rails', '~> 1.6', require: false
   gem 'database_cleaner'
+  gem 'pry-byebug'
+  gem 'pry-rails'
   gem 'rspec-rails'
   gem 'shoulda-matchers', '~> 3.1'
 end
