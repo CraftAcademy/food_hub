@@ -4,7 +4,6 @@ end
 
 Given("We have the following list:") do |table|
   table.hashes.each do |recipe|
-    # category = Category.find_by(name: product[:category])
-    Recipe.create(title: recipe[:title], description: recipe[:description], ingredients: recipe[:ingredients], directions: recipe[:directions])
+    FactoryBot.create(:recipe, recipe)
   end
 end
