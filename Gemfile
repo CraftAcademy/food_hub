@@ -20,6 +20,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'rspec-rails'
+  gem 'factory_bot_rails'
   gem 'shoulda-matchers'
 end
 

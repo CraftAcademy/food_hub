@@ -12,6 +12,6 @@ end
 
 Given("We have the following fields:") do |table|
 table.hashes.each do |field|
-    User.create(email: field[:email], password: field[:password])
+    FactoryBot.create(:user)
   end
 end
