@@ -12,6 +12,6 @@ end
 
 Given("We have the following fields:") do |table|
 table.hashes.each do |field|
-    user = User.find_by(email: field[:email])
+    User.create(email: field[:email], password: field[:password])
   end
 end

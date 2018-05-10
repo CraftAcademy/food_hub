@@ -10,7 +10,8 @@ Background:
 
 Scenario: User can log in with valid credentials
   Given I visit the site
-  When I click "Log in"
+  When I click "Login"
   And I fill in "Email" with "maran@test.com"
   And I fill in "Password" with "12345678"
   And I click "Log in"
+  Then I should see "Signed in successfully."
