@@ -16,7 +16,7 @@ Scenario: User can log in with valid credentials
   And I click "Log in"
   Then I should see "Signed in successfully."
 
-Scenario: User provides wrong password 
+Scenario: User provides wrong password
   Given I visit the site
   When I click "Login"
   And I fill in "Email" with "maran@test.com"

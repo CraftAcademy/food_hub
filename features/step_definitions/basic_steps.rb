@@ -1,15 +1,11 @@
-Given('I visit site') do
+Given('I visit the site') do
   visit root_path
 end
 
-Given('We have the following list:') do |table|
+Given('We have the following recipes:') do |table|
   table.hashes.each do |recipe|
     create(:recipe, recipe)
   end
-end
-
-Given('I visit the site') do
-  visit root_path
 end
 
 When('I click {string}') do |link|
@@ -25,3 +21,8 @@ Given('We have the following user:') do |table|
     create(:user)
   end
 end
+
+Given("I visit the login page") do
+  visit new_user_session_path
+end
+

@@ -1,5 +1,5 @@
 require 'coveralls'
-Coveralls.wear_merged!
+Coveralls.wear_merged!('rails')
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
