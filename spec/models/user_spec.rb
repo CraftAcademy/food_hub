@@ -8,8 +8,8 @@ RSpec.describe User, type: :model do
   end
 
   describe 'Validation' do
-    it { is_expected.to validate_presence_of(:email) }
-    it { is_expected.to validate_presence_of(:password) }
+    it { is_expected.to validate_presence_of :email }
+    it { is_expected.to validate_presence_of :password }
   end
 
   describe 'Factory' do
