@@ -15,5 +15,5 @@ Scenario: User signs out
   And I click "Log in"
   Then I should see "Signed in successfully."
   When I click "Sign Out"
-  Then I should be on root path
-  And I see "You have successfully signed out"
+  Then I should be redirected to index page
+  And I should see "Signed out successfully."
