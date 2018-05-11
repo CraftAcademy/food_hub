@@ -21,6 +21,6 @@ end
 
 describe 'Factory' do
   it 'has valid user credentials ' do
-    expect(FactoryBot.create(:user)).to be_valid
+    expect(create(:user)).to be_valid
   end
 end
