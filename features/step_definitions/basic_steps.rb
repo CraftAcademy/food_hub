@@ -26,4 +26,7 @@ Given(/^We have the following (?:recipes|list):$/) do |table|
   end
 end
 
-
+Given("I am logged in as {string}") do |email|
+  user = User.find_by(email: email)
+  login_as user
+end
