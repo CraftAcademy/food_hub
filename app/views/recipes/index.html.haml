@@ -1,2 +1,7 @@
-%h1 FoodHub
+%h1 Recipes
 
+- @recipes.each do |recipe|
+  %h3= recipe.title
+  %p= recipe.description
+  %p= recipe.ingredients
+  %p= recipe.directions
