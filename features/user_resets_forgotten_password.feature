@@ -3,6 +3,11 @@ Feature: User resets forgotten password
   In order to use the site
   I should be able to reset my password if forgotten
 
+Background:
+  Given We have the following user:
+    | email           | password    |
+    | maran@test.com  | 12345678    |
+
 Scenario: User resets password for account
   Given I visit the site
   And I click "Login"

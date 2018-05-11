@@ -5,3 +5,7 @@ end
 Then("I should be redirected to index page") do
   expect(current_path).to eq root_path
 end
+
+Then("I am on password reset page") do
+  expect(current_path).to eq new_user_password_path
+end
