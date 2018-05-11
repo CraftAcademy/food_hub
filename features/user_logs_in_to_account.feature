@@ -9,7 +9,7 @@ Background:
     | Maran   | maran@test.com  | 12345678    |
 
 Scenario: User can log in with valid credentials
-  Given I visit site
+  Given I visit the site
   When I click "Login"
   And I fill in "Email" with "maran@test.com"
   And I fill in "Password" with "12345678"
@@ -17,7 +17,7 @@ Scenario: User can log in with valid credentials
   Then I should see "Signed in successfully."
 
 Scenario: User provides wrong password
-  Given I visit site
+  Given I visit the site
   When I click "Login"
   And I fill in "Email" with "maran@test.com"
   And I fill in "Password" with "101dream"
@@ -25,7 +25,7 @@ Scenario: User provides wrong password
   Then I should see "Invalid Email or password."
 
 Scenario: User fails to provide email
-  Given I visit site
+  Given I visit the site
   When I click "Login"
   And I fill in "Email" with ""
   And I fill in "Password" with "12345678"
@@ -33,7 +33,7 @@ Scenario: User fails to provide email
   Then I should see "Invalid Email or password."
 
 Scenario: User fails to provide valid email
-  Given I visit site
+  Given I visit the site
   When I click "Login"
   And I fill in "Email" with "maran"
   And I fill in "Password" with "12345678"

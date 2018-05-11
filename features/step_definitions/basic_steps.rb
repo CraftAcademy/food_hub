@@ -1,4 +1,4 @@
-Given('I visit site') do
+Given('I visit the site') do
   visit root_path
 end
 
@@ -22,11 +22,7 @@ Given('We have the following user:') do |table|
   end
 end
 
-Given("I open the browser") do
-  save_and_open_page
-end
-
-Given("I visit login page") do
+Given("I visit the login page") do
   visit new_user_session_path
 end
 

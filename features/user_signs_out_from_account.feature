@@ -9,7 +9,7 @@ Background:
     | maran@test.com  | 12345678    |
 
 Scenario: User signs out
-  Given I visit login page
+  Given I visit the login page
   And I fill in "Email" with "maran@test.com"
   And I fill in "Password" with "12345678"
   And I click "Log in"

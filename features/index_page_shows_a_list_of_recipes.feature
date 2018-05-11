@@ -9,7 +9,7 @@ Background:
     | Pizza | An italian dish | flour, tomato sauce  | bake in oven |
 
 Scenario: User views recipes on home page
-  Given I visit site
+  Given I visit the site
   Then I should see "Recipes"
   And I should see "Pizza"
   And I should see "An italian dish"
