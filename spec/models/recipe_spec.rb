@@ -11,10 +11,10 @@ RSpec.describe Recipe, type: :model do
   end
 
   describe 'Validation' do
-    it { is_expected.to validate_presence_of(:title) }
-    it { is_expected.to validate_presence_of(:description) }
-    it { is_expected.to validate_presence_of(:ingredients) }
-    it { is_expected.to validate_presence_of(:directions) }
+    it { is_expected.to validate_presence_of :title }
+    it { is_expected.to validate_presence_of :description }
+    it { is_expected.to validate_presence_of :ingredients }
+    it { is_expected.to validate_presence_of :directions }
   end
 
   describe 'Factory' do

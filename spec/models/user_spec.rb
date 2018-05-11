@@ -8,13 +8,19 @@ RSpec.describe User, type: :model do
   end
 
   describe 'Validation' do
-    it { is_expected.to validate_presence_of(:email) }
-    it { is_expected.to validate_presence_of(:password) }
+    it { is_expected.to validate_presence_of :email }
+    it { is_expected.to validate_presence_of :password }
   end
 
   describe 'Factory' do
     it 'can create a valid instance' do
       expect(user).to be_valid
     end
+  end
+end
+
+describe 'Factory' do
+  it 'has valid user credentials ' do
+    expect(create(:user)).to be_valid
   end
 end
