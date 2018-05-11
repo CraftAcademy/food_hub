@@ -1,6 +1,6 @@
 Feature: Show recipe in a view (User views recipe in detail)
   As a user
-  in order read recipes
+  In order read recipes
   I should be able to view a single recipe with all details
 
   Background:
