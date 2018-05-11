@@ -18,6 +18,18 @@ end
 
 Given("We have the following user:") do |table|
   table.hashes.each do |user|
-    FactoryBot.create(:user, user)
+      @user = FactoryBot.create(:user, user)
   end
+end
+
+Given("I am logged in") do
+  login_as @user
+end
+
+Given("I open the browser") do
+  save_and_open_page
+end
+
+Given("I visit login page") do
+  visit new_user_session_path
 end
