@@ -20,7 +20,7 @@ Given('We have the following user:') do |table|
   end
 end
 
-Given('We have the following recipes:') do |table|
+Given('We have the following (?:recipes|list):') do |table|
   table.hashes.each do |recipe|
     create(:recipe, recipe)
   end
