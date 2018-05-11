@@ -2,14 +2,10 @@ Given('I visit site') do
   visit root_path
 end
 
-Given('We have the following list:') do |table|
+Given('We have the following recipes:') do |table|
   table.hashes.each do |recipe|
     create(:recipe, recipe)
   end
-end
-
-Given('I visit the site') do
-  visit root_path
 end
 
 When('I click {string}') do |link|
@@ -24,24 +20,6 @@ Given('We have the following user:') do |table|
   table.hashes.each do |_field|
     create(:user)
   end
-end
-
-When('I click {string}') do |link|
-  click_link_or_button link
-end
-
-When('I fill in {string} with {string}') do |field, text|
-  fill_in field, with: text
-end
-
-Given("We have the following user:") do |table|
-  table.hashes.each do |user|
-      @user = FactoryBot.create(:user, user)
-  end
-end
-
-Given("I am logged in") do
-  login_as @user
 end
 
 Given("I open the browser") do

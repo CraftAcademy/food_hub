@@ -13,7 +13,7 @@ Scenario: User signs out
   And I fill in "Email" with "maran@test.com"
   And I fill in "Password" with "12345678"
   And I click "Log in"
-  Then I should see "Welcome! You have signed up successfully"
+  Then I should see "Signed in successfully."
   When I click "Sign Out"
   Then I should be on root path
   And I see "You have successfully signed out"

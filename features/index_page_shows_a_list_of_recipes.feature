@@ -4,7 +4,7 @@ Feature: Index page shows a list of recipes
   I would like to see a list of recipes displayed
 
 Background:
-  Given We have the following list:
+  Given We have the following recipes:
     | title | description     | ingredients           | directions   |
     | Pizza | An italian dish | flour, tomato sauce  | bake in oven |
 
