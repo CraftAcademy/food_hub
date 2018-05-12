@@ -24,6 +24,5 @@ Given(/^We have the following (?:recipes|list):$/) do |table|
   table.hashes.each do |recipe|
     create(:recipe, recipe)
   end
+
 end
-
-

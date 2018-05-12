@@ -31,3 +31,4 @@ Feature: User creates new recipe
     And I fill in "Ingredients" with ""
     And I fill in "Directions" with "Mix it, stir it, eat it!"
     And I click "Create Recipe"
+    Then I should see "Add New Recipe"
