@@ -3,4 +3,15 @@
 %p= @recipe.ingredients
 %p= @recipe.directions
 
+- @recipe.comments.each do |comment|
+  %p= comment.body
+  %p
+    Written by
+    = mail_to comment.user.email
+
+= form_with(model: [ @recipe, @recipe.comments.build ], local: true) do |form|
+  = form.label :body
+  = form.text_area :body
+  = form.submit
+
 = link_to "Back", root_path
