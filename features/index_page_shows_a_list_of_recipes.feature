@@ -4,9 +4,12 @@ Feature: Index page shows a list of recipes
   I would like to see a list of recipes displayed
 
 Background:
+  Given We have the following user:
+    | email           | password    |
+    | maran@test.com  | 12345678    |
   Given We have the following recipes:
     | title | description     | ingredients           | directions   |
-    | Pizza | An italian dish | flour, tomato sauce  | bake in oven |
+    | Pizza | An italian dish | flour, tomato sauce  | bake in oven  |
 
 Scenario: User views recipes on home page
   Given I visit the site

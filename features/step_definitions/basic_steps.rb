@@ -20,10 +20,9 @@ Given('We have the following user:') do |table|
   end
 end
 
-Given(/^We have the following (?:recipes|list):$/) do |table|
+Given('We have the following recipes:') do |table|
   table.hashes.each do |recipe|
+    recipe["user_id"] = User.last.id
     create(:recipe, recipe)
   end
 end
-
-
