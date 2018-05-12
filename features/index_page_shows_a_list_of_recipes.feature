@@ -16,5 +16,3 @@ Scenario: User views recipes on home page
   Then I should see "Recipes"
   And I should see "Pizza"
   And I should see "An italian dish"
-  And I should see "flour, tomato sauce"
-  And I should see "bake in oven"
