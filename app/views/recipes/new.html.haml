@@ -1,0 +1,22 @@
+%h1 Add New Recipe
+
+= form_with model: @recipe do |form|
+  = form.label :title
+  %br
+  = form.text_field :title
+  %br
+  = form.label :description
+  %br
+  = form.text_area :description
+  %br
+  = form.label :ingredients
+  %br
+  = form.text_area :ingredients
+  %br
+  = form.label :directions
+  %br
+  = form.text_area :directions
+  %br
+  = form.submit
+
+= link_to 'Back', root_path
