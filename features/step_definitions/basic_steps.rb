@@ -14,16 +14,21 @@ When('I fill in {string} with {string}') do |field, text|
   fill_in field, with: text
 end
 
-Given('We have the following user:') do |table|
+Given('We have the following user') do |table|
   table.hashes.each do |_field|
     create(:user)
   end
 end
 
-Given(/^We have the following (?:recipes|list):$/) do |table|
+Given('We have the following recipes') do |table|
   table.hashes.each do |recipe|
     create(:recipe, recipe)
   end
+end
+
+Given("I am logged in as {string}") do |email|
+  user = User.find_by(email: email)
+  login_as user
 end
 
 
