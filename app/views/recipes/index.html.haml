@@ -1,7 +1,9 @@
-%h1 Recipes
+.recipes
+  .center
+    %h1 Recipes
 
-- @recipes.each do |recipe|
-  %h3= link_to recipe.title, recipe_path(recipe)
-  %p= recipe.description
-  %p= recipe.ingredients
-  %p= recipe.directions
+    - @recipes.each do |recipe|
+      %h3= link_to recipe.title, recipe_path(recipe)
+      %p= recipe.description
+      %p= recipe.ingredients
+      %p= recipe.directions
