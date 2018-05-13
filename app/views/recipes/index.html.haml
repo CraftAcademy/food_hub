@@ -1,8 +1,9 @@
 %h1 Recipes
 
 - @recipes.each do |recipe|
-  %h3= link_to recipe.title, recipe_path(recipe)
-  %p= recipe.description
-  %p
-    Posted by:
-    = mail_to recipe.user.email
+  .recipes
+    %h3= link_to recipe.title, recipe_path(recipe)
+    %p= recipe.description
+    %p
+      Posted by:
+      = mail_to recipe.user.email

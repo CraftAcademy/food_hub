@@ -5,18 +5,20 @@ Feature:
 
   Background:
     Given We have the following user:
-      | email           | password    |
-      | maran@test.com  | 12345678    |
+      | email             |
+      | maran@test.com    |
+      | stefan@test.com   |
 
     And We have the following recipes:
-      | title       	| description                 | ingredients        | directions              |
-      | Meatball-Stew | This will make you sick     | Meat, onion, stuff | Stir it, mix it, eat it |
+      | title       	| user             |
+      | Meatball-Stew | maran@test.com   |
+      | Camel Tartar  | stefan@test.com  |
+
+    And I visit the site
 
   Scenario: Visitor can see authors email on index page
-    Given I visit the site
     Then I should see "maran@test.com"
 
   Scenario: Visitor can see authors email on recipe page
-    Given I visit the site
-    And I click "Meatball-Stew"
+    When I click "Meatball-Stew"
     Then I should see "Posted by: maran@test.com"

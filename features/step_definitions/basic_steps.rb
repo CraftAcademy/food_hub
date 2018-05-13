@@ -15,14 +15,14 @@ When('I fill in {string} with {string}') do |field, text|
 end
 
 Given('We have the following user:') do |table|
-  table.hashes.each do |_field|
-    create(:user)
+  table.hashes.each do |field|
+    FactoryBot.create(:user, field)
   end
 end
 
 Given('We have the following recipes:') do |table|
   table.hashes.each do |recipe|
-    recipe[:user_id] = User.last.id
-    create(:recipe, recipe)
+    recipe[:user] = User.find_by email: recipe[:user]
+    FactoryBot.create(:recipe, recipe)
   end
 end
