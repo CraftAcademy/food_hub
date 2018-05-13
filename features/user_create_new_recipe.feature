@@ -8,10 +8,7 @@ Feature: User creates new recipe
       | email          | password |
       | maran@test.com | 12345678 |
 
-    And I visit the login page
-    And I fill in "Email" with "maran@test.com"
-    And I fill in "Password" with "12345678"
-    And I click "Log in"
+    And I am logged in as "maran@test.com"
     And I visit the site
     And I click "New Recipe"
 
