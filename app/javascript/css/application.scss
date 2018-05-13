@@ -1,14 +1,29 @@
-/**
- * This injects Tailwind's base styles, which is a combination of
- * Normalize.css and some additional base styles.
- *
- * You can see the styles here:
- * https://github.com/tailwindcss/tailwindcss/blob/master/css/preflight.css
- *
- * If using `postcss-import`, use this import instead:
- *
- * @import "tailwindcss/preflight";
- */
+.wrapper {
+ display: grid;
+ grid-template-columns: 1fr;
+ grid-template-rows: auto;
+ grid-template-areas:
+ 'header'
+ 'foodhub'
+}
+
+.header {
+ grid-area: header;
+ background: #1995AD;
+ color: #BCBABE;
+ position: fixed;
+ top: 0;
+ width: 100%;
+ z-index: 99;
+}
+
+.foodhub {
+ grid-area: projects;
+ background-color: #F1F1F2;
+ h1 {
+  text-align: center;
+ }
+
  @tailwind preflight;
 
  /**
@@ -19,7 +34,7 @@
   * @import "tailwindcss/components";
   */
  @tailwind components;
- 
+
  /**
   * Here you would add any of your custom component classes; stuff that you'd
   * want loaded *before* the utilities so that the utilities could still
@@ -35,7 +50,7 @@
   * @import "components/buttons";
   * @import "components/forms";
   */
- 
+
  /**
   * This injects all of Tailwind's utility classes, generated based on your
   * config file.
@@ -45,7 +60,7 @@
   * @import "tailwindcss/utilities";
   */
  @tailwind utilities;
- 
+
  /**
   * Here you would add any custom utilities you need that don't come out of the
   * box with Tailwind.
