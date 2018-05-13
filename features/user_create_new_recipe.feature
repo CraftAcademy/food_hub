@@ -19,6 +19,7 @@ Feature: User creates new recipe
     And I fill in "Directions" with "Mix it, stir it, eat it!"
     And I click "Create Recipe"
     Then I should be redirected to index page
+    And I should see "Recipe Sucessfully created"
     And I should see "Cheesy Fungus"
     And I should see "Shroomlovin' cheese feast!"
 

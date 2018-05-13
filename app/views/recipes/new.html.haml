@@ -1,6 +1,7 @@
 %h1 Add New Recipe
 
-= form_with model: @recipe do |form|
+= form_with model: @recipe, local: true do |form|
+
   = form.label :title
   %br
   = form.text_field :title
