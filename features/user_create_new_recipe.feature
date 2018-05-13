@@ -30,3 +30,4 @@ Feature: User creates new recipe
     And I fill in "Directions" with "Mix it, stir it, eat it!"
     And I click "Create Recipe"
     Then I should see "Add New Recipe"
+    And I should see "Ingredients can't be blank"

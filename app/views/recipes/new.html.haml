@@ -1,5 +1,10 @@
 %h1 Add New Recipe
 
+- if @recipe.errors.any?
+  %ul
+    - @recipe.errors.full_messages.each do |msg|
+      %li= msg
+
 = form_with model: @recipe, local: true do |form|
 
   = form.label :title
