@@ -1,5 +1,5 @@
 %h1 Recipes
-
+.box
 - @recipes.each do |recipe|
   %h3= link_to recipe.title, recipe_path(recipe)
   %p= recipe.description
