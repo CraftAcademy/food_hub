@@ -9,15 +9,13 @@ Feature: User edits recipe
       | Meatball-Stew | This will make you sick |
 
     Given We have the following user
-      | name   | email            | password |
-      | Maran  | maran@test.com   | 12345678 |
+      | email            | password |
+      | maran@test.com   | 12345678 |
 
   Scenario: User edits a recipe of their own
-
     Given I am logged in as "maran@test.com"
     And I visit the site
     And I click "Meatball-Stew"
     When I click "Edit Recipe" 
-    Then I should be redireced to edit recipe page
-    When I click "Save"
-    Then I should see "You have succsessfully edit recipe!"
+    And I click "Update Recipe"
+    Then I should see "You have successfully edit recipe!"
