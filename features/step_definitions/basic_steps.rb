@@ -16,13 +16,13 @@ end
 
 Given('We have the following user:') do |table|
   table.hashes.each do |field|
-    FactoryBot.create(:user, field)
+    create(:user, field)
   end
 end
 
 Given('We have the following recipes:') do |table|
   table.hashes.each do |recipe|
     recipe[:user] = User.find_by email: recipe[:user]
-    FactoryBot.create(:recipe, recipe)
+      create(:recipe, recipe)
   end
 end
