@@ -22,7 +22,7 @@ end
 
 Given('We have the following recipes:') do |table|
   table.hashes.each do |recipe|
-    recipe["user_id"] = User.last.id
+    recipe[:user_id] = User.last.id
     create(:recipe, recipe)
   end
 end

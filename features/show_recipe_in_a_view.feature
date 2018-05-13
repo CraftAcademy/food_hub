@@ -7,6 +7,7 @@ Feature: Show recipe in a view (User views recipe in detail)
     Given We have the following user:
       | email           | password    |
       | maran@test.com  | 12345678    |
+      
     And We have the following recipes:
       | title       	| description                 | ingredients        | directions              |
       | Meatball-Stew | This will make you sick     | Meat, onion, stuff | Stir it, mix it, eat it |
