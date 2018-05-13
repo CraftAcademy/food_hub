@@ -20,13 +20,13 @@ Given('We have the following user:') do |table|
   end
 end
 
+Given("I am logged in as {string}") do |user_email|
+  login_as User.find_by(email: user_email)
+end
+
 Given(/^We have the following (?:recipes|list):$/) do |table|
   table.hashes.each do |recipe|
     create(:recipe, recipe)
-  end
 end
 
-Given("I am logged in as {string}") do |email|
-  user = User.find_by(email: email)
-  login_as user
 end
