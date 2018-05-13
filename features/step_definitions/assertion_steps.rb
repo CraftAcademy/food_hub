@@ -5,3 +5,7 @@ end
 Then("I should be redirected to index page") do
   expect(current_path).to eq root_path
 end
+
+Then("I should be redireced to edit recipe page") do
+  expect(current_path).to eq recipe_path
+end

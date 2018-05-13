@@ -5,7 +5,7 @@ Feature: User edits recipe
 
  Background:
     Given We have the following recipes
-      | title         | description             | 
+      | title         | description             |
       | Meatball-Stew | This will make you sick |
 
     Given We have the following user
@@ -13,13 +13,11 @@ Feature: User edits recipe
       | Maran  | maran@test.com   | 12345678 |
 
   Scenario: User edits a recipe of their own
-   
+
     Given I am logged in as "maran@test.com"
     And I visit the site
-    When I click "Recipes" 
     And I click "Meatball-Stew"
-    And I click "Edit"
+    When I click "Edit Recipe" 
     Then I should be redireced to edit recipe page
     When I click "Save"
     Then I should see "You have succsessfully edit recipe!"
-

@@ -4,7 +4,7 @@ Feature: User signs out
   I would like to be able to sign out
 
 Background:
-  Given We have the following user:
+  Given We have the following user
     | email           | password    |
     | maran@test.com  | 12345678    |
 

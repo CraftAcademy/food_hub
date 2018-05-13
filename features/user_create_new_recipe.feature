@@ -4,7 +4,7 @@ Feature: User creates new recipe
   I should be able to add new recipe
 
   Background:
-    Given We have the following user:
+    Given We have the following user
       | email          | password |
       | maran@test.com | 12345678 |
 
