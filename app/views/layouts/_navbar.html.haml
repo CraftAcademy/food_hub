@@ -1,15 +1,15 @@
 .wrapper
   .navbar.py-6
-    .flex.items-center.justify-between.mx-auto.px-4
-    - if user_signed_in?
-      = link_to "Logged in as: #{current_user.email}", root_path
-      = link_to 'Sign Out',  destroy_user_session_path, method: :delete
-    - else
-    .links
-      %ul.flex.items-center.list-reset
-        %li.m-4
-          %a.no-underline.text-white.hover:text-black
-            = link_to 'Sign Up', new_user_registration_path
-        %li.m-4
-          %a.no-underline.text-white.hover:text-black 
-            = link_to 'Login', new_user_session_path
+    .flex.flex-row-reverse.items-center.justify-between.mx-auto.px-4
+      - if user_signed_in?
+        = link_to "Logged in as: #{current_user.email}", root_path
+        = link_to 'Sign Out',  destroy_user_session_path, method: :delete
+      - else
+      .links
+        %ul.flex.items-center.list-reset
+          %li.m-4
+            %a.no-underline.text-white.hover:text-black
+              = link_to 'Sign Up', new_user_registration_path
+          %li.m-4
+            %a.no-underline.text-white.hover:text-black 
+              = link_to 'Login', new_user_session_path
