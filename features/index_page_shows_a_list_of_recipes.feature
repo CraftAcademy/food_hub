@@ -8,8 +8,8 @@ Background:
     | email           | password    |
     | maran@test.com  | 12345678    |
   Given We have the following recipes:
-    | title | description     | ingredients           | directions   |
-    | Pizza | An italian dish | flour, tomato sauce  | bake in oven  |
+    | title | description     | ingredients           | directions   | user            |
+    | Pizza | An italian dish | flour, tomato sauce  | bake in oven  | maran@test.com  |
 
 Scenario: User views recipes on home page
   Given I visit the site

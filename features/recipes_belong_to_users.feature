@@ -17,7 +17,10 @@ Feature:
     And I visit the site
 
   Scenario: Visitor can see authors email on index page
-    Then I should see "maran@test.com"
+    Then I should see "Posted by: maran@test.com" in "Meatball-Stew" recipe
+    And I should see "Posted by: stefan@test.com" in "Camel Tartar" recipe
+    And I should not see "Posted by: stefan@test.com" in "Meatball-Stew" recipe
+    And I should not see "Posted by: maran@test.com" in "Camel Tartar" recipe
 
   Scenario: Visitor can see authors email on recipe page
     When I click "Meatball-Stew"
