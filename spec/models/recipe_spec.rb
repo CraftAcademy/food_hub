@@ -8,6 +8,8 @@ RSpec.describe Recipe, type: :model do
     it { is_expected.to have_db_column :description}
     it { is_expected.to have_db_column :ingredients}
     it { is_expected.to have_db_column :directions}
+    it { is_expected.to have_db_column :user_id}
+    it { is_expected.to belong_to :user}
   end
 
   describe 'Validation' do
