@@ -1,10 +1,11 @@
 class RecipesController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
   def new
     @recipe = Recipe.new
   end
 
   def create
-    @recipe = Recipe.new(product_params)
+    @recipe = Recipe.new(recipe_params)
     if @recipe.save
       flash[:notice] = "Recipe Sucessfully created"
       redirect_to root_path
@@ -27,7 +28,7 @@ class RecipesController < ApplicationController
 
   def update
     @recipe = Recipe.find_by(id: params[:id])
-      if @recipe.update(product_params)
+      if @recipe.update(recipe_params)
         flash[:notice] = "You have successfully edit recipe!"
       redirect_to recipe_path(@recipe)
     else
@@ -38,7 +39,9 @@ class RecipesController < ApplicationController
 
 private
 
- def product_params
-   params.require(:recipe).permit(:title, :description, :ingredients, :directions )
+ def recipe_params
+   recipe = params.require(:recipe).permit(:title, :description, :ingredients, :directions )
+   recipe[:user] = current_user
+   recipe
  end
 end

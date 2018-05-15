@@ -4,9 +4,9 @@ Feature: User logs in to account
   I need to be able to login
 
 Background:
-  Given We have the following user
-    | name    | email           | password    |
-    | Maran   | maran@test.com  | 12345678    |
+  Given We have the following user:
+    | email           | password    |
+    | maran@test.com  | 12345678    |
 
 Scenario: User can log in with valid credentials
   Given I visit the site
