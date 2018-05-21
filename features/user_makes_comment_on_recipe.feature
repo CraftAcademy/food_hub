@@ -4,13 +4,13 @@ Feature: User can comment on a recipe
   I would like to comment on recipes
 
 Background:
-  Given We have the following list:
-    | title       	| description                 | ingredients        | directions              |
-    | Meatball-Stew | This will make you sick     | Meat, onion, stuff | Stir it, mix it, eat it |
-
   Given We have the following user:
     | email           | password    |
     | maran@test.com  | 12345678    |
+
+  Given We have the following recipes:
+    | title       	| description                 | ingredients        | directions              | user           |
+    | Meatball-Stew | This will make you sick     | Meat, onion, stuff | Stir it, mix it, eat it | maran@test.com |
 
 Scenario: User comments on a recipe
   Given I visit the site

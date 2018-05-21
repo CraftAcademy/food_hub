@@ -22,8 +22,14 @@ end
 
 Given('We have the following recipes:') do |table|
   table.hashes.each do |recipe|
-    recipe[:user] = User.find_by email: recipe[:user]
+    if recipe[:user]
+      user = User.find_by email: recipe[:user]
+      recipe = recipe.except('user')
+      create(:recipe, recipe.merge(user: user))
+    else
       create(:recipe, recipe)
+    end
+    
   end
 end
 
