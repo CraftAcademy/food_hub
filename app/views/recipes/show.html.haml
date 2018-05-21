@@ -2,6 +2,9 @@
 %p= @recipe.description
 %p= @recipe.ingredients
 %p= @recipe.directions
+%p
+  Posted by:
+  = mail_to @recipe.user.email
 
 - @recipe.comments.each do |comment|
   .box
@@ -16,4 +19,5 @@
     = form.text_area :body
     = form.submit
 
+= link_to "Edit Recipe", edit_recipe_path
 = link_to "Back", root_path

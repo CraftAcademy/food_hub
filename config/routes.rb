@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :recipes, only: [:index, :show, :new, :create]
+  resources :recipes, except: [:destroy]
   root controller: :recipes, action: :index
   resources :recipes do
     resources :comments
