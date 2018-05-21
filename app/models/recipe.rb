@@ -1,5 +1,6 @@
 class Recipe < ApplicationRecord
-  validates :title, presence: true, length: {minimum: 5}
+  has_many :comments
+  validates :title, presence: true, length: {minimum: 3}
   validates :description, presence: true
   validates :ingredients, presence: true
   validates :directions, presence: true
