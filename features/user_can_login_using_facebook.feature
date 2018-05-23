@@ -21,7 +21,7 @@ Scenario: Email is missing from Facebook responce
     Given the facebook response is missing email
     And I visit the site
     And I click "Login with Facebook"
-    Then I should be redirected to the signup åage
+    Then I should be redirected to the signup page
     And I fill in "Email" with "thomas@craft.se"
     And I fill in "Password" with "qwerty"
     And I fill in "Password confirmation" with "qwerty"

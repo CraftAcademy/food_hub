@@ -6,7 +6,7 @@ Then("I should be redirected to index page") do
   expect(current_path).to eq root_path
 end
 
-Then("I should be redirected to the signup åage") do
+Then("I should be redirected to the signup page") do
   expect(current_path).to eq new_user_registration_path
 end
 
