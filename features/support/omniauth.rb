@@ -16,4 +16,21 @@ module OmniAuthFixtures
                   {name: 'Thomas Ochman', email: 'thomas@craftacademy.se', id: '10205522242159630'}}}
     
       end
+
+    def self.facebook_response_without_email
+        {provider: 'facebook',
+            uid: 10205522242159630,
+            info:
+                {name: 'Thomas Ochman',
+                 image: 'http://graph.facebook.com/v2.6/10205522242159630/picture'},
+            credentials:
+                {token:
+                     'EAAXC253O740BANfJYLjz2LCzT1UcfuEsoHpZBMAifdiud8sulF2LIfjDy5BeGiNPEPQjUn7xpvAu0neqnGeoCAvCU2KIucyP5sYNQDaDtCj06UmOF2POEq8ZAajS2zaQ4B7uIIRgv4p3wlACmh9f9MsMnDZB6gZD',
+                 expires_at: 1517839337,
+                 expires: true},
+            extra:
+                {raw_info:
+                     {name: 'Thomas Ochman', id: '10205522242159630'}}}
+       
+    end
 end

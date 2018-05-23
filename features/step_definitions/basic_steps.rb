@@ -40,3 +40,7 @@ end
 Given("the facebook authentication is not granted") do
   OmniAuth.config.mock_auth[:facebook] = :invalid_credentials
 end
+
+Given("the facebook response is missing email") do
+  OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new(OmniAuthFixtures.facebook_response_without_email)
+end
