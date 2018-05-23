@@ -1,7 +1,7 @@
-Feature: User can log in using his/hers Facebook credentials
-As a user of the system
-In order to simplify the sign up/sign in process 
-I would like to be able to authenticate myself using Facebook 
+Feature: User can log in using hers/his Facebook credentials
+    As a user of the system
+    In order to simplify the sign up/sign in process 
+    I would like to be able to authenticate myself using Facebook 
 
 
 Scenario: Visitor clicks on 'Login with Facebook' and gets authenticated
@@ -9,3 +9,11 @@ Scenario: Visitor clicks on 'Login with Facebook' and gets authenticated
     And I click "Login with Facebook"
     Then I should be redirected to index page
     And I should see "Successfully authenticated from Facebook account" 
+
+
+Scenario: Facebook authentication fails
+    Given the facebook authentication is not granted
+    And I visit the site
+    And I click "Login with Facebook"
+    Then I should be redirected to index page
+    And I should see "Could not authenticate you!"

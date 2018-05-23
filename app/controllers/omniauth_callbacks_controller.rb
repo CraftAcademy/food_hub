@@ -12,6 +12,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
 
     def failure
-        redirect_to root_path, notice: 'That did not work!'
+        redirect_to root_path, notice: 'Could not authenticate you!'
     end
 end
