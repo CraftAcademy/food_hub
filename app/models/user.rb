@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_many :comments
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  enum role: [:user, :admin]
+  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]

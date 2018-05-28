@@ -28,11 +28,12 @@ class RecipesController < ApplicationController
 
   def update
     @recipe = Recipe.find_by(id: params[:id])
-    if @recipe.update(recipe_params)
+    if (@recipe.user == current_user || current_user.admin?) && @recipe.update(recipe_params)
       flash[:notice] = "You have successfully edit recipe!"
       redirect_to recipe_path(@recipe)
     else
-      flash[:alert] = "Error updating recipe!"
+      flash[:alert] = "Error updating recipe!" if @recipe.user == current_user
+      flash[:alert] = "You can NOT do this!" if @recipe.user != current_user
       render :edit
     end
   end

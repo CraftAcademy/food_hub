@@ -30,5 +30,27 @@ RSpec.describe User, type: :model do
       expect{create_user.call}.to change{User.count}.from(0).to(1)
     end
   end
+
+
+  describe 'User roles' do 
+    let(:admin) {create :user, email: 'admin@random.com', role: :admin}
+    let(:user_1) {create :user, email: 'user_1@random.com', role: :user}
+
+    it '#admin? responds true if user role is admin' do 
+      expect(admin.admin?).to eq true
+    end
+
+    it '#admin? responds false if user role is NOT admin' do 
+      expect(user_1.admin?).to eq false
+    end
+
+    it '#user? responds true if user role is user' do 
+      expect(user_1.user?).to eq true
+    end
+
+    it '#user? responds false if user role is NOT user' do 
+      expect(admin.user?).to eq false
+    end
+  end
 end
 
