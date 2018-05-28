@@ -5,9 +5,4 @@ class ApplicationPolicy
     @user = user
     @record = record
   end
-
-  def scope
-    Pundit.policy_scope!(user, record.class)
-  end
-
 end
