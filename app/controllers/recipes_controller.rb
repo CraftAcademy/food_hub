@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :authorize_user, only: :edit
   def new
     @recipe = Recipe.new
   end
@@ -44,5 +45,12 @@ private
    recipe = params.require(:recipe).permit(:title, :description, :ingredients, :directions )
    recipe[:user] = current_user
    recipe
+ end
+
+ def authorize_user
+  @recipe = Recipe.find(params[:id])
+  if current_user != @recipe.user
+    redirect_to root_path, notice: 'You can NOT do this!'
+  end
  end
 end

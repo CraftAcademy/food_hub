@@ -19,5 +19,5 @@
     = form.text_area :body
     = form.submit
 
-= link_to "Edit Recipe", edit_recipe_path
+= link_to "Edit Recipe", edit_recipe_path if current_user == @recipe.user
 = link_to "Back", root_path
