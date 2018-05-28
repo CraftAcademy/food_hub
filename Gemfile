@@ -12,6 +12,8 @@ gem 'turbolinks', '~> 5'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'haml-rails', '~> 1.0'
 gem 'devise'
+gem 'omniauth-facebook', '~> 4.0'
+
 
 group :development, :test do
   gem 'coveralls', require: false

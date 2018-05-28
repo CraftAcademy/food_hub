@@ -36,3 +36,11 @@ end
 Given("I am logged in as {string}") do |user_email|
   login_as User.find_by(email: user_email)
 end
+
+Given("the facebook authentication is not granted") do
+  OmniAuth.config.mock_auth[:facebook] = :invalid_credentials
+end
+
+Given("the facebook response is missing email") do
+  OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new(OmniAuthFixtures.facebook_response_without_email)
+end
