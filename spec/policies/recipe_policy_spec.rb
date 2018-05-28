@@ -2,27 +2,23 @@ require 'rails_helper'
 
 RSpec.describe RecipePolicy do
 
-  let(:user) { User.new }
+  let(:user_1) { create(:user, email: 'user_1@random.com', role: :user) }
+  let(:user_2) { create(:user, email: 'user_2@random.com', role: :user) }
+  let(:admin) { create(:user, email: 'admin@random.com', role: :admin) }
 
-  subject { described_class }
-
-  permissions ".scope" do
-    pending "add some examples to (or delete) #{__FILE__}"
+  let(:recipe) { create(:recipe, user: user_1) }
+  context 'user is a user and owner of the recipe' do
+    subject { described_class.new(user_1, recipe) }
+    it { is_expected.to permit_edit_and_update_actions }
   end
 
-  permissions :show? do
-    pending "add some examples to (or delete) #{__FILE__}"
+  context 'user is a user and NOT owner of the recipe' do
+    subject { described_class.new(user_2, recipe) }
+    it { is_expected.to forbid_edit_and_update_actions }
   end
 
-  permissions :create? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
-  permissions :update? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
-  permissions :destroy? do
-    pending "add some examples to (or delete) #{__FILE__}"
+  context 'user is an admin' do
+    subject { described_class.new(user_1, recipe) }
+    it { is_expected.to permit_edit_and_update_actions }
   end
 end

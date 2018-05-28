@@ -26,6 +26,7 @@ group :development, :test do
   gem 'shoulda-matchers', '~> 3.1'
   gem 'factory_bot_rails'
   gem 'launchy'
+  gem 'pundit-matchers'
 end
 
 group :development do
