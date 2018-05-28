@@ -18,6 +18,6 @@
     = form.label :body
     = form.text_area :body
     = form.submit
--if (current_user == @recipe.user || current_user.admin?)
+-if policy(@recipe).edit?
   = link_to "Edit Recipe", edit_recipe_path 
 = link_to "Back", root_path
