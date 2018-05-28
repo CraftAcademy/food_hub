@@ -49,7 +49,7 @@ private
 
  def authorize_user
   @recipe = Recipe.find(params[:id])
-  if current_user != @recipe.user
+  unless (current_user == @recipe.user || current_user.admin?)
     redirect_to root_path, notice: 'You can NOT do this!'
   end
  end
