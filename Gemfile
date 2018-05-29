@@ -13,6 +13,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'haml-rails', '~> 1.0'
 gem 'devise'
 gem 'omniauth-facebook', '~> 4.0'
+gem 'pundit'
 
 
 group :development, :test do
@@ -25,6 +26,7 @@ group :development, :test do
   gem 'shoulda-matchers', '~> 3.1'
   gem 'factory_bot_rails'
   gem 'launchy'
+  gem 'pundit-matchers'
 end
 
 group :development do

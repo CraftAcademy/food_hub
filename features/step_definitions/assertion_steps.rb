@@ -22,3 +22,7 @@ end
 Then("show me the page") do
   save_and_open_page
 end
+
+Then("I should not see {string}") do |string|
+  expect(page).to have_no_content string
+end

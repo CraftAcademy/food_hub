@@ -44,3 +44,8 @@ end
 Given("the facebook response is missing email") do
   OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new(OmniAuthFixtures.facebook_response_without_email)
 end
+
+Given("I visit the edit page for {string}") do |string|
+  recipe = Recipe.find_by(title: string)
+  visit edit_recipe_path(recipe)
+end

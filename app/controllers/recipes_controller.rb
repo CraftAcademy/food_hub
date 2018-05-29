@@ -1,5 +1,8 @@
 class RecipesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :get_recipe, only: [:show, :edit, :update]
+  before_action :authorize_record, only: [:edit, :update]
+  
   def new
     @recipe = Recipe.new
   end
@@ -19,15 +22,12 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @recipe = Recipe.find(params[:id])
   end
 
   def edit
-    @recipe = Recipe.find(params[:id])
   end
 
   def update
-    @recipe = Recipe.find_by(id: params[:id])
     if @recipe.update(recipe_params)
       flash[:notice] = "You have successfully edit recipe!"
       redirect_to recipe_path(@recipe)
@@ -44,4 +44,14 @@ private
    recipe[:user] = current_user
    recipe
  end
+
+ def get_recipe 
+    @recipe = Recipe.find(params[:id])
+ end
+
+ def authorize_record
+    authorize @recipe
+ end
+
+ 
 end

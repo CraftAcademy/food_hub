@@ -18,6 +18,6 @@
     = form.label :body
     = form.text_area :body
     = form.submit
-
-= link_to "Edit Recipe", edit_recipe_path
+-if user_signed_in? && policy(@recipe).edit?
+  = link_to "Edit Recipe", edit_recipe_path 
 = link_to "Back", root_path
