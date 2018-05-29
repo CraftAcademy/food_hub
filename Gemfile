@@ -14,6 +14,7 @@ gem 'haml-rails', '~> 1.0'
 gem 'devise'
 gem 'omniauth-facebook', '~> 4.0'
 gem 'pundit'
+gem 'chewy'
 
 
 group :development, :test do
