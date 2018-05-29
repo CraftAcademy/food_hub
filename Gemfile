@@ -28,6 +28,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'launchy'
   gem 'pundit-matchers'
+  gem 'elasticsearch-extensions'
 end
 
 group :development do
