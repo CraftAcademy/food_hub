@@ -9,7 +9,7 @@ class Recipe < ApplicationRecord
   after_create :notify
 
   def notify 
-    ActionCable.server.broadcast 'web_notifications_channel', 
+    ActionCable.server.broadcast 'notifications', 
                                   message: "<p>#{self.title} was created!</p>"
   end
 end
