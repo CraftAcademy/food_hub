@@ -14,6 +14,7 @@ gem 'haml-rails', '~> 1.0'
 gem 'devise'
 gem 'omniauth-facebook', '~> 4.0'
 gem 'pundit'
+gem 'redis', '~> 3.0'
 
 
 group :development, :test do
@@ -27,6 +28,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'launchy'
   gem 'pundit-matchers'
+  gem 'action-cable-testing'
 end
 
 group :development do
