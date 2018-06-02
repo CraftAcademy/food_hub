@@ -15,3 +15,10 @@ RSpec.describe WebNotificationsChannel, type: :channel do
     expect(streams).to include("notifications")
   end
 end
+
+RSpec.describe ApplicationCable::Connection, type: :channel do
+  it "successfully connects" do
+    connect "/cable"
+    expect(connection.nil?).to be_falsy
+  end
+end
