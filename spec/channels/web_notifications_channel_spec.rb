@@ -19,6 +19,6 @@ end
 RSpec.describe ApplicationCable::Connection, type: :channel do
   it "successfully connects" do
     connect "/cable"
-    expect(connection.nil?).to be_falsy
+  expect(connection.nil?).to be_falsy
   end
 end
