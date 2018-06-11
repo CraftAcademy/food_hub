@@ -15,6 +15,7 @@ gem 'devise'
 gem 'omniauth-facebook', '~> 4.0'
 gem 'pundit'
 gem 'chewy'
+gem 'redis', '~> 3.0'
 
 
 group :development, :test do
@@ -29,6 +30,7 @@ group :development, :test do
   gem 'launchy'
   gem 'pundit-matchers'
   gem 'elasticsearch-extensions'
+  gem 'action-cable-testing'
 end
 
 group :development do

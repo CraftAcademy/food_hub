@@ -7,4 +7,6 @@ Rails.application.routes.draw do
     end
     resources :comments
   end
+
+  mount ActionCable.server => '/cable'
 end
