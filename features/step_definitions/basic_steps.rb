@@ -29,7 +29,7 @@ Given('We have the following recipes:') do |table|
     else
       create(:recipe, recipe)
     end
-    
+
   end
 end
 
@@ -48,4 +48,21 @@ end
 Given("I visit the edit page for {string}") do |string|
   recipe = Recipe.find_by(title: string)
   visit edit_recipe_path(recipe)
+end
+
+Given("{string} is logged-in in another window") do |email|
+  #make sure capybara open another tab
+  window = open_new_window
+  switch_to_window(window)
+  #Use warden helpers to login the user_id
+  user = User.find_by(name: email)
+  login_as(user, scope: :user)
+end
+
+Given("He is on the show page for {string}") do |string|
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Given("I switch to a new window") do
+  pending # Write code here that turns the phrase above into concrete actions
 end
