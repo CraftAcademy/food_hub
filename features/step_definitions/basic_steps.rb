@@ -51,18 +51,18 @@ Given("I visit the edit page for {string}") do |string|
 end
 
 Given("{string} is logged-in in another window") do |email|
-  #make sure capybara open another tab
   window = open_new_window
   switch_to_window(window)
-  #Use warden helpers to login the user_id
   user = User.find_by(email: email)
   login_as(user, scope: :user)
 end
 
-Given("He is on the show page for {string}") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
+Given("He is on the show page for {string}") do |recipe_title|
+  recipe = Recipe.find_by(title: recipe_title)
+  visit recipe_path(recipe)
+
 end
 
-Given("I switch to a new window") do
-  pending # Write code here that turns the phrase above into concrete actions
+Given("I switch to window {string}") do |index|
+  switch_to_window(windows[index.to_i - 1])
 end
