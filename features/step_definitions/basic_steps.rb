@@ -60,7 +60,6 @@ end
 Given("He is on the show page for {string}") do |recipe_title|
   recipe = Recipe.find_by(title: recipe_title)
   visit recipe_path(recipe)
-
 end
 
 Given("I switch to window {string}") do |index|

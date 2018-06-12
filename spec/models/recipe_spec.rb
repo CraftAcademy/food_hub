@@ -25,12 +25,12 @@ RSpec.describe Recipe, type: :model do
     end
   end
 
-  # describe 'Broadcast notification' do
-  #   it 'on create' do
-  #     expect{ create(:recipe)}
-  #     .to have_broadcasted_to('notifications')
-  #     .from_channel(WebNotificationsChannel)
-  #     .with({message: '<p>MyRecipe was created!</p>'})
-  #   end
-  # end
+  describe 'Broadcast notification' do
+    it 'on create' do
+      expect{ create(:recipe)}
+      .to have_broadcasted_to('notifications')
+      .from_channel(WebNotificationsChannel)
+      .with({message: '<p>MyRecipe was created!</p>'})
+    end
+  end
 end

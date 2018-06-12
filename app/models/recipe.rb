@@ -6,10 +6,10 @@ class Recipe < ApplicationRecord
   validates :directions, presence: true
   belongs_to :user
 
-  # after_create :notify
+  after_create :notify
 
-  # def notify
-  #   ActionCable.server.broadcast 'notifications',
-  #                                 message: "<p>#{self.title} was created!</p>"
-  # end
+  def notify
+    ActionCable.server.broadcast 'notifications',
+                                  message: "<p>#{self.title} was created!</p>"
+  end
 end
