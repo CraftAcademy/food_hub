@@ -12,11 +12,11 @@ RSpec.describe Comment, type: :model do
   end
 
   describe 'Broadcast notification' do
-    it 'on create' do 
+    it 'on create' do
       expect{ create(:comment, user: user, recipe: recipe)}
       .to have_broadcasted_to('notifications')
       .from_channel(WebNotificationsChannel)
       .with({message: '<p>whatever@random.com left a comment on Pizza.</p>'})
-    end 
+    end
   end
 end
