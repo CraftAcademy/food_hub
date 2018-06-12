@@ -29,7 +29,7 @@ Given('We have the following recipes:') do |table|
     else
       create(:recipe, recipe)
     end
-    
+
   end
 end
 
@@ -48,4 +48,9 @@ end
 Given("I visit the edit page for {string}") do |string|
   recipe = Recipe.find_by(title: string)
   visit edit_recipe_path(recipe)
+end
+
+Given("I am on the {string} page") do |recipe_title|
+  recipe = Recipe.find_by title: recipe_title
+  visit recipe_path(recipe)
 end
