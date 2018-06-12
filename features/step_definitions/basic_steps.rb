@@ -55,7 +55,7 @@ Given("{string} is logged-in in another window") do |email|
   window = open_new_window
   switch_to_window(window)
   #Use warden helpers to login the user_id
-  user = User.find_by(name: email)
+  user = User.find_by(email: email)
   login_as(user, scope: :user)
 end
 
