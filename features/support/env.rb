@@ -16,13 +16,13 @@ Cucumber::Rails::Database.javascript_strategy = :truncation
 
 World(FactoryBot::Syntax::Methods)
 
-Before do 
+Before('@search') do 
   Chewy.strategy(:bypass)
   Elasticsearch::Extensions::Test::Cluster.start(
-   port: 9250,
-   nodes: 1,
-   timeout: 120
-  ) unless Elasticsearch::Extensions::Test::Cluster.running?(on: 9250)
+    port: 9200,
+    nodes: 1,
+    timeout: 120
+  ) unless Elasticsearch::Extensions::Test::Cluster.running?(on: 9200)
   RecipesIndex.create!
   
   OmniAuth.config.test_mode = true
@@ -30,6 +30,7 @@ Before do
 end
 
 
-After do 
+After('@search') do 
   RecipesIndex.delete!
+  Elasticsearch::Extensions::Test::Cluster.stop(port: 9200)
 end
