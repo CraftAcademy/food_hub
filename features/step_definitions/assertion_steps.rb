@@ -26,3 +26,7 @@ end
 Then("I should not see {string}") do |string|
   expect(page).to have_no_content string
 end
+
+Then("I should see the {string} image") do |file_name|
+  expect(page).to have_selector "img[src$='#{file_name}']"
+end
