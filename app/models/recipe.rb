@@ -8,8 +8,8 @@ class Recipe < ApplicationRecord
 
   after_create :notify
 
-  def notify 
-    ActionCable.server.broadcast 'notifications', 
+  def notify
+    ActionCable.server.broadcast 'notifications',
                                   message: "<p>#{self.title} was created!</p>"
   end
 end
