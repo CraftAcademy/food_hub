@@ -17,7 +17,7 @@ Background:
 
 Scenario: User forks a recipe edits its title
   Given I am on the "Meatball-Stew" page
-  When I click "fork"
+  When I click "Fork"
   Then I should see "You have succsessfully forked the recipe"
   And I should be on the "Meatball-Stew" edit page
   When I fill in "Title" with "Maran's Meatball-Stew"

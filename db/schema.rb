@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_28_084317) do
+ActiveRecord::Schema.define(version: 2018_06_13_132807) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "comments", force: :cascade do |t|
     t.text "body"
@@ -25,6 +31,15 @@ ActiveRecord::Schema.define(version: 2018_05_28_084317) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "likes", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "recipe_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipe_id"], name: "index_likes_on_recipe_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
   create_table "recipes", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -33,6 +48,11 @@ ActiveRecord::Schema.define(version: 2018_05_28_084317) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.bigint "category_id"
+    t.string "fork_user", default: [], array: true
+    t.string "fork_recipe", default: [], array: true
+    t.integer "original_recipe_id"
+    t.index ["category_id"], name: "index_recipes_on_category_id"
     t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 
@@ -49,6 +69,7 @@ ActiveRecord::Schema.define(version: 2018_05_28_084317) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
     t.string "provider"
     t.string "uid"
     t.integer "role"
@@ -58,5 +79,8 @@ ActiveRecord::Schema.define(version: 2018_05_28_084317) do
 
   add_foreign_key "comments", "recipes"
   add_foreign_key "comments", "users"
+  add_foreign_key "likes", "recipes"
+  add_foreign_key "likes", "users"
+  add_foreign_key "recipes", "categories"
   add_foreign_key "recipes", "users"
 end
