@@ -1,5 +1,6 @@
 %h3= @recipe.title
 %p= @recipe.description
+= image_tag @recipe.image unless @recipe.image.attachment.nil?
 %p= @recipe.ingredients
 %p= @recipe.directions
 %p
@@ -12,12 +13,12 @@
     %p
       Written by
       = mail_to comment.user.email
-      
+
 = form_with(model: [ @recipe, @recipe.comments.build ], local: true) do |form|
   - if user_signed_in?
     = form.label :body
     = form.text_area :body
     = form.submit
 -if user_signed_in? && policy(@recipe).edit?
-  = link_to "Edit Recipe", edit_recipe_path 
+  = link_to "Edit Recipe", edit_recipe_path
 = link_to "Back", root_path
