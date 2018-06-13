@@ -6,4 +6,4 @@ production: *redis
 development:
   adapter: async
 test:
-  adapter: <%= ENV['RSPEC'] == 'true' ? 'test' : 'async'  %>
+  adapter: <%= ENV['TEST_FRAMEWORK'] == 'rspec' ? 'test' : 'async'  %>
