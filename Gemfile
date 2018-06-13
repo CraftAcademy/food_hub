@@ -29,6 +29,8 @@ group :development, :test do
   gem 'launchy'
   gem 'pundit-matchers'
   gem 'action-cable-testing'
+  gem 'chromedriver-helper', '~> 1.2'
+  gem 'selenium-webdriver', '~> 3.12'
 end
 
 group :development do
