@@ -1,11 +1,18 @@
-= link_to "Fork", "#"
 %h3= @recipe.title
-%p= @recipe.description
-%p= @recipe.ingredients
-%p= @recipe.directions
 %p
   Posted by:
   = mail_to @recipe.user.email
+%p
+  - if @recipe.original_recipe_id.any?
+    Forked from:
+    = link_to @original_recipe.title , recipe_path(@original_recipe)
+%p
+  - if @recipe.forked_recipes_ids.any?
+    = "Forks: #{@recipe.forked_recipes_ids.count}"
+
+%p= @recipe.description
+%p= @recipe.ingredients
+%p= @recipe.directions
 
 - @recipe.comments.each do |comment|
   .box
@@ -19,6 +26,9 @@
     = form.label :body
     = form.text_area :body
     = form.submit
+
 -if user_signed_in? && policy(@recipe).edit?
   = link_to "Edit Recipe", edit_recipe_path
+-if user_signed_in?
+  = link_to "Fork", fork_path(id: @recipe.id)
 = link_to "Back", root_path

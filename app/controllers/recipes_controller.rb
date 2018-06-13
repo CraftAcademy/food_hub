@@ -1,8 +1,8 @@
 class RecipesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :get_recipe, only: [:show, :edit, :update]
-  before_action :authorize_record, only: [:edit, :update]
-  
+  before_action :get_recipe, only: [:show, :edit, :update, :fork]
+  before_action :authorize_record, only: [:edit, :update, :fork]
+
   def new
     @recipe = Recipe.new
   end
@@ -22,6 +22,7 @@ class RecipesController < ApplicationController
   end
 
   def show
+    @original_recipe = Recipe.find(@recipe.original_recipe_id.last) if @recipe.original_recipe_id.any?
   end
 
   def edit
@@ -37,6 +38,23 @@ class RecipesController < ApplicationController
     end
   end
 
+  def fork
+    @forked_recipe = @recipe.dup
+    @forked_recipe.user = current_user
+    @forked_recipe.original_recipe_id << @recipe.id
+    @forked_recipe.title = 'Forked ' + @forked_recipe.title
+    @forked_recipe.forked_recipes_ids = []
+
+    if @forked_recipe.save
+      flash[:notice] = "Recipe was sucessfully forked"
+      @recipe.forked_recipes_ids << @forked_recipe.id
+      @recipe.save
+    else
+      flash[:alert] = @forked_recipe.errors.full_messages.first
+    end
+    redirect_to edit_recipe_path(@forked_recipe)
+  end
+
 private
 
  def recipe_params
@@ -45,7 +63,7 @@ private
    recipe
  end
 
- def get_recipe 
+ def get_recipe
     @recipe = Recipe.find(params[:id])
  end
 
@@ -53,5 +71,5 @@ private
     authorize @recipe
  end
 
- 
+
 end

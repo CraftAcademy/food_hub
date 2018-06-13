@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   resources :recipes do
     resources :comments
   end
-
+  get :fork, controller: :recipes, action: :fork
   mount ActionCable.server => '/cable'
 end

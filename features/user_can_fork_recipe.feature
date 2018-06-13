@@ -18,10 +18,10 @@ Background:
 Scenario: User forks a recipe edits its title
   Given I am on the "Meatball-Stew" page
   When I click "Fork"
-  Then I should see "You have succsessfully forked the recipe"
-  And I should be on the "Meatball-Stew" edit page
+  Then I should see "Recipe was sucessfully forked"
+  And I should be on the "Forked Meatball-Stew" edit page
   When I fill in "Title" with "Maran's Meatball-Stew"
   And I click "Update Recipe"
   Then I should see "Maran's Meatball-Stew"
-  And I should see "Posted by maran@test.com"
-  And I should see "Forked from author@test.com"
+  And I should see "Posted by: maran@test.com"
+  And I should see "Forked from: Meatball-Stew"

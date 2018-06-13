@@ -7,4 +7,8 @@ class RecipePolicy < ApplicationPolicy
   def edit?
     update?
   end
+  
+  def fork?
+    user.present?
+  end
 end
