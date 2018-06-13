@@ -14,6 +14,18 @@ end
 
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
+Chromedriver.set_version('2.36')
+
+Capybara.register_driver(:selenium) do |app|
+  options = Selenium::WebDriver::Chrome::Options.new(
+      args: %w(  no-sandbox disable-popup-blocking disable-infobars headless)
+  )
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
+end
+
+Cucumber::Rails::Database.javascript_strategy = :truncation
+Capybara.javascript_driver = :selenium
+
 World(FactoryBot::Syntax::Methods)
 
 if !ENV['CHEWY']
@@ -35,4 +47,9 @@ if !ENV['CHEWY']
     RecipesIndex.delete!
     Elasticsearch::Extensions::Test::Cluster.stop(port: 9200)
   end
+end
+
+Before do
+  OmniAuth.config.test_mode = true
+  OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new(OmniAuthFixtures.facebook_response)
 end

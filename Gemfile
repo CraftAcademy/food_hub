@@ -31,6 +31,8 @@ group :development, :test do
   gem 'pundit-matchers'
   gem 'elasticsearch-extensions'
   gem 'action-cable-testing'
+  gem 'chromedriver-helper', '~> 1.2'
+  gem 'selenium-webdriver', '~> 3.12'
 end
 
 group :development do
