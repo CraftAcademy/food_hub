@@ -2,13 +2,14 @@ class RecipesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :get_recipe, only: [:show, :edit, :update]
   before_action :authorize_record, only: [:edit, :update]
-  
+
   def new
     @recipe = Recipe.new
   end
 
   def create
     @recipe = Recipe.new(recipe_params)
+    @recipe.image.attach(params[:recipe][:image])
     if @recipe.save
       flash[:notice] = "Recipe Sucessfully created"
       redirect_to root_path
@@ -45,7 +46,7 @@ private
    recipe
  end
 
- def get_recipe 
+ def get_recipe
     @recipe = Recipe.find(params[:id])
  end
 
@@ -53,5 +54,5 @@ private
     authorize @recipe
  end
 
- 
+
 end

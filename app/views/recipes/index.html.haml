@@ -5,7 +5,7 @@
   .recipes
     %h3= link_to recipe.title, recipe_path(recipe)
     %p= recipe.description
-    = image_tag recipe.image unless recipe.image.attachment.nil? 
+    = image_tag recipe.image unless recipe.image.attachment.nil?
     %p
       Posted by:
       = mail_to recipe.user.email
