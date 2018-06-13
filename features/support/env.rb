@@ -29,7 +29,7 @@ Capybara.javascript_driver = :selenium
 World(FactoryBot::Syntax::Methods)
 
 if !ENV['CHEWY']
-  Before('@search') do 
+  Before do 
     Chewy.strategy(:bypass)
     Elasticsearch::Extensions::Test::Cluster.start(
       port: 9200,
@@ -43,7 +43,7 @@ if !ENV['CHEWY']
   end
 
 
-  After('@search') do 
+  After do 
     RecipesIndex.delete!
     Elasticsearch::Extensions::Test::Cluster.stop(port: 9200)
   end

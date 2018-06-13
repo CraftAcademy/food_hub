@@ -1,4 +1,3 @@
-@search
 Feature: User can search for recipes
     [TODO: Write user story]
 
