@@ -33,4 +33,11 @@ RSpec.describe Recipe, type: :model do
       .with({message: '<p>MyRecipe was created!</p>'})
     end
   end
+
+  describe 'Attachment' do
+    it 'is valid  ' do
+      subject.image.attach(io: File.open(fixture_path + '/pizza.png'), filename: 'attachment.png', content_type: 'image/png')
+      expect(subject.image).to be_attached
+    end
+  end
 end
