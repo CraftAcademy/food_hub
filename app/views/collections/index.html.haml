@@ -6,3 +6,4 @@
     %p
       Posted by:
       = mail_to recipe.user.email
+    %p= link_to "Remove", collection_path(recipe), method: :delete
