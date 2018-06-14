@@ -20,4 +20,7 @@
     = form.submit
 -if user_signed_in? && policy(@recipe).edit?
   = link_to "Edit Recipe", edit_recipe_path 
+|  
+= link_to "Add to Collection", "#"
+%br
 = link_to "Back", root_path
