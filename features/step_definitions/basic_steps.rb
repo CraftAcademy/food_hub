@@ -65,3 +65,12 @@ end
 Given("I switch to window {string}") do |index|
   switch_to_window(windows[index.to_i - 1])
 end
+
+Given("I am on the {string} page") do |recipe_title|
+  recipe = Recipe.find_by title: recipe_title
+  visit recipe_path(recipe)
+end
+
+When("I visit My Collection page") do
+  visit collection_path
+end
