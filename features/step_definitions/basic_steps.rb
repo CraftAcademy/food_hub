@@ -29,7 +29,7 @@ Given('We have the following recipes:') do |table|
     else
       create(:recipe, recipe)
     end
-    
+
   end
 end
 
@@ -48,4 +48,10 @@ end
 Given("I visit the edit page for {string}") do |string|
   recipe = Recipe.find_by(title: string)
   visit edit_recipe_path(recipe)
+end
+
+Given("We have the following categories:") do |table|
+  table.hashes.each do |category|
+  Category.create(name: category[:name])
+  end
 end

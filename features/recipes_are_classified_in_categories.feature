@@ -10,7 +10,7 @@ Feature: Recipes are classified in categories
       | Main Courses |
       | Desserts     |
 
-    And We have the following dishes:
+    And We have the following recipes:
       | name           | description              | category      |
       | Meatball-Stew  | This will make you sick  | Main Courses  |
 
