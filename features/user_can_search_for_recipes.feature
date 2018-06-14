@@ -14,7 +14,6 @@ Feature: User can search for recipes
             | Meatballs     | user_1@random.com |
             | Pizza         | user_1@random.com |
 
-    @javascript
     Scenario: User searches for "Meatball" and gets 2 hits
         Given I visit the site
         And I fill in "Search" with "Meatball"

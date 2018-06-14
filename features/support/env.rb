@@ -29,6 +29,7 @@ World(FactoryBot::Syntax::Methods)
 Before do
   OmniAuth.config.test_mode = true
   OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new(OmniAuthFixtures.facebook_response)
+  RecipesIndex.create! unless RecipesIndex.exists?
 end
 
 if !ENV['CHEWY']
@@ -39,13 +40,14 @@ if !ENV['CHEWY']
       nodes: 1,
       timeout: 120
     ) unless Elasticsearch::Extensions::Test::Cluster.running?(on: 9250)
-    RecipesIndex.create!
   end
   
 
   After do 
-    RecipesIndex.delete!
     Elasticsearch::Extensions::Test::Cluster.stop(port: 9250)
   end
 end
 
+After do
+  RecipesIndex.delete! if RecipesIndex.exists?
+end

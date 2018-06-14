@@ -5,3 +5,10 @@
 #   prefix: 'test'
 # development:
 #   host: 'localhost:9250'
+# config/chewy.yml
+# separate environment configs
+# test:
+#   host: 'localhost:9200'
+#   prefix: 'test'
+# development:
+#   host: 'localhost:9250'
