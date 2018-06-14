@@ -58,3 +58,7 @@ Given("We have the following categories:") do |table|
   create(:category, category)
   end
 end
+
+Given("I select {string} from category menu") do |option|
+  select option, from: 'recipe_category_id'
+end
