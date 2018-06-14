@@ -39,16 +39,7 @@ class RecipesController < ApplicationController
   end
 
   def fork
-    @forked_recipe = @recipe.dup
-    @forked_recipe.user = current_user
-    @forked_recipe.original_recipe_id << @recipe.id
-    @forked_recipe.title = 'Forked ' + @forked_recipe.title
-    @forked_recipe.forked_recipes_ids = []
-    @forked_recipe.save
-
-    @recipe.forked_recipes_ids << @forked_recipe.id
-    @recipe.save
-
+    @forked_recipe = @recipe.fork(current_user)
     flash[:notice] = "Recipe was sucessfully forked"
     redirect_to edit_recipe_path(@forked_recipe)
   end

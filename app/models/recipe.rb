@@ -12,4 +12,17 @@ class Recipe < ApplicationRecord
     ActionCable.server.broadcast 'notifications',
                                   message: "<p>#{self.title} was created!</p>"
   end
+
+  def fork(user)
+    forked_recipe = self.dup
+    forked_recipe.user = user
+    forked_recipe.original_recipe_id << self.id
+    forked_recipe.title = 'Forked ' + forked_recipe.title
+    forked_recipe.forked_recipes_ids = []
+    forked_recipe.save
+
+    self.forked_recipes_ids << forked_recipe.id
+    self.save
+    return forked_recipe
+  end
 end
