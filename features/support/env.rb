@@ -23,7 +23,7 @@ Capybara.register_driver(:selenium) do |app|
   Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
 end
 
-Cucumber::Rails::Database.javascript_strategy = :truncation
+Cucumber::Rails::Database.javascript_strategy = :transaction
 Capybara.javascript_driver = :selenium
 
 World(FactoryBot::Syntax::Methods)
