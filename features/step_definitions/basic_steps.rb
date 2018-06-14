@@ -26,10 +26,13 @@ Given('We have the following recipes:') do |table|
       user = User.find_by email: recipe[:user]
       recipe = recipe.except('user')
       create(:recipe, recipe.merge(user: user))
+    elsif recipe[:category]
+      category = Category.find_by name: recipe[:category]
+      recipe = recipe.except('category')
+      create(:recipe, recipe.merge(category: category))
     else
       create(:recipe, recipe)
     end
-
   end
 end
 
@@ -52,6 +55,6 @@ end
 
 Given("We have the following categories:") do |table|
   table.hashes.each do |category|
-  Category.create(name: category[:name])
+  create(:category, category)
   end
 end

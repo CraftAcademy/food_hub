@@ -11,8 +11,9 @@ Feature: Recipes are classified in categories
       | Desserts     |
 
     And We have the following recipes:
-      | name           | description              | category      |
-      | Meatball-Stew  | This will make you sick  | Main Courses  |
+      | title          | category      |
+      | Meatball-Stew  | Main Courses  |
+
 
     Scenario: User should see categories
       Given I visit the site

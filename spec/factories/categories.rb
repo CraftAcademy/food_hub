@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :category do
-    name "MyText"
+    name "Main Courses"
   end
 end
