@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   resources :recipes do
     resources :comments
   end
-
+  resources :collections, only: [:index, :create]
   mount ActionCable.server => '/cable'
 end

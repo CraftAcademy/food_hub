@@ -13,7 +13,7 @@ Background:
     | Meatball-Stew     | maran@test.com |
     | Pizza             | maran@test.com |
     | Grilled Chicken   | maran@test.com |
-       
+
   And I am logged in as "maran@test.com"
 
 Scenario: User adds recipes to recipe book
@@ -24,11 +24,7 @@ Scenario: User adds recipes to recipe book
   And I click "Add to Collection"
   Then I should see "Recipe was added to collection"
   When I visit My Collection page
-  Then I should see "Meatball-Stew"
+  Then I should see "My Collection"
+  And I should see "Meatball-Stew"
   And  I should see "Pizza"
   And  I should not see "Grilled Chicken"
-  
-
-
-
-  
