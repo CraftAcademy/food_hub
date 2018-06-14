@@ -1,5 +1,6 @@
 class CollectionsController < ApplicationController
   def index
+    @recipes = Recipe.find(current_user.collection)
   end
 
   def create

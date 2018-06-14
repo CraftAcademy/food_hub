@@ -72,5 +72,5 @@ Given("I am on the {string} page") do |recipe_title|
 end
 
 When("I visit My Collection page") do
-  visit collection_path
+  visit collections_path
 end
