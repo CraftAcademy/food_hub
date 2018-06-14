@@ -33,7 +33,7 @@ class RecipesController < ApplicationController
       flash[:notice] = "You have successfully edit recipe!"
       redirect_to recipe_path(@recipe)
     else
-      flash[:alert] = "Error updating recipe!"
+      flash[:alert] = @recipe.errors.full_messages.first
       render :edit
     end
   end
@@ -44,14 +44,12 @@ class RecipesController < ApplicationController
     @forked_recipe.original_recipe_id << @recipe.id
     @forked_recipe.title = 'Forked ' + @forked_recipe.title
     @forked_recipe.forked_recipes_ids = []
+    @forked_recipe.save
 
-    if @forked_recipe.save
-      flash[:notice] = "Recipe was sucessfully forked"
-      @recipe.forked_recipes_ids << @forked_recipe.id
-      @recipe.save
-    else
-      flash[:alert] = @forked_recipe.errors.full_messages.first
-    end
+    @recipe.forked_recipes_ids << @forked_recipe.id
+    @recipe.save
+
+    flash[:notice] = "Recipe was sucessfully forked"
     redirect_to edit_recipe_path(@forked_recipe)
   end
 
