@@ -42,7 +42,6 @@ if !ENV['CHEWY']
     ) unless Elasticsearch::Extensions::Test::Cluster.running?(on: 9250)
   end
   
-
   After do 
     Elasticsearch::Extensions::Test::Cluster.stop(port: 9250)
   end
