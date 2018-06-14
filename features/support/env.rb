@@ -28,6 +28,11 @@ Capybara.javascript_driver = :selenium
 
 World(FactoryBot::Syntax::Methods)
 
+Before do
+  OmniAuth.config.test_mode = true
+  OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new(OmniAuthFixtures.facebook_response)
+end
+
 if !ENV['CHEWY']
   Before do 
     Chewy.strategy(:bypass)
@@ -37,11 +42,8 @@ if !ENV['CHEWY']
       timeout: 120
     ) unless Elasticsearch::Extensions::Test::Cluster.running?(on: 9200)
     RecipesIndex.create!
-    
-    OmniAuth.config.test_mode = true
-    OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new(OmniAuthFixtures.facebook_response)
   end
-
+  
 
   After do 
     RecipesIndex.delete!
@@ -49,7 +51,3 @@ if !ENV['CHEWY']
   end
 end
 
-Before do
-  OmniAuth.config.test_mode = true
-  OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new(OmniAuthFixtures.facebook_response)
-end
