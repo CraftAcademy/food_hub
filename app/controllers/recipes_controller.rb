@@ -30,6 +30,7 @@ class RecipesController < ApplicationController
 
   def update
     if @recipe.update(recipe_params)
+      @recipe.image.attach(params[:recipe][:image])
       flash[:notice] = "You have successfully edit recipe!"
       redirect_to recipe_path(@recipe)
     else
