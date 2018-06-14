@@ -12,8 +12,6 @@ rescue NameError
   raise "You need to add database_cleaner to your Gemfile (in the :test group) if you wish to use it."
 end
 
-Cucumber::Rails::Database.javascript_strategy = :truncation
-
 Chromedriver.set_version('2.36')
 
 Capybara.register_driver(:selenium) do |app|
@@ -23,7 +21,7 @@ Capybara.register_driver(:selenium) do |app|
   Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
 end
 
-Cucumber::Rails::Database.javascript_strategy = :transaction
+Cucumber::Rails::Database.javascript_strategy = :truncation
 Capybara.javascript_driver = :selenium
 
 World(FactoryBot::Syntax::Methods)
@@ -37,17 +35,17 @@ if !ENV['CHEWY']
   Before do 
     Chewy.strategy(:bypass)
     Elasticsearch::Extensions::Test::Cluster.start(
-      port: 9200,
+      port: 9250,
       nodes: 1,
       timeout: 120
-    ) unless Elasticsearch::Extensions::Test::Cluster.running?(on: 9200)
+    ) unless Elasticsearch::Extensions::Test::Cluster.running?(on: 9250)
     RecipesIndex.create!
   end
   
 
   After do 
     RecipesIndex.delete!
-    Elasticsearch::Extensions::Test::Cluster.stop(port: 9200)
+    Elasticsearch::Extensions::Test::Cluster.stop(port: 9250)
   end
 end
 
