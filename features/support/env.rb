@@ -33,7 +33,7 @@ Before do
 end
 
 if !ENV['CHEWY']
-  Before do 
+  Before('@search') do 
     Chewy.strategy(:bypass)
     Elasticsearch::Extensions::Test::Cluster.start(
       port: 9250,
@@ -42,7 +42,7 @@ if !ENV['CHEWY']
     ) unless Elasticsearch::Extensions::Test::Cluster.running?(on: 9250)
   end
   
-  After do 
+  After('@search') do 
     Elasticsearch::Extensions::Test::Cluster.stop(port: 9250)
   end
 end
