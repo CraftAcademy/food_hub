@@ -1,0 +1,5 @@
+%h1= "Found #{@hits} recipes"
+
+- @recipes.each do |recipe|
+    %h2= recipe.title
+        

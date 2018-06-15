@@ -5,3 +5,7 @@
   = link_to 'Sign Up', new_user_registration_path
   = link_to 'Login', new_user_session_path
   = link_to 'Login with Facebook', user_facebook_omniauth_authorize_path
+
+= form_with url: search_recipes_path, method: :post, local: true do |form|
+  = form.text_field :search, placeholder: 'Search'
+  = form.submit 'Search'

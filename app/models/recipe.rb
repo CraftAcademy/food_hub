@@ -6,6 +6,8 @@ class Recipe < ApplicationRecord
   validates :directions, presence: true
   belongs_to :user
 
+  update_index('recipes') { self }
+  
   after_create :notify
 
   def notify
