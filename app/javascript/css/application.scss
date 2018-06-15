@@ -1,5 +1,21 @@
 
+.header {
+ grid-area: header;
+ background: #1995AD;
+ color: #BCBABE;
+ position: fixed;
+ top: 0;
+ width: 100%;
+ z-index: 99;
+}
 
+.foodhub {
+ grid-area: projects;
+ background-color: #F1F1F2;
+ h1 {
+  text-align: center;
+ }
+}
  @tailwind preflight;
 
  /**
