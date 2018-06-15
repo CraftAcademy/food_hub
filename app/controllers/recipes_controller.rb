@@ -2,7 +2,8 @@ class RecipesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :search]
   before_action :get_recipe, only: [:show, :edit, :update]
   before_action :authorize_record, only: [:edit, :update]
-  
+  before_action :load_categories, except: [:show]
+
   def new
     @recipe = Recipe.new
   end
@@ -18,7 +19,6 @@ class RecipesController < ApplicationController
   end
 
   def index
-    @recipes = Recipe.all
   end
 
   def show
@@ -48,12 +48,12 @@ class RecipesController < ApplicationController
 private
 
  def recipe_params
-   recipe = params.require(:recipe).permit(:title, :description, :ingredients, :directions )
+   recipe = params.require(:recipe).permit(:title, :description, :ingredients, :directions, :category_id )
    recipe[:user] = current_user
    recipe
  end
 
- def get_recipe 
+ def get_recipe
     @recipe = Recipe.find(params[:id])
  end
 
@@ -61,5 +61,8 @@ private
     authorize @recipe
  end
 
- 
+def load_categories
+  @categories = Category.all
+end
+
 end

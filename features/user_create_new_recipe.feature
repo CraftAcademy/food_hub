@@ -8,12 +8,19 @@ Feature: User creates new recipe
       | email          | password |
       | maran@test.com | 12345678 |
 
+    And We have the following categories:
+      | name         |
+      | Starters     |
+      | Main Courses |
+      | Desserts     |
+
     And I am logged in as "maran@test.com"
     And I visit the site
     And I click "New Recipe"
 
   Scenario: User adds a recipe
     And I fill in "Title" with "Cheesy Fungus"
+    And I select "Starters" from category menu
     And I fill in "Description" with "Shroomlovin' cheese feast!"
     And I fill in "Ingredients" with "Cheese and fungus"
     And I fill in "Directions" with "Mix it, stir it, eat it!"
@@ -25,6 +32,7 @@ Feature: User creates new recipe
 
   Scenario: User adds a recipe without ingredients
     And I fill in "Title" with "Cheesy Fungus"
+    And I select "Starters" from category menu
     And I fill in "Description" with "Shroomlovin' cheese feast!"
     And I fill in "Ingredients" with ""
     And I fill in "Directions" with "Mix it, stir it, eat it!"

@@ -59,6 +59,10 @@ Given("We have the following categories:") do |table|
   end
 end
 
+Given("I select {string} from category menu") do |option|
+  select option, from: 'recipe_category_id'
+end
+
 Given("{string} is logged-in in another window") do |email|
   window = open_new_window
   switch_to_window(window)
