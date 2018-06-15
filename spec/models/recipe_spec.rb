@@ -8,6 +8,8 @@ RSpec.describe Recipe, type: :model do
     it { is_expected.to have_db_column :description}
     it { is_expected.to have_db_column :ingredients}
     it { is_expected.to have_db_column :directions}
+    it { is_expected.to have_db_column :user_id}
+    it { is_expected.to belong_to :user}
   end
 
   describe 'Validation' do
@@ -20,6 +22,15 @@ RSpec.describe Recipe, type: :model do
   describe 'Factory' do
     it 'can create a valid instance' do
       expect(recipe).to be_valid
+    end
+  end
+
+  describe 'Broadcast notification' do
+    it 'on create' do
+      expect{ create(:recipe)}
+      .to have_broadcasted_to('notifications')
+      .from_channel(WebNotificationsChannel)
+      .with({message: '<p>MyRecipe was created!</p>'})
     end
   end
 end
