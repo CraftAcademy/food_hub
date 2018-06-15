@@ -41,11 +41,11 @@ if !ENV['CHEWY']
       timeout: 120
     ) unless Elasticsearch::Extensions::Test::Cluster.running?(on: 9250)
   end
-end
 
   After do
     Elasticsearch::Extensions::Test::Cluster.stop(port: 9250)
   end
+end
 
 After do
   RecipesIndex.delete! if RecipesIndex.exists?
