@@ -57,6 +57,7 @@ Given("We have the following categories:") do |table|
   table.hashes.each do |category|
   create(:category, category)
   end
+end
 
 Given("{string} is logged-in in another window") do |email|
   window = open_new_window
