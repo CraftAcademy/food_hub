@@ -7,6 +7,8 @@ class Recipe < ApplicationRecord
   validates :ingredients, presence: true
   validates :directions, presence: true
 
+  update_index('recipes') { self }
+  
   after_create :notify
 
   def notify
