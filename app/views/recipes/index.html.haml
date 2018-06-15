@@ -4,7 +4,7 @@
     %p= link_to 'New Recipe', new_recipe_path
 
     - @recipes.each do |recipe|
-      .recipes
+      .recipe
         %h3= link_to recipe.title, recipe_path(recipe)
         %p= recipe.description
         %p
