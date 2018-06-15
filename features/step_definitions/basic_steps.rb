@@ -57,4 +57,19 @@ Given("We have the following categories:") do |table|
   table.hashes.each do |category|
   create(:category, category)
   end
+
+Given("{string} is logged-in in another window") do |email|
+  window = open_new_window
+  switch_to_window(window)
+  user = User.find_by(email: email)
+  login_as(user, scope: :user)
+end
+
+Given("He is on the show page for {string}") do |recipe_title|
+  recipe = Recipe.find_by(title: recipe_title)
+  visit recipe_path(recipe)
+end
+
+Given("I switch to window {string}") do |index|
+  switch_to_window(windows[index.to_i - 1])
 end

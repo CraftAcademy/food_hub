@@ -14,6 +14,7 @@ gem 'haml-rails', '~> 1.0'
 gem 'devise'
 gem 'omniauth-facebook', '~> 4.0'
 gem 'pundit'
+gem 'chewy'
 gem 'redis', '~> 3.0'
 
 
@@ -28,7 +29,10 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'launchy'
   gem 'pundit-matchers'
+  gem 'elasticsearch-extensions'
   gem 'action-cable-testing'
+  gem 'chromedriver-helper', '~> 1.2'
+  gem 'selenium-webdriver', '~> 3.12'
 end
 
 group :development do

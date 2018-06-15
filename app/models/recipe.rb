@@ -7,6 +7,8 @@ class Recipe < ApplicationRecord
   belongs_to :user
   belongs_to :category
 
+  update_index('recipes') { self }
+  
   after_create :notify
 
   def notify
