@@ -62,6 +62,8 @@ ActiveRecord::Schema.define(version: 2018_06_14_124000) do
     t.bigint "user_id"
     t.bigint "category_id"
     t.index ["category_id"], name: "index_recipes_on_category_id"
+    t.string "original_recipe_id", default: [], array: true
+    t.string "forked_recipes_ids", default: [], array: true
     t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 
