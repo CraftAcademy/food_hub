@@ -1,0 +1,98 @@
+
+
+ @tailwind preflight;
+
+ /**
+  * This injects any component classes registered by plugins.
+  *
+  * If using `postcss-import`, use this import instead:
+  *
+  * @import "tailwindcss/components";
+  */
+ @tailwind components;
+
+ /**
+  * Here you would add any of your custom component classes; stuff that you'd
+  * want loaded *before* the utilities so that the utilities could still
+  * override them.
+  *
+  * Example:
+  *
+  * .btn { ... }
+  * .form-input { ... }
+  *
+  * Or if using a preprocessor or `postcss-import`:
+  *
+  * @import "components/buttons";
+  * @import "components/forms";
+  */
+
+ /**
+  * This injects all of Tailwind's utility classes, generated based on your
+  * config file.
+  *
+  * If using `postcss-import`, use this import instead:
+  *
+  * @import "tailwindcss/utilities";
+  */
+ @tailwind utilities;
+
+ /**
+  * Here you would add any custom utilities you need that don't come out of the
+  * box with Tailwind.
+  *
+  * Example :
+  *
+  * .bg-pattern-graph-paper { ... }
+  * .skew-45 { ... }
+  *
+  * Or if using a preprocessor or `postcss-import`:
+  *
+  * @import "utilities/background-patterns";
+  * @import "utilities/skew-transforms";
+  */
+
+  .wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 200;
+    grid-template-areas:
+    'header'
+    'foodhub'
+   }
+   
+   .navbar {
+      grid-area: header;
+      background: #1995AD;
+      color: #BCBABE;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 99;
+   }
+   
+   .recipes {
+      grid-area: projects;
+      background-color: #F1F1F2;
+      h1, h3, p {
+      text-align: center;
+      }
+   }
+
+   .header {
+      grid-area: header;
+      background: #1995AD;
+      color: #BCBABE;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 99;
+   }
+   
+   .foodhub {
+      grid-area: projects;
+      background-color: #F1F1F2;
+      h1 {
+      text-align: center;
+      }
+   }
