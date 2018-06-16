@@ -8,18 +8,19 @@
       - @recipes.each do |recipe|
         .recipes
           .empty
-            .max-w-sm.rounded.overflow-hidden.shadow-lg
-              %img.w-full{alt: "Sunset in the mountains", src: "https://tailwindcss.com/img/card-top.jpg"}/
-              .px-6.py-4
-                .font-bold.text-xl.mb-2
-                %p.text-grey-darker.text-base
-                %h3= link_to recipe.title, recipe_path(recipe)
-                %p= recipe.description
-                %br
-                %br
-                %br
-                %br
-                %br
-                %p
-                  Posted by:
-                  = mail_to recipe.user.email
+            .card{style: "width: 20rem;"}
+              .max-w-sm.rounded.overflow-hidden.shadow-lg.table
+                %img.w-full{alt: "Sunset in the mountains", src: "https://tailwindcss.com/img/card-top.jpg"}/
+                .px-6.py-4
+                  .font-bold.text-xl.mb-2
+                  %p.text-grey-darker.text-base
+                  %h3= link_to recipe.title, recipe_path(recipe)
+                  %p= recipe.description
+                  %br
+                  %br
+                  %br
+                  %br
+                  %br
+                  %p
+                    Posted by:
+                    = mail_to recipe.user.email

@@ -73,10 +73,10 @@
 
    .recipes {
       grid-area: projects;
-      float: right;
-      padding-left: 2.5rem;
+      float: left;
+      padding-left: 5rem;
       padding-bottom: 2rem;
-      padding-right: 5rem;
+      padding-right: 1rem;
       background-color: white;
       h1, h3, p {
       text-align: center;
@@ -84,7 +84,6 @@
       margin-bottom: 7rem;
       line-height: 1rem;
       max-height: 2vh;
-      max-height: 1rem
       }
    }
 
