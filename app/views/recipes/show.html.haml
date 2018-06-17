@@ -18,13 +18,13 @@
     = form.label :body
     = form.text_area :body
     = form.submit
-    
+
 -if user_signed_in? && policy(@recipe).edit?
   = link_to "Edit Recipe", edit_recipe_path
   |
 
 - if user_signed_in?
-  - if current_user.collection.include?(@recipe.id.to_s)
+  - if current_user.collection.recipes.include?(@recipe)
     = "In Collection"
   - else
     = link_to "Add to Collection", collections_path(id:@recipe.id), method: :post

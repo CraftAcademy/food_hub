@@ -34,7 +34,8 @@ Given('We have the following recipes:') do |table|
 end
 
 Given("I am logged in as {string}") do |user_email|
-  login_as User.find_by(email: user_email)
+  @user = User.find_by(email: user_email)
+  login_as @user
 end
 
 Given("the facebook authentication is not granted") do
@@ -73,4 +74,9 @@ end
 
 When("I visit My Collection page") do
   visit collections_path
+end
+
+Given("I have {string} in My Collection") do |recipe_title|
+  recipe = create(:recipe, title: recipe_title)
+  @user.collection.recipes << recipe
 end

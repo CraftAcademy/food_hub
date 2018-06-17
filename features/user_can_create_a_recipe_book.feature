@@ -16,7 +16,7 @@ Background:
 
   And I am logged in as "maran@test.com"
 
-Scenario: User adds recipes to recipe book
+Scenario: User adds recipes to recipe book collection
   Given I am on the "Meatball-Stew" page
   And I click "Add to Collection"
   Then I should see "Recipe was added to collection"
@@ -28,3 +28,11 @@ Scenario: User adds recipes to recipe book
   And I should see "Meatball-Stew"
   And  I should see "Pizza"
   And  I should not see "Grilled Chicken"
+
+Scenario: User removes recipes from collection
+  Given I have "Pizza" in My Collection
+  And I visit My Collection page
+  Then I should see "Pizza"
+  When I click "Remove"
+  Then I should not see "Pizza"
+  
