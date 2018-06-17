@@ -20,10 +20,48 @@ Given('We have the following user:') do |table|
   end
 end
 
-Given(/^We have the following (?:recipes|list):$/) do |table|
+Given('We have the following recipes:') do |table|
   table.hashes.each do |recipe|
-    create(:recipe, recipe)
+    if recipe[:user]
+      user = User.find_by email: recipe[:user]
+      recipe = recipe.except('user')
+      create(:recipe, recipe.merge(user: user))
+    else
+      create(:recipe, recipe)
+    end
+
   end
 end
 
+Given("I am logged in as {string}") do |user_email|
+  login_as User.find_by(email: user_email)
+end
 
+Given("the facebook authentication is not granted") do
+  OmniAuth.config.mock_auth[:facebook] = :invalid_credentials
+end
+
+Given("the facebook response is missing email") do
+  OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new(OmniAuthFixtures.facebook_response_without_email)
+end
+
+Given("I visit the edit page for {string}") do |string|
+  recipe = Recipe.find_by(title: string)
+  visit edit_recipe_path(recipe)
+end
+
+Given("{string} is logged-in in another window") do |email|
+  window = open_new_window
+  switch_to_window(window)
+  user = User.find_by(email: email)
+  login_as(user, scope: :user)
+end
+
+Given("He is on the show page for {string}") do |recipe_title|
+  recipe = Recipe.find_by(title: recipe_title)
+  visit recipe_path(recipe)
+end
+
+Given("I switch to window {string}") do |index|
+  switch_to_window(windows[index.to_i - 1])
+end
