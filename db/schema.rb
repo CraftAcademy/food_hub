@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_14_143214) do
+ActiveRecord::Schema.define(version: 2018_06_17_101443) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "collections", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_collections_on_user_id"
+  end
 
   create_table "comments", force: :cascade do |t|
     t.text "body"
@@ -33,8 +40,8 @@ ActiveRecord::Schema.define(version: 2018_06_14_143214) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
-    t.string "original_recipe_id", default: [], array: true
-    t.string "forked_recipes_ids", default: [], array: true
+    t.bigint "collection_id"
+    t.index ["collection_id"], name: "index_recipes_on_collection_id"
     t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 
@@ -54,12 +61,13 @@ ActiveRecord::Schema.define(version: 2018_06_14_143214) do
     t.string "provider"
     t.string "uid"
     t.integer "role"
-    t.string "collection", default: [], array: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "collections", "users"
   add_foreign_key "comments", "recipes"
   add_foreign_key "comments", "users"
+  add_foreign_key "recipes", "collections"
   add_foreign_key "recipes", "users"
 end

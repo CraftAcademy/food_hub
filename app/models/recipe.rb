@@ -5,6 +5,7 @@ class Recipe < ApplicationRecord
   validates :ingredients, presence: true
   validates :directions, presence: true
   belongs_to :user
+  has_and_belongs_to_many :collection, distinct: true
 
   after_create :notify
 
