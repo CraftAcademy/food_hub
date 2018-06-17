@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {omniauth_callbacks: :omniauth_callbacks}
-  resources :recipes, except: [:destroy]
   root controller: :recipes, action: :index
-  resources :recipes do
+  resources :recipes, except: [:destroy] do
+    collection do
+      post :search
+    end
     resources :comments
   end
   resources :collections, only: [:index, :create, :destroy]

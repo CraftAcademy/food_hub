@@ -1,10 +1,12 @@
-%h1 Recipes
-%p= link_to 'New Recipe', new_recipe_path
+.recipes.bg-grey
+  .center 
+    %h1 Recipes
+    %p= link_to 'New Recipe', new_recipe_path
 
-- @recipes.each do |recipe|
-  .recipes
-    %h3= link_to recipe.title, recipe_path(recipe)
-    %p= recipe.description
-    %p
-      Posted by:
-      = mail_to recipe.user.email
+    - @recipes.each do |recipe|
+      .recipe
+        %h3= link_to recipe.title, recipe_path(recipe)
+        %p= recipe.description
+        %p
+          Posted by:
+          = mail_to recipe.user.email
