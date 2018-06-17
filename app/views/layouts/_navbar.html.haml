@@ -3,16 +3,20 @@
     .flex.flex-row-reverse.items-center.justify-between.mx-auto.px-4
       - if user_signed_in?
         = link_to "Logged in as: #{current_user.email}", root_path
-        = link_to 'Sign Out', destroy_user_session_path, method: :delete
+        %button.bg-grey-light.hover:bg-grey.text-grey-darkest.font-bold.py-2.px-4.rounded-l
+          = link_to 'Sign Out', destroy_user_session_path, method: :delete
       - else
-      .links
-        %ul.flex.items-center.list-reset
-          %li.m-4
-            %a.no-underline.text-white.hover:text-black
-              = link_to 'Sign Up', new_user_registration_path
-              = link_to 'Login', new_user_session_path
-              = link_to 'Login with Facebook', user_facebook_omniauth_authorize_path
+        .links
+          %ul.flex.items-center.list-reset
+            %li.m-4
+              .inline-flex
+              %button.bg-grey-light.hover:bg-grey.text-grey-darkest.font-bold.py-2.px-4.rounded-l
+                = link_to 'Sign Up', new_user_registration_path
+              %button.bg-grey-light.hover:bg-grey.text-grey-darkest.font-bold.py-2.px-4.rounded-r
+                = link_to 'Login', new_user_session_path
+              %button.bg-blue.hover:bg-blue-dark.text-white.font-bold.py-2.px-4.rounded-full
+                = link_to 'Login with Facebook', user_facebook_omniauth_authorize_path
 
-      = form_with url: search_recipes_path, method: :post, local: true do |form|
-        = form.text_field :search, placeholder: 'Search'
-        = form.submit 'Search'
+    = form_with url: search_recipes_path, method: :post, local: true do |form|
+      = form.text_field :search, placeholder: 'Search'
+      = form.submit 'Search'
