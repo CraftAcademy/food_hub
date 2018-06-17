@@ -1,3 +1,4 @@
+@search
 Feature: User can search for recipes
     As a user
     In order to find a specific recipe

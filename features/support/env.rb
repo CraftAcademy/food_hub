@@ -33,7 +33,7 @@ Before do
 end
 
 if !ENV['CHEWY']
-  Before do
+  Before('@search') do
     Chewy.strategy(:bypass)
     Elasticsearch::Extensions::Test::Cluster.start(
       port: 9250,
@@ -41,12 +41,12 @@ if !ENV['CHEWY']
       timeout: 120
     ) unless Elasticsearch::Extensions::Test::Cluster.running?(on: 9250)
   end
-end
 
-  After do
+  After('@search') do
     Elasticsearch::Extensions::Test::Cluster.stop(port: 9250)
   end
 
-After do
-  RecipesIndex.delete! if RecipesIndex.exists?
+  After do
+    RecipesIndex.delete! if RecipesIndex.exists?
+  end
 end
