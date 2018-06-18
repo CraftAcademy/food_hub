@@ -7,7 +7,7 @@ class Recipe < ApplicationRecord
   belongs_to :user
 
   update_index('recipes') { self }
-  
+
   after_create :notify
 
   def notify
@@ -19,7 +19,7 @@ class Recipe < ApplicationRecord
     forked_recipe = self.dup
     attributes = {user: user,
                   original_recipe_id: self.id,
-                  title: 'Forked ' + forked_recipe.title,
+                  title: 'Forked ' + self.title,
                   forked_recipes_ids: []}
     forked_recipe.update_attributes(attributes)
 

@@ -61,6 +61,4 @@ private
  def authorize_record
     authorize @recipe
  end
-
-
 end
