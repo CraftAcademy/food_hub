@@ -30,5 +30,5 @@
 -if user_signed_in? && policy(@recipe).edit?
   = link_to "Edit Recipe", edit_recipe_path
 -if user_signed_in?
-  = link_to "Fork", fork_path(id: @recipe.id)
+  = link_to "Fork", forks_path(id: @recipe.id), method: :post
 = link_to "Back", root_path

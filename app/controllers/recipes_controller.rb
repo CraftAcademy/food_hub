@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :get_recipe, only: [:show, :edit, :update, :fork]
-  before_action :authorize_record, only: [:edit, :update, :fork]
+  before_action :get_recipe, only: [:show, :edit, :update]
+  before_action :authorize_record, only: [:edit, :update]
 
   def new
     @recipe = Recipe.new
@@ -36,12 +36,6 @@ class RecipesController < ApplicationController
       flash[:alert] = @recipe.errors.full_messages.first
       render :edit
     end
-  end
-
-  def fork
-    @forked_recipe = @recipe.fork(current_user)
-    flash[:notice] = "Recipe was sucessfully forked"
-    redirect_to edit_recipe_path(@forked_recipe)
   end
 
 private
