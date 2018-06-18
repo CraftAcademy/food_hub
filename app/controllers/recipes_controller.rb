@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :search]
   before_action :get_recipe, only: [:show, :edit, :update]
   before_action :authorize_record, only: [:edit, :update]
 
@@ -36,6 +36,14 @@ class RecipesController < ApplicationController
       flash[:alert] = @recipe.errors.full_messages.first
       render :edit
     end
+  end
+
+  def search
+    RecipesIndex.import
+    query = RecipesIndex.query(fuzzy: {title: params[:search]})
+    @hits = query.hits.count
+    @recipes = query.objects
+    render :search
   end
 
 private
