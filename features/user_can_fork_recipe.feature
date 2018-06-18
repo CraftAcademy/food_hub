@@ -16,7 +16,7 @@ Background:
   And I am logged in as "maran@test.com"
 
 Scenario: User forks a recipe edits its title
-  Given I am on the "Meatball-Stew" page
+  Given I am on the "Meatball-Stew" recipe show page
   When I click "Fork"
   Then I should see "Recipe was sucessfully forked"
   And I should be on the "Forked Meatball-Stew" edit page
