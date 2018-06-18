@@ -65,3 +65,7 @@ end
 Given("I switch to window {string}") do |index|
   switch_to_window(windows[index.to_i - 1])
 end
+
+When("I choose {string}") do |rating|
+  select((1), from: rating)
+end
