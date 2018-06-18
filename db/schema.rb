@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2018_06_13_132807) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
-    t.string "original_recipe_id", default: [], array: true
+    t.integer "original_recipe_id"
     t.string "forked_recipes_ids", default: [], array: true
     t.index ["user_id"], name: "index_recipes_on_user_id"
   end

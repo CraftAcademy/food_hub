@@ -3,7 +3,7 @@
   Posted by:
   = mail_to @recipe.user.email
 %p
-  - if @recipe.original_recipe_id.any?
+  - if @recipe.forked?
     Forked from:
     = link_to @original_recipe.title , recipe_path(@original_recipe)
 %p

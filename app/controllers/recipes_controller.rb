@@ -22,7 +22,7 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @original_recipe = Recipe.find(@recipe.original_recipe_id.last) if @recipe.original_recipe_id.any?
+    @original_recipe = Recipe.find(@recipe.original_recipe_id) if @recipe.forked?
   end
 
   def edit
