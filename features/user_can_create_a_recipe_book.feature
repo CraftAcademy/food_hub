@@ -1,6 +1,6 @@
 Feature: User can create a recipe book
   As a user
-  in order to have my favourite recipes easily available
+  In order to have my favourite recipes easily available
   I would like to create my own recipe collection
 
 Background:
@@ -35,4 +35,3 @@ Scenario: User removes recipes from collection
   Then I should see "Pizza"
   When I click "Remove"
   Then I should not see "Pizza"
-  

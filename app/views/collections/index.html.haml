@@ -1,5 +1,5 @@
 %h1 My Collection
-- @recipes.each do |recipe|
+- @collection.recipes.each do |recipe|
   .recipes
     %h3= link_to recipe.title, recipe_path(recipe)
     %p= recipe.description
