@@ -25,3 +25,16 @@
 -if user_signed_in? && policy(@recipe).edit?
   = link_to "Edit Recipe", edit_recipe_path
 = link_to "Back", root_path
+:javascript
+  let ratingButtons = document.querySelectorAll('button')
+  ratingButtons.forEach((button)=>{
+    button.addEventListener('click',()=>{
+      let value = button.dataset.rating
+      let token = document.head.querySelector("meta[name='csrf-token']").getAttribute("content");
+      console.log(value)
+      fetch("#{recipe_ratings_url(@recipe)}", {method: 'POST', body:`{rating: ${value}}`, credentials: 'same-origin', headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        'X-CSRF-Token': token
+      }})
+    })
+  })

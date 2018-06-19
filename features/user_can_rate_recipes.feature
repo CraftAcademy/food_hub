@@ -18,5 +18,6 @@ Background:
 Scenario: User can rate a recipe when visiting the recipe page
   When I am on the show page for "Meatball-Stew"
   And I click "5" on rating
+  # Then stop
   Then I should see "Thank you for your rating"
   And the average rating for "Meatball-Stew" should be "5"

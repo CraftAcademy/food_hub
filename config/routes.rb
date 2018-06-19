@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       post :search
     end
     resources :comments
+    resources :ratings, only: [:create]
   end
 
   mount ActionCable.server => '/cable'
