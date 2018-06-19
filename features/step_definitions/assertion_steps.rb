@@ -18,7 +18,6 @@ Then("I should not see {string} in {string} recipe") do |expected_text, recipe_t
   expect(page.find('.recipe', text: recipe_title)).to have_no_content expected_text
 end
 
-
 Then("show me the page") do
   save_and_open_page
 end
