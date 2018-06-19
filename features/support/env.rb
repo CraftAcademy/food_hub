@@ -16,7 +16,7 @@ Chromedriver.set_version('2.36')
 
 Capybara.register_driver(:selenium) do |app|
   options = Selenium::WebDriver::Chrome::Options.new(
-      args: %w(  no-sandbox disable-popup-blocking disable-infobars headless)
+      args: %w(  no-sandbox disable-popup-blocking disable-infobars )
   )
   Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
 end
@@ -33,7 +33,7 @@ Before do
 end
 
 if !ENV['CHEWY']
-  Before('@search') do 
+  Before('@search') do
     Chewy.strategy(:bypass)
     Elasticsearch::Extensions::Test::Cluster.start(
       port: 9250,
@@ -41,8 +41,8 @@ if !ENV['CHEWY']
       timeout: 120
     ) unless Elasticsearch::Extensions::Test::Cluster.running?(on: 9250)
   end
-  
-  After('@search') do 
+
+  After('@search') do
     Elasticsearch::Extensions::Test::Cluster.stop(port: 9250)
   end
 end

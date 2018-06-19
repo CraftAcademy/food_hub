@@ -6,6 +6,10 @@
   Posted by:
   = mail_to @recipe.user.email
 
+#rating
+  - 5.times do |i|
+    = button_tag "#{i + 1}", data: {rating: "#{i + 1}"}
+
 - @recipe.comments.each do |comment|
   .box
     %p= comment.body

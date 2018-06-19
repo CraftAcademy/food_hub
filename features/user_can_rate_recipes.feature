@@ -12,14 +12,11 @@ Background:
     | title       	| description                 | ingredients        | directions              | user            |
     | Meatball-Stew | This will make you sick     | Meat, onion, stuff | Stir it, mix it, eat it | maran@test.com  |
 
-  And I am logged in as "maran@test.com"
+  And I am logged in as "rater@test.com"
 
-Scenario: User can rate a recipe
-  Given I visit the site
-  When I click "Meatball-Stew"
-  And I fill in "Body" with "I got sick, how do i sue you?"
-  And I click "Star"
-  And I click "Create Comment"
-  Then I should see "Thank you for your feedback"
-  And I should see "I got sick, how do i sue you?"
-  And I should see "Written by maran@test.com"
+@javascript
+Scenario: User can rate a recipe when visiting the recipe page
+  When I am on the show page for "Meatball-Stew"
+  And I click "5" on rating
+  Then I should see "Thank you for your rating"
+  And the average rating for "Meatball-Stew" should be "5"
