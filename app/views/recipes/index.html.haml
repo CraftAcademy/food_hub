@@ -1,10 +1,12 @@
 .recipes.bg-grey
-  .center 
+  .center
     %h1 Recipes
     %p= link_to 'New Recipe', new_recipe_path
 
     - @recipes.each do |recipe|
-      .recipe
+      -binding.pry
+
+      .recipes
         %h3= link_to recipe.title, recipe_path(recipe)
         %p= recipe.description
         %p
