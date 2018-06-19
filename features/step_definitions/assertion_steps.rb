@@ -25,3 +25,10 @@ end
 Then("I should not see {string}") do |string|
   expect(page).to have_no_content string
 end
+
+
+Then("the average rating for {string} should be {string}") do |recipe_title, count|
+  recipe = Recipe.find_by(title: recipe_title)
+  # TODO: calculate average
+  expect(recipe.ratings.count).to eq count.to_i
+end

@@ -51,8 +51,10 @@ When("I click {string} on rating") do |value|
   within('#rating') do
     click_on value
   end
+  wait 3
 end
 
 Then("stop") do
+  sleep 2
   binding.pry
 end
