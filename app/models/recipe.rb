@@ -5,6 +5,7 @@ class Recipe < ApplicationRecord
   validates :ingredients, presence: true
   validates :directions, presence: true
   belongs_to :user
+  has_many :ratings
 
   update_index('recipes') { self }
   
