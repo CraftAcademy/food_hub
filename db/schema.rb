@@ -36,12 +36,6 @@ ActiveRecord::Schema.define(version: 2018_06_19_122743) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "categories", force: :cascade do |t|
-    t.text "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "comments", force: :cascade do |t|
     t.text "body"
     t.bigint "recipe_id"
@@ -60,9 +54,7 @@ ActiveRecord::Schema.define(version: 2018_06_19_122743) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
-    t.bigint "category_id"
     t.integer "rating"
-    t.index ["category_id"], name: "index_recipes_on_category_id"
     t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 
@@ -88,6 +80,5 @@ ActiveRecord::Schema.define(version: 2018_06_19_122743) do
 
   add_foreign_key "comments", "recipes"
   add_foreign_key "comments", "users"
-  add_foreign_key "recipes", "categories"
   add_foreign_key "recipes", "users"
 end
