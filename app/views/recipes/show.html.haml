@@ -27,6 +27,9 @@
 = link_to "Back", root_path
 :javascript
   let ratingButtons = document.querySelectorAll('button')
+  let noticeDiv = document.querySelector('.notice')
+  let alertDiv = document.querySelector('.alert')
+  let ratingDiv = document.querySelector('#rating')
   ratingButtons.forEach((button)=>{
     button.addEventListener('click',()=>{
       let value = button.dataset.rating
@@ -42,7 +45,10 @@
       }}).then(function(response) {
         return response.json();
       }).then(function(data) {
-        console.log(data);
+        noticeDiv.innerHTML = data.message
+        ratingDiv.style.display = 'none'
+      }).catch((error) => {
+        alertDiv.innerHTML = data.error
       });
     })
   })
