@@ -18,7 +18,7 @@ Scenario: User can rate a recipe
   Given I visit the site
   When I click "Meatball-Stew"
   And I fill in "Body" with "I got sick, how do i sue you?"
-  And I click "like"
+  And I click "Star"
   And I click "Create Comment"
   Then I should see "Thank you for your feedback"
   And I should see "I got sick, how do i sue you?"
