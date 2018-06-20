@@ -3,8 +3,8 @@ Then("I should see {string}") do |expected_text|
 end
 
 Then("I should see the notice: {string}") do |expected_text|
-  notice = page.evaluate_script(";let notice = document.querySelector('.notice'); notice.innerText;")
-  expect(notice).to eq expected_text
+  notice = page.evaluate_script("document.querySelector('.notice');")
+  expect(notice.text).to eq expected_text
 end
 
 Then("I should see the alert: {string}") do |expected_text|

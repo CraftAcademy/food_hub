@@ -15,7 +15,8 @@ When('I fill in {string} with {string}') do |field, text|
 end
 
 Given("I am logged in as {string}") do |user_email|
-  login_as User.find_by(email: user_email)
+  user =  user = User.find_by(email: user_email) || create(:user, email: user_email)
+  login_as user, scope: :user
 end
 
 Given("the facebook authentication is not granted") do
@@ -51,10 +52,9 @@ When("I click {string} on rating") do |value|
   within('#rating') do
     click_on value
   end
-  sleep 5
+  sleep 2
 end
 
 Then("stop") do
-  sleep 2
   binding.pry
 end
