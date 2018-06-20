@@ -1,4 +1,8 @@
 %h3= @recipe.title
+%p= @recipe.description
+= image_tag @recipe.image unless @recipe.image.attachment.nil?
+%p= @recipe.ingredients
+%p= @recipe.directions
 %p
   Posted by:
   = mail_to @recipe.user.email
