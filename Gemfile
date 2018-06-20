@@ -17,6 +17,7 @@ gem 'omniauth-facebook', '~> 4.0'
 gem 'pundit'
 gem 'chewy'
 gem 'redis', '~> 3.0'
+gem "aws-sdk-s3", require: false
 
 
 group :development, :test do
