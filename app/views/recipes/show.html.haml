@@ -1,8 +1,13 @@
 %h3= @recipe.title
+%br
 %p= @recipe.description
+%br
 = image_tag @recipe.image unless @recipe.image.attachment.nil?
+%br
 %p= @recipe.ingredients
+%br
 %p= @recipe.directions
+%br
 %p
   Posted by:
   = mail_to @recipe.user.email
@@ -14,22 +19,17 @@
   - if @recipe.forked_recipes_ids.any?
     = "Forks: #{@recipe.forked_recipes_ids.count}"
 
-%p= @recipe.description
-%p= @recipe.ingredients
-%p= @recipe.directions
-
 - @recipe.comments.each do |comment|
   .box
     %p= comment.body
     %p
-      Written by
+      Commented by
       = mail_to comment.user.email
 
 = form_with(model: [ @recipe, @recipe.comments.build ], local: true) do |form|
   - if user_signed_in?
-    = form.label :body
-    = form.text_area :body
-    = form.submit
+    = form.text_area :body, placeholder: "Comment here"
+    = form.submit 'Comment'
 
 -if user_signed_in? && policy(@recipe).edit?
   = link_to "Edit Recipe", edit_recipe_path
