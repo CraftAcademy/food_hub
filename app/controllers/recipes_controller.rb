@@ -23,6 +23,7 @@ class RecipesController < ApplicationController
   end
 
   def show
+    @original_recipe = Recipe.find(@recipe.original_recipe_id) if @recipe.forked?
   end
 
   def edit
@@ -34,7 +35,7 @@ class RecipesController < ApplicationController
       flash[:notice] = "You have successfully edit recipe!"
       redirect_to recipe_path(@recipe)
     else
-      flash[:alert] = "Error updating recipe!"
+      flash[:alert] = @recipe.errors.full_messages.first
       render :edit
     end
   end
@@ -62,6 +63,4 @@ private
  def authorize_record
     authorize @recipe
  end
-
-
 end
