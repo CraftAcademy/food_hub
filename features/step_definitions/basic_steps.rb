@@ -51,7 +51,7 @@ When("I click {string} on rating") do |value|
   within('#rating') do
     click_on value
   end
-  sleep 3
+  sleep 5
 end
 
 Then("stop") do

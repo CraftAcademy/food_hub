@@ -16,9 +16,13 @@ Chromedriver.set_version('2.36')
 
 Capybara.register_driver(:selenium) do |app|
   options = Selenium::WebDriver::Chrome::Options.new(
-      args: %w(  no-sandbox disable-popup-blocking disable-infobars )
+      args: %w( auto-open-devtools-for-tabs no-sandbox disable-popup-blocking disable-infobars )
   )
-  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
+
+  client = Selenium::WebDriver::Remote::Http::Default.new
+  client.timeout = 100
+
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options, http_client: client)
 end
 
 Cucumber::Rails::Database.javascript_strategy = :truncation
