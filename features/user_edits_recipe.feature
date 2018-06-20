@@ -12,7 +12,7 @@ Feature: User edits recipe
     | title         | description             | user            |
     | Meatball-Stew | This will make you sick | maran@test.com  |
 
-   
+
 
 Scenario: User edits a recipe of their own
   Given I am logged in as "maran@test.com"
@@ -22,14 +22,11 @@ Scenario: User edits a recipe of their own
   And I click "Update Recipe"
   Then I should see "You have successfully edit recipe!"
 
-Scenario: User fails to fill in edit form
+Scenario: User leaves empty title in edit form
   Given I am logged in as "maran@test.com"
   And I visit the site
   And I click "Meatball-Stew"
   When I click "Edit Recipe"
-  And I fill in "Title" with " "
-  And I fill in "Description" with " "
-  And I fill in "Ingredients" with " "
-  And I fill in "Directions" with " "
+  And I fill in "Title" with ""
   And I click "Update Recipe"
-  Then I should see "Error updating recipe!"
+  Then I should see "Title can't be blank"

@@ -34,7 +34,8 @@ Given('We have the following recipes:') do |table|
 end
 
 Given("I am logged in as {string}") do |user_email|
-  login_as User.find_by(email: user_email)
+  @user = User.find_by(email: user_email)
+  login_as @user
 end
 
 Given("the facebook authentication is not granted") do
@@ -48,6 +49,11 @@ end
 Given("I visit the edit page for {string}") do |string|
   recipe = Recipe.find_by(title: string)
   visit edit_recipe_path(recipe)
+end
+
+Given("I am on the {string} recipe show page") do |recipe_title|
+  recipe = Recipe.find_by title: recipe_title
+  visit recipe_path(recipe)
 end
 
 Given("{string} is logged-in in another window") do |email|
@@ -64,4 +70,18 @@ end
 
 Given("I switch to window {string}") do |index|
   switch_to_window(windows[index.to_i - 1])
+end
+
+Given("I am on the {string} page") do |recipe_title|
+  recipe = Recipe.find_by title: recipe_title
+  visit recipe_path(recipe)
+end
+
+When("I visit My Collection page") do
+  visit collections_path
+end
+
+Given("I have {string} in My Collection") do |recipe_title|
+  recipe = create(:recipe, title: recipe_title)
+  @user.collection.recipes << recipe
 end
