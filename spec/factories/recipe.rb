@@ -5,5 +5,6 @@
     ingredients 'Eggs, flour, tomato, meat, other stuff'
     directions 'Put stuff together and mix them, then bake them'
     user
+    category
   end
 end
