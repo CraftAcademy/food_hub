@@ -43,7 +43,7 @@ Then("the average rating for {string} should be {string}") do |recipe_title, cou
   # Should probably be renamed to average_rating
 
   total = recipe.ratings.map(&:value).sum
-  instances = recipe.ratings.count
+  instances = recipe.ratings.any? ? recipe.ratings.count : 1  #to avoid division by zero error
   average = total / instances
   recipe.update_attribute(:rating, average)
   expect(recipe.rating).to eq count.to_i

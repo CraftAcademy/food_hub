@@ -26,29 +26,33 @@
   = link_to "Edit Recipe", edit_recipe_path
 = link_to "Back", root_path
 :javascript
-  let ratingButtons = document.querySelectorAll('button')
-  let noticeDiv = document.querySelector('.notice')
-  let alertDiv = document.querySelector('.alert')
-  let ratingDiv = document.querySelector('#rating')
-  ratingButtons.forEach((button)=>{
-    button.addEventListener('click',()=>{
-      let value = button.dataset.rating
-      let body = JSON.stringify({rating: value })
-      fetch("#{recipe_ratings_url(@recipe)}", {
-        method: 'post', 
-        body: body, 
-        credentials: 'include', 
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Requested-With': 'XMLHttpRequest',
-          'X-CSRF-Token': Rails.csrfToken()
-      }}).then(function(response) {
-        return response.json();
-      }).then(function(data) {
-        noticeDiv.innerHTML = data.message
-        ratingDiv.style.display = 'none'
-      }).catch((error) => {
-        alertDiv.innerHTML = data.error
-      });
+  document.addEventListener('load', ()=>{
+    let ratingButtons = document.querySelectorAll('button')
+    let noticeDiv = document.querySelector('.notice')
+    let alertDiv = document.querySelector('.alert')
+    let ratingDiv = document.querySelector('#rating')
+    ratingButtons.forEach((button)=>{
+      button.addEventListener('click',(event)=>{
+        event.preventDefault()
+        let value = button.dataset.rating
+        let body = JSON.stringify({rating: value })
+        fetch("#{recipe_ratings_url(@recipe)}", {
+          method: 'post', 
+          body: body, 
+          credentials: 'include', 
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRF-Token': Rails.csrfToken()
+        }}).then(function(response) {
+          return response.json();
+        }).then(function(data) {
+          noticeDiv.innerHTML = data.message
+          ratingDiv.style.display = 'none'
+        }).catch((error) => {
+          alertDiv.innerHTML = data.error
+        });
+      })
     })
+
   })
