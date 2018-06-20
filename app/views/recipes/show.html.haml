@@ -31,4 +31,11 @@
   = link_to "Edit Recipe", edit_recipe_path
 -if user_signed_in?
   = link_to "Fork", forks_path(id: @recipe.id), method: :post
+  |
+  - if current_user.collection.recipes.include?(@recipe)
+    = "In Collection"
+  - else
+    = link_to "Add to Collection", collections_path(id:@recipe.id), method: :post
+
+%br
 = link_to "Back", root_path
