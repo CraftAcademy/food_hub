@@ -35,7 +35,7 @@ Given('We have the following recipes:') do |table|
       recipe[:category] = Category.find_by name: recipe[:category]
     end
 
-    new_recipe = create(:recipe, recipe)
+    new_recipe = create(:recipe, recipe.except('image'))
 
     if recipe[:image]
       new_recipe.image.attach(io: File.open("#{::Rails.root}/spec/fixtures/#{recipe[:image]}"),
