@@ -28,8 +28,8 @@ Then("I should not see {string}") do |string|
 end
 
 Then("I should see {string} in {string} section") do |expected_text, section_name|
-  section_name = "#" + section_name.downcase.join('-')
-  expect(page.find(section_name)).to have_content expected_text
+  section_id = "#" + section_name.downcase.split.join('-')
+  expect(page.find(section_id)).to have_content expected_text
 end
 
 Then("I should be on the {string} edit page") do |recipe_title|

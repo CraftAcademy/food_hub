@@ -20,4 +20,4 @@ Scenario: User sees his email, own recipes and forked recipes on his profile pag
   When I am on my profile page
   Then I should see "Email: maran@test.com"
   And I should see "Pizza" in "My Original Recipes" section
-  And I should see "Forked Pasta" in "My Forked Recipes" section
+  And I should see "Forked Pizza" in "My Forked Recipes" section
