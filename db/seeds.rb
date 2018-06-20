@@ -8,6 +8,11 @@ User.create(
   password: '123456'
 )
 
+User.create(
+  email: 'agnes@example.com',
+  password: '123456'
+)
+
 Recipe.create(
 
   title: 'Mini Meatloaves',
@@ -63,7 +68,7 @@ Recipe.create(
 In a shallow bowl, beat the egg with salt, pepper and 1 teaspoon garlic powder. In a separate dish, mix bread crumbs with 1 teaspoon of garlic powder and Parmesan cheese. Set aside.
 Mix together the melted butter and lemon juice. Pour about 2/3 of the butter mixture into the bottom of a 9x13 inch baking dish. Tilt pan to coat the bottom. Spread mushrooms in an even layer in the bottom of the dish. Dip each chicken breast into the egg mixture, then into the bread crumb mixture. Place on top of the mushrooms. Drizzle remaining butter over the chicken, and sprinkle with parsley.
 Bake uncovered for 45 minutes in the preheated oven, until chicken is golden brown and juices run clear.',
-        user: User.find_by(email: 'george@example.com')
+        user: User.find_by(email: 'agnes@example.com')
 )
 
 Recipe.create(
@@ -100,5 +105,5 @@ Recipe.create(
                 Bring a large pot of salted water to boil. Add pasta and cook, stirring occasionally, until tender yet firm to the bite, about 12 minutes. Drain.
                 Divide pasta between the white sauce and the lamb sauce and mix to combine. Pour the pasta with lamb sauce into the prepared baking dish; spread the pasta with white sauce on top.
                 Bake in the preheated oven until top is golden and pastitsio is bubbling, about 30 minutes. Let cool for 5 minutes before serving.',
-        user: User.find_by(email: 'george@example.com')
+        user: User.find_by(email: 'nader@example.com')
 )
