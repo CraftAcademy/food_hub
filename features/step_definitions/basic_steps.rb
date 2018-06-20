@@ -33,11 +33,13 @@ Given('We have the following recipes:') do |table|
       user = User.find_by email: recipe[:user]
       recipe = recipe.except('user')
       create(:recipe, recipe.merge(user: user))
-
+    elsif recipe[:category]
+      category = Category.find_by name: recipe[:category]
+      recipe = recipe.except('category')
+      create(:recipe, recipe.merge(category: category))
     else
       create(:recipe, recipe)
     end
-
   end
 end
 
@@ -62,6 +64,16 @@ end
 Given("I am on the {string} recipe show page") do |recipe_title|
   recipe = Recipe.find_by title: recipe_title
   visit recipe_path(recipe)
+end
+
+Given("We have the following categories:") do |table|
+  table.hashes.each do |category|
+  create(:category, category)
+  end
+end
+
+Given("I select {string} from category menu") do |option|
+  select option, from: 'recipe_category_id'
 end
 
 Given("{string} is logged-in in another window") do |email|
