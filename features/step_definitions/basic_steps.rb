@@ -75,10 +75,10 @@ Given("I switch to window {string}") do |index|
   switch_to_window(windows[index.to_i - 1])
 end
 
-<<<<<<< HEAD
 Given("I attach file") do
   attach_file('recipe_image', "#{::Rails.root}/spec/fixtures/pizza.png")
-=======
+end
+
 Given("I am on the {string} page") do |recipe_title|
   recipe = Recipe.find_by title: recipe_title
   visit recipe_path(recipe)
@@ -91,5 +91,4 @@ end
 Given("I have {string} in My Collection") do |recipe_title|
   recipe = create(:recipe, title: recipe_title)
   @user.collection.recipes << recipe
->>>>>>> 62b32d31ad0bc3ae454fb6e25c083c1768cdf43d
 end
