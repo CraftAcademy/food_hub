@@ -20,6 +20,7 @@ Feature: User creates new recipe
 
   Scenario: User adds a recipe
     And I fill in "Title" with "Cheesy Fungus"
+    And I attach file
     And I select "Starters" from category menu
     And I fill in "Description" with "Shroomlovin' cheese feast!"
     And I fill in "Ingredients" with "Cheese and fungus"

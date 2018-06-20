@@ -22,7 +22,14 @@ end
 
 Given('We have the following recipes:') do |table|
   table.hashes.each do |recipe|
-    if recipe[:user]
+    if recipe[:user] && recipe[:image]
+      user = User.find_by email: recipe[:user]
+      recipe_hash = recipe.except('user', 'image')
+      new_recipe = create(:recipe, recipe_hash.merge(user: user))
+      new_recipe.image.attach(io: File.open("#{::Rails.root}/spec/fixtures/#{recipe[:image]}"),
+                              filename: "#{recipe[:image]}",
+                              content_type: "image/png")
+    elsif recipe[:user]
       user = User.find_by email: recipe[:user]
       recipe = recipe.except('user')
       create(:recipe, recipe.merge(user: user))
@@ -83,6 +90,10 @@ end
 
 Given("I switch to window {string}") do |index|
   switch_to_window(windows[index.to_i - 1])
+end
+
+Given("I attach file") do
+  attach_file('recipe_image', "#{::Rails.root}/spec/fixtures/pizza.png")
 end
 
 Given("I am on the {string} page") do |recipe_title|

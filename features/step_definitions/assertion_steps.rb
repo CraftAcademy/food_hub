@@ -30,3 +30,7 @@ Then("I should be on the {string} edit page") do |recipe_title|
   recipe = Recipe.find_by title: recipe_title
   expect(current_path).to eq edit_recipe_path(recipe)
 end
+
+Then("I should see the {string} image") do |file_name|
+  expect(page).to have_selector "img[src$='#{file_name}']"
+end

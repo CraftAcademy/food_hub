@@ -10,6 +10,7 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
+    @recipe.image.attach(params[:recipe][:image])
     if @recipe.save
       flash[:notice] = "Recipe Sucessfully created"
       redirect_to root_path
@@ -30,6 +31,7 @@ class RecipesController < ApplicationController
 
   def update
     if @recipe.update(recipe_params)
+      @recipe.image.attach(params[:recipe][:image])
       flash[:notice] = "You have successfully edit recipe!"
       redirect_to recipe_path(@recipe)
     else
