@@ -12,6 +12,8 @@ Feature: User gets notification when new comments are added
       | title       	|
       | Meatball-Stew |
 
+    And I am logged in as "maran2@test.com"
+
     @javascript
     Scenario: A user can see when someone comments on a recipe
       Given I visit the site
