@@ -1,11 +1,13 @@
 class User < ApplicationRecord
   has_many :comments
   enum role: [:user, :admin]
-  
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
   has_many :recipes
+  has_one :collection
+  after_create :make_collection
 
   def self.new_with_session(params, session)
     super.tap do |user|
@@ -22,5 +24,9 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0,20]
       #user.image = auth.info.image # assuming the user model has an image
     end
-  end 
+  end
+
+  def make_collection
+    Collection.create(user: self)
+  end
 end

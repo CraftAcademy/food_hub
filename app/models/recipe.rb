@@ -5,10 +5,11 @@ class Recipe < ApplicationRecord
   validates :ingredients, presence: true
   validates :directions, presence: true
   belongs_to :user
+  has_and_belongs_to_many :collections, uniq: true
   belongs_to :category
 
   update_index('recipes') { self }
-  
+
   after_create :notify
 
   def notify

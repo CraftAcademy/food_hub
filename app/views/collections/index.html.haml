@@ -1,0 +1,9 @@
+%h1 My Collection
+- @collection.recipes.each do |recipe|
+  .recipes
+    %h3= link_to recipe.title, recipe_path(recipe)
+    %p= recipe.description
+    %p
+      Posted by:
+      = mail_to recipe.user.email
+    %p= link_to "Remove", collection_path(recipe), method: :delete
