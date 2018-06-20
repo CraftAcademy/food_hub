@@ -51,6 +51,11 @@ Given("I visit the edit page for {string}") do |string|
   visit edit_recipe_path(recipe)
 end
 
+Given("I am on the {string} recipe show page") do |recipe_title|
+  recipe = Recipe.find_by title: recipe_title
+  visit recipe_path(recipe)
+end
+
 Given("{string} is logged-in in another window") do |email|
   window = open_new_window
   switch_to_window(window)

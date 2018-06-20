@@ -1,10 +1,18 @@
 %h3= @recipe.title
-%p= @recipe.description
-%p= @recipe.ingredients
-%p= @recipe.directions
 %p
   Posted by:
   = mail_to @recipe.user.email
+%p
+  - if @recipe.forked?
+    Forked from:
+    = link_to @original_recipe.title , recipe_path(@original_recipe)
+%p
+  - if @recipe.forked_recipes_ids.any?
+    = "Forks: #{@recipe.forked_recipes_ids.count}"
+
+%p= @recipe.description
+%p= @recipe.ingredients
+%p= @recipe.directions
 
 - @recipe.comments.each do |comment|
   .box
@@ -21,9 +29,9 @@
 
 -if user_signed_in? && policy(@recipe).edit?
   = link_to "Edit Recipe", edit_recipe_path
+-if user_signed_in?
+  = link_to "Fork", forks_path(id: @recipe.id), method: :post
   |
-
-- if user_signed_in?
   - if current_user.collection.recipes.include?(@recipe)
     = "In Collection"
   - else
