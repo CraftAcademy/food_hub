@@ -8,5 +8,6 @@ Rails.application.routes.draw do
     resources :comments
   end
   resources :collections, only: [:index, :create, :destroy]
+  resources :profiles, only: [:index]
   mount ActionCable.server => '/cable'
 end
