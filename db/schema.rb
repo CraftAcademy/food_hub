@@ -10,11 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_14_124000) do
+ActiveRecord::Schema.define(version: 2018_06_17_230921) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "collections", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_collections_on_user_id"
+  end
+
+  create_table "collections_recipes", id: false, force: :cascade do |t|
+    t.bigint "recipe_id", null: false
+    t.bigint "collection_id", null: false
+    t.index ["collection_id", "recipe_id"], name: "index_collections_recipes_on_collection_id_and_recipe_id"
+    t.index ["recipe_id", "collection_id"], name: "index_collections_recipes_on_recipe_id_and_collection_id"
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -60,6 +72,8 @@ ActiveRecord::Schema.define(version: 2018_06_14_124000) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.bigint "collection_id"
+    t.index ["collection_id"], name: "index_recipes_on_collection_id"
     t.bigint "category_id"
     t.index ["category_id"], name: "index_recipes_on_category_id"
     t.index ["user_id"], name: "index_recipes_on_user_id"
@@ -85,8 +99,10 @@ ActiveRecord::Schema.define(version: 2018_06_14_124000) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "collections", "users"
   add_foreign_key "comments", "recipes"
   add_foreign_key "comments", "users"
+  add_foreign_key "recipes", "collections"
   add_foreign_key "recipes", "categories"
   add_foreign_key "recipes", "users"
 end

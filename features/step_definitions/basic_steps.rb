@@ -42,7 +42,8 @@ Given('We have the following recipes:') do |table|
 end
 
 Given("I am logged in as {string}") do |user_email|
-  login_as User.find_by(email: user_email)
+  @user = User.find_by(email: user_email)
+  login_as @user
 end
 
 Given("the facebook authentication is not granted") do
@@ -74,6 +75,21 @@ Given("I switch to window {string}") do |index|
   switch_to_window(windows[index.to_i - 1])
 end
 
+<<<<<<< HEAD
 Given("I attach file") do
   attach_file('recipe_image', "#{::Rails.root}/spec/fixtures/pizza.png")
+=======
+Given("I am on the {string} page") do |recipe_title|
+  recipe = Recipe.find_by title: recipe_title
+  visit recipe_path(recipe)
+end
+
+When("I visit My Collection page") do
+  visit collections_path
+end
+
+Given("I have {string} in My Collection") do |recipe_title|
+  recipe = create(:recipe, title: recipe_title)
+  @user.collection.recipes << recipe
+>>>>>>> 62b32d31ad0bc3ae454fb6e25c083c1768cdf43d
 end

@@ -19,6 +19,12 @@ RSpec.describe Recipe, type: :model do
     it { is_expected.to validate_presence_of :directions }
   end
 
+  describe "Associations" do
+    it { is_expected.to belong_to :user }
+    it { is_expected.to have_and_belong_to_many :collections }
+    it { is_expected.to have_many :comments }
+  end
+
   describe 'Factory' do
     it 'can create a valid instance' do
       expect(recipe).to be_valid
