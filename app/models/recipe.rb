@@ -15,4 +15,8 @@ class Recipe < ApplicationRecord
     ActionCable.server.broadcast 'notifications',
                                   message: "<p>#{self.title} was created!</p>"
   end
+
+  def rated_by?(resource)
+    self.ratings.where(user: resource).any? 
+  end
 end

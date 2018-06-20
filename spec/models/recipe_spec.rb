@@ -38,4 +38,19 @@ RSpec.describe Recipe, type: :model do
       .with({message: '<p>MyRecipe was created!</p>'})
     end
   end
+
+  describe '#rated_by?' do 
+    let(:rater) {create(:user, email: 'rater@random.com')}
+    let(:non_rater) {create(:user, email: 'non_rater@random.com')}
+    let!(:rating) {create(:rating, recipe: recipe, user: rater, value: "5")}
+
+    it 'returns true if user has submitted a rating' do 
+      expect(recipe.rated_by?(rater)).to eq true
+    end
+
+    it 'returns false if user has NOY submitted a rating' do 
+      expect(recipe.rated_by?(non_rater)).to eq false
+    end
+  end
+
 end
