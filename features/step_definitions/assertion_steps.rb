@@ -25,3 +25,8 @@ end
 Then("I should not see {string}") do |string|
   expect(page).to have_no_content string
 end
+
+Then("I should be on the {string} edit page") do |recipe_title|
+  recipe = Recipe.find_by title: recipe_title
+  expect(current_path).to eq edit_recipe_path(recipe)
+end

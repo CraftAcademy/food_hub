@@ -54,6 +54,11 @@ Given("I visit the edit page for {string}") do |string|
   visit edit_recipe_path(recipe)
 end
 
+Given("I am on the {string} recipe show page") do |recipe_title|
+  recipe = Recipe.find_by title: recipe_title
+  visit recipe_path(recipe)
+end
+
 Given("We have the following categories:") do |table|
   table.hashes.each do |category|
   create(:category, category)
