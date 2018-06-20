@@ -34,3 +34,7 @@ end
 Then("I should see the {string} image") do |file_name|
   expect(page).to have_selector "img[src$='#{file_name}']"
 end
+
+Then("I should be on password reset page") do
+  expect(current_path).to eq new_user_password_path
+end

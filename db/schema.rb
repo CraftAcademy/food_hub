@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2018_06_19_122743) do
   end
 
   create_table "categories", force: :cascade do |t|
-    t.string "name"
+    t.text "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 2018_06_19_122743) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.bigint "category_id"
+    t.integer "rating"
     t.bigint "collection_id"
     t.integer "original_recipe_id"
     t.string "forked_recipes_ids", default: [], array: true
