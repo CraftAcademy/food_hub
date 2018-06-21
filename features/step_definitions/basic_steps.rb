@@ -15,8 +15,8 @@ When('I fill in {string} with {string}') do |field, text|
 end
 
 Given("I am logged in as {string}") do |user_email|
-  user =  user = User.find_by(email: user_email) || create(:user, email: user_email)
-  login_as user, scope: :user
+  @user =  user = User.find_by(email: user_email) || create(:user, email: user_email)
+  login_as @user, scope: :user
 end
 
 Given("the facebook authentication is not granted") do
@@ -88,7 +88,6 @@ When("I visit My Collection page") do
 end
 
 Given("I have {string} in My Collection") do |recipe_title|
-  binding.pry
   recipe = create(:recipe, title: recipe_title)
   @user.collection.recipes << recipe
 end
