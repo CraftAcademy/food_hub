@@ -111,7 +111,3 @@ Given("I have {string} in My Collection") do |recipe_title|
   recipe = create(:recipe, title: recipe_title)
   @user.collection.recipes << recipe
 end
-
-When("I am on my profile page") do
-  visit profiles_path
-end

@@ -17,7 +17,9 @@ Background:
   And I am logged in as "maran@test.com"
 
 Scenario: User sees his email, own recipes and forked recipes on his profile page
-  When I am on my profile page
-  Then I should see "Email: maran@test.com"
+  Given I visit the site
+  When I click "My Profile"
+  Then I should be on My Profile page
+  And I should see "Email: maran@test.com"
   And I should see "Pizza" in "My Original Recipes" section
   And I should see "Forked Pizza" in "My Forked Recipes" section

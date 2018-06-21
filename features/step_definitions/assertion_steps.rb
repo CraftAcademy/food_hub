@@ -43,3 +43,7 @@ end
 Then("I should be on password reset page") do
   expect(current_path).to eq new_user_password_path
 end
+
+Then("I should be on My Profile page") do
+  expect(current_path).to eq user_path(@user)
+end
