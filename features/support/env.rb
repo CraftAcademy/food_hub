@@ -16,7 +16,7 @@ Chromedriver.set_version('2.36')
 
 Capybara.register_driver(:selenium) do |app|
   options = Selenium::WebDriver::Chrome::Options.new(
-      args: %w( auto-open-devtools-for-tabs no-sandbox disable-popup-blocking disable-infobars )
+      args: %w( auto-open-devtools-for-tabs no-sandbox disable-popup-blocking disable-infobars headless )
   )
 
   client = Selenium::WebDriver::Remote::Http::Default.new

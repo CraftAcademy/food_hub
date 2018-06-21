@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2018_06_19_215607) do
   end
 
   create_table "categories", force: :cascade do |t|
-    t.text "name"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -85,16 +85,12 @@ ActiveRecord::Schema.define(version: 2018_06_19_215607) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.bigint "category_id"
-    t.integer "rating"
     t.bigint "collection_id"
     t.integer "original_recipe_id"
     t.string "forked_recipes_ids", default: [], array: true
-    t.bigint "category_id"
     t.integer "rating"
-    t.bigint "collection_id"
     t.index ["category_id"], name: "index_recipes_on_category_id"
     t.index ["collection_id"], name: "index_recipes_on_collection_id"
-    t.integer "rating"
     t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 
@@ -121,9 +117,9 @@ ActiveRecord::Schema.define(version: 2018_06_19_215607) do
   add_foreign_key "collections", "users"
   add_foreign_key "comments", "recipes"
   add_foreign_key "comments", "users"
-  add_foreign_key "recipes", "categories"
-  add_foreign_key "recipes", "collections"
   add_foreign_key "ratings", "recipes"
   add_foreign_key "ratings", "users"
+  add_foreign_key "recipes", "categories"
+  add_foreign_key "recipes", "collections"
   add_foreign_key "recipes", "users"
 end
