@@ -29,5 +29,4 @@ Scenario: User can not rate more than one time per recipe
   And I click "4" on rating
   Then I should see the notice: "Thank you for your rating"
   And I refresh the page
-  Then show me the page
-  And I should not see "4"
+  And I should not see "Rating"

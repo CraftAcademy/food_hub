@@ -1,4 +1,6 @@
 %h3= @recipe.title
+%p= @recipe.rating
+%p= @recipe.rating
 %p= @recipe.description
 = image_tag @recipe.image unless @recipe.image.attachment.nil?
 %p= @recipe.ingredients
@@ -19,8 +21,10 @@
 %p= @recipe.directions
 
 #rating
-  - 5.times do |i|
-    = button_tag "#{i + 1}", data: {rating: "#{i + 1}"}
+  - if !@has_rated
+    %p= "Rating"
+    - 5.times do |i|
+      = button_tag "#{i + 1}", data: {rating: "#{i + 1}"}
 
 - @recipe.comments.each do |comment|
   .box

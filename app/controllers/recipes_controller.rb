@@ -23,6 +23,7 @@ class RecipesController < ApplicationController
   end
 
   def show
+    @has_rated = @recipe.ratings.any? {|rating| rating.user == current_user}
     @original_recipe = Recipe.find(@recipe.original_recipe_id) if @recipe.forked?
   end
 
