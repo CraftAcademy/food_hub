@@ -23,7 +23,7 @@ class Recipe < ApplicationRecord
   def rated_by?(resource)
     self.ratings.where(user: resource).any?
   end
-  
+
   def fork(user)
     forked_recipe = self.dup
     attributes = {user: user,
@@ -40,5 +40,12 @@ class Recipe < ApplicationRecord
 
   def forked?
     self.original_recipe_id.present?
+  end
+
+  def average_rating
+    total = self.ratings.map(&:value).sum
+    instances = self.ratings.any? ? self.ratings.count : 1  #to avoid division by zero error
+    average = total / instances
+    self.update_attribute(:rating, average)
   end
 end
