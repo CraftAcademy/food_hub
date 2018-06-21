@@ -54,7 +54,7 @@ Then("I should be on password reset page") do
   expect(current_path).to eq new_user_password_path
 end
 
-Then("the average rating for {string} should be {string}") do |recipe_title, count|
+Then("the average rating for {string} should be {string}") do |recipe_title, expected_rating|
   recipe = Recipe.find_by(title: recipe_title)
   # TODO: calculate average and save in recipe.rating attribute
   # Should probably be renamed to average_rating
@@ -63,7 +63,7 @@ Then("the average rating for {string} should be {string}") do |recipe_title, cou
   # instances = recipe.ratings.any? ? recipe.ratings.count : 1  #to avoid division by zero error
   # average = total / instances
   # recipe.update_attribute(:rating, average)
-  expect(recipe.rating).to eq count.to_i
+  expect(recipe.average_rating).to eq expected_rating.to_i
 end
 
 Then("I refresh the page") do

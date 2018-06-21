@@ -9,8 +9,8 @@ Background:
     | maran@test.com  | 12345678    |
 
   Given We have the following recipes:
-    | title       	| description                 | ingredients        | directions              | user            |
-    | Meatball-Stew | This will make you sick     | Meat, onion, stuff | Stir it, mix it, eat it | maran@test.com  |
+    | title       	| user            |
+    | Meatball-Stew | maran@test.com  |
 
   And I am logged in as "rater@test.com"
 
@@ -29,4 +29,4 @@ Scenario: User can not rate more than one time per recipe
   And I click "4" on rating
   Then I should see the notice: "Thank you for your rating"
   And I refresh the page
-  And I should not see "Rating"
+  And I should not see "Rate"
