@@ -36,6 +36,11 @@ Then("I should not see {string}") do |string|
   expect(page).to have_no_content string
 end
 
+Then("I should see {string} in {string} section") do |expected_text, section_name|
+  section_id = "#" + section_name.downcase.split.join('-')
+  expect(page.find(section_id)).to have_content expected_text
+end
+
 Then("I should be on the {string} edit page") do |recipe_title|
   recipe = Recipe.find_by title: recipe_title
   expect(current_path).to eq edit_recipe_path(recipe)
@@ -63,4 +68,8 @@ end
 
 Then("I refresh the page") do
   page.driver.browser.navigate.refresh
+end
+
+Then("I should be on My Profile page") do
+  expect(current_path).to eq user_path(@user)
 end

@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   end
   resources :forks, only: [:create]
   resources :collections, only: [:index, :create, :destroy]
+  resources :users, only: [:show]
   mount ActionCable.server => '/cable'
 end
