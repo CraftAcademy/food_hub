@@ -88,6 +88,7 @@ When("I visit My Collection page") do
 end
 
 Given("I have {string} in My Collection") do |recipe_title|
+  binding.pry
   recipe = create(:recipe, title: recipe_title)
   @user.collection.recipes << recipe
 end
