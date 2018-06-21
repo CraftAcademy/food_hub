@@ -1,10 +1,22 @@
 %h3= @recipe.title
 %p= @recipe.description
+= image_tag @recipe.image unless @recipe.image.attachment.nil?
 %p= @recipe.ingredients
 %p= @recipe.directions
 %p
   Posted by:
   = mail_to @recipe.user.email
+%p
+  - if @recipe.forked?
+    Forked from:
+    = link_to @original_recipe.title , recipe_path(@original_recipe)
+%p
+  - if @recipe.forked_recipes_ids.any?
+    = "Forks: #{@recipe.forked_recipes_ids.count}"
+
+%p= @recipe.description
+%p= @recipe.ingredients
+%p= @recipe.directions
 
 #rating
   - 5.times do |i|
@@ -22,8 +34,18 @@
     = form.label :body
     = form.text_area :body
     = form.submit
+
 -if user_signed_in? && policy(@recipe).edit?
   = link_to "Edit Recipe", edit_recipe_path
+-if user_signed_in?
+  = link_to "Fork", forks_path(id: @recipe.id), method: :post
+  |
+  - if current_user.collection.recipes.include?(@recipe)
+    = "In Collection"
+  - else
+    = link_to "Add to Collection", collections_path(id:@recipe.id), method: :post
+
+%br
 = link_to "Back", root_path
 :javascript
   document.addEventListener('load', ()=>{
@@ -37,9 +59,9 @@
         let value = button.dataset.rating
         let body = JSON.stringify({rating: value })
         fetch("#{recipe_ratings_url(@recipe)}", {
-          method: 'post', 
-          body: body, 
-          credentials: 'include', 
+          method: 'post',
+          body: body,
+          credentials: 'include',
           headers: {
             'Content-Type': 'application/json',
             'X-Requested-With': 'XMLHttpRequest',

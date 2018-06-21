@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :comments
     resources :ratings, only: [:create]
   end
-
+  resources :forks, only: [:create]
+  resources :collections, only: [:index, :create, :destroy]
   mount ActionCable.server => '/cable'
 end

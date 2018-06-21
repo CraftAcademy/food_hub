@@ -21,11 +21,11 @@ Then("I should be redirected to the signup page") do
 end
 
 Then("I should see {string} in {string} recipe") do |expected_text, recipe_title|
-  expect(page.find('.recipe', text: recipe_title)).to have_content expected_text
+  expect(page.find('.recipes', text: recipe_title)).to have_content expected_text
 end
 
 Then("I should not see {string} in {string} recipe") do |expected_text, recipe_title|
-  expect(page.find('.recipe', text: recipe_title)).to have_no_content expected_text
+  expect(page.find('.recipes', text: recipe_title)).to have_no_content expected_text
 end
 
 Then("show me the page") do
@@ -36,6 +36,18 @@ Then("I should not see {string}") do |string|
   expect(page).to have_no_content string
 end
 
+Then("I should be on the {string} edit page") do |recipe_title|
+  recipe = Recipe.find_by title: recipe_title
+  expect(current_path).to eq edit_recipe_path(recipe)
+end
+
+Then("I should see the {string} image") do |file_name|
+  expect(page).to have_selector "img[src$='#{file_name}']"
+end
+
+Then("I should be on password reset page") do
+  expect(current_path).to eq new_user_password_path
+end
 
 Then("the average rating for {string} should be {string}") do |recipe_title, count|
   recipe = Recipe.find_by(title: recipe_title)

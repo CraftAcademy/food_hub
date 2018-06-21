@@ -14,8 +14,38 @@ When('I fill in {string} with {string}') do |field, text|
   fill_in field, with: text
 end
 
+Given('We have the following user:') do |table|
+  table.hashes.each do |field|
+    create(:user, field)
+  end
+end
+
+Given('We have the following recipes:') do |table|
+  table.hashes.each do |recipe|
+    if recipe[:user] && recipe[:image]
+      user = User.find_by email: recipe[:user]
+      recipe_hash = recipe.except('user', 'image')
+      new_recipe = create(:recipe, recipe_hash.merge(user: user))
+      new_recipe.image.attach(io: File.open("#{::Rails.root}/spec/fixtures/#{recipe[:image]}"),
+                              filename: "#{recipe[:image]}",
+                              content_type: "image/png")
+    elsif recipe[:user]
+      user = User.find_by email: recipe[:user]
+      recipe = recipe.except('user')
+      create(:recipe, recipe.merge(user: user))
+    elsif recipe[:category]
+      category = Category.find_by name: recipe[:category]
+      recipe = recipe.except('category')
+      create(:recipe, recipe.merge(category: category))
+    else
+      create(:recipe, recipe)
+    end
+  end
+end
+
 Given("I am logged in as {string}") do |user_email|
-  login_as User.find_by(email: user_email)
+  @user = User.find_by(email: user_email)
+  login_as @user
 end
 
 Given("the facebook authentication is not granted") do
@@ -29,6 +59,21 @@ end
 Given("I visit the edit page for {string}") do |string|
   recipe = Recipe.find_by(title: string)
   visit edit_recipe_path(recipe)
+end
+
+Given("I am on the {string} recipe show page") do |recipe_title|
+  recipe = Recipe.find_by title: recipe_title
+  visit recipe_path(recipe)
+end
+
+Given("We have the following categories:") do |table|
+  table.hashes.each do |category|
+  create(:category, category)
+  end
+end
+
+Given("I select {string} from category menu") do |option|
+  select option, from: 'recipe_category_id'
 end
 
 Given("{string} is logged-in in another window") do |email|
@@ -47,6 +92,22 @@ Given("I switch to window {string}") do |index|
   switch_to_window(windows[index.to_i - 1])
 end
 
+Given("I attach file") do
+  attach_file('recipe_image', "#{::Rails.root}/spec/fixtures/pizza.png")
+end
+
+Given("I am on the {string} page") do |recipe_title|
+  recipe = Recipe.find_by title: recipe_title
+  visit recipe_path(recipe)
+end
+
+When("I visit My Collection page") do
+  visit collections_path
+end
+
+Given("I have {string} in My Collection") do |recipe_title|
+  recipe = create(:recipe, title: recipe_title)
+  @user.collection.recipes << recipe
 When("I click {string} on rating") do |value|
   within('#rating') do
     click_on value

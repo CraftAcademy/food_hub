@@ -3,10 +3,13 @@
     %h1 Recipes
     %p= link_to 'New Recipe', new_recipe_path
 
-    - @recipes.each do |recipe|
-      .recipe
-        %h3= link_to recipe.title, recipe_path(recipe)
-        %p= recipe.description
-        %p
-          Posted by:
-          = mail_to recipe.user.email
+- @categories.each do |category|
+  %h3= category.name
+  - category.recipes.each do |recipe|
+    .recipes
+      %h3= link_to recipe.title, recipe_path(recipe)
+      %p= recipe.description
+      = image_tag recipe.image unless recipe.image.attachment.nil?
+      %p
+        Posted by:
+        = mail_to recipe.user.email

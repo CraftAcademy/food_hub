@@ -8,6 +8,8 @@ RSpec.describe Recipe, type: :model do
     it { is_expected.to have_db_column :description}
     it { is_expected.to have_db_column :ingredients}
     it { is_expected.to have_db_column :directions}
+    it { is_expected.to have_db_column :original_recipe_id}
+    it { is_expected.to have_db_column :forked_recipes_ids}
     it { is_expected.to have_db_column :user_id}
     it { is_expected.to belong_to :user}
   end
@@ -19,10 +21,16 @@ RSpec.describe Recipe, type: :model do
     it { is_expected.to validate_presence_of :directions }
   end
 
-  describe 'Associations' do 
+  describe 'Associations' do
     it { is_expected.to have_many :ratings }
     it { is_expected.to belong_to :user }
-  end 
+  end
+  
+  describe "Associations" do
+    it { is_expected.to belong_to :user }
+    it { is_expected.to have_and_belong_to_many :collections }
+    it { is_expected.to have_many :comments }
+  end
 
   describe 'Factory' do
     it 'can create a valid instance' do
@@ -36,6 +44,13 @@ RSpec.describe Recipe, type: :model do
       .to have_broadcasted_to('notifications')
       .from_channel(WebNotificationsChannel)
       .with({message: '<p>MyRecipe was created!</p>'})
+    end
+  end
+
+  describe 'Attachment' do
+    it 'is valid  ' do
+      subject.image.attach(io: File.open(fixture_path + '/pizza.png'), filename: 'attachment.png', content_type: 'image/png')
+      expect(subject.image).to be_attached
     end
   end
 end
