@@ -25,7 +25,7 @@ RSpec.describe Recipe, type: :model do
     it { is_expected.to have_many :ratings }
     it { is_expected.to belong_to :user }
   end
-  
+
   describe "Associations" do
     it { is_expected.to belong_to :user }
     it { is_expected.to have_and_belong_to_many :collections }
@@ -53,4 +53,19 @@ RSpec.describe Recipe, type: :model do
       expect(subject.image).to be_attached
     end
   end
+  
+  describe '#rated_by?' do
+    let(:rater) {create(:user, email: 'rater@random.com')}
+    let(:non_rater) {create(:user, email: 'non_rater@random.com')}
+    let!(:rating) {create(:rating, recipe: recipe, user: rater, value: "5")}
+
+    it 'returns true if user has submitted a rating' do
+      expect(recipe.rated_by?(rater)).to eq true
+    end
+
+    it 'returns false if user has NOY submitted a rating' do
+      expect(recipe.rated_by?(non_rater)).to eq false
+    end
+  end
+
 end

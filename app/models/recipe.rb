@@ -20,6 +20,10 @@ class Recipe < ApplicationRecord
                                   message: "<p>#{self.title} was created!</p>"
   end
 
+  def rated_by?(resource)
+    self.ratings.where(user: resource).any?
+  end
+  
   def fork(user)
     forked_recipe = self.dup
     attributes = {user: user,

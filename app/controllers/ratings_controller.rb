@@ -6,7 +6,6 @@ class RatingsController < ApplicationController
       render json: { message: 'Thank you for your rating'}, status: :ok
     else
       render json: { error: 'An error occured'}, status: :unprocessable_entity
-
     end
   end
 end

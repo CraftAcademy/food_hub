@@ -48,7 +48,7 @@
 %br
 = link_to "Back", root_path
 :javascript
-  document.addEventListener('load', ()=>{
+    console.log('LOADED!')
     let ratingButtons = document.querySelectorAll('button')
     let noticeDiv = document.querySelector('.notice')
     let alertDiv = document.querySelector('.alert')
@@ -58,8 +58,8 @@
         event.preventDefault()
         let value = button.dataset.rating
         let body = JSON.stringify({rating: value })
-        fetch("#{recipe_ratings_url(@recipe)}", {
-          method: 'post',
+        fetch("#{recipe_ratings_path(@recipe)}", {
+          method: 'POST',
           body: body,
           credentials: 'include',
           headers: {
@@ -71,10 +71,11 @@
         }).then(function(data) {
           noticeDiv.innerHTML = data.message
           ratingDiv.style.display = 'none'
+          console.log(data)
         }).catch((error) => {
           alertDiv.innerHTML = data.error
+          console.log(error)
         });
-      })
     })
 
   })
