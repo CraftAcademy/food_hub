@@ -15,7 +15,7 @@ Background:
     | Pizza           | Amazing taste            | Weat, Water        | Mix it together         | author@test.com |
     | Grilled Chicken | Delicious taste          | Chicken            | Grill it                | maran@test.com  |
 
-  And "maran@test.com" has the following collection:
+  And "maran@test.com" has the following recipes in his collection:
     | title             | 
     | Meatball-Stew     | 
     | Pizza             |
