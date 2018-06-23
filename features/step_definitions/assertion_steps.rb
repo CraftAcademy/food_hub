@@ -51,3 +51,12 @@ end
 Then("a recipe book should be created") do
   expect(@user.collection.pdf.attached?).to eq true
 end
+
+Then("the pdf should contain {string}") do |content|
+  remote_pdf = open(Rails.root.join('spec', 'fixtures', 'tmp', 'tmp.pdf'), 'wb') do |file|
+    file << open(@collection.attachments.first.file.url).read
+  end
+
+  pdf = PDF::Inspector::Text.analyze_file(remote_pdf)
+  expect(pdf.strings).to include content
+end
