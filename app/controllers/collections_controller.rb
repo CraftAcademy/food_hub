@@ -5,6 +5,17 @@ class CollectionsController < ApplicationController
     @collection = current_user.collection
   end
 
+  def show
+    @collection = current_user.collection
+    begin
+      PdfGeneratorService.new(@collection)
+      redirect_back fallback_location: root_path
+    rescue => e
+      flash[:error] = e.message
+      redirect_to collections_path
+    end
+  end
+
   def create
     current_user.collection.recipes << current_recipe
     current_user.save

@@ -47,3 +47,7 @@ end
 Then("I should be on My Profile page") do
   expect(current_path).to eq user_path(@user)
 end
+
+Then("a recipe book should be created") do
+  expect(@user.collection.pdf.attached?).to eq true
+end
