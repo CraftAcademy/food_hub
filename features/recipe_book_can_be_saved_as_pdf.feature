@@ -26,13 +26,13 @@ Background:
 Scenario: User saves recipe book as pdf
   When I click "Create pdf from My Collection"
   Then a recipe book should be created
-  And the pdf should contain "Meatball_Stew"
-  And the pdf should contain "maran@test.com "
+  And the pdf should contain "Meatball-Stew"
+  And the pdf should contain "maran@test.com"
   And the pdf should contain "This will make you sick"
   And the pdf should contain "Meat, onion, stuff"
   And the pdf should contain "Stir it, mix it, eat it"
   And the pdf should contain "Pizza"
-  And the pdf should contain "author@test.com "
-  And the pdf should contain "Amazing taste "
-  And the pdf should contain "Weat, Water "
+  And the pdf should contain "author@test.com"
+  And the pdf should contain "Amazing taste"
+  And the pdf should contain "Weat, Water"
   And the pdf should contain "Mix it together"

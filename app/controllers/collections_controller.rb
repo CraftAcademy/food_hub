@@ -8,7 +8,7 @@ class CollectionsController < ApplicationController
   def show
     @collection = current_user.collection
     begin
-      PdfGeneratorService.new(@collection)
+      PdfGeneratorService.new(@collection).generate_pdf
       redirect_back fallback_location: root_path
     rescue => e
       flash[:error] = e.message
