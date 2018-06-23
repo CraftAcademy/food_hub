@@ -11,7 +11,7 @@ class CollectionsController < ApplicationController
       PdfGeneratorService.new(@collection).generate_pdf
       redirect_back fallback_location: root_path
     rescue => e
-      flash[:error] = e.message
+      flash[:alert] = e.message
       redirect_to collections_path
     end
   end

@@ -2,7 +2,7 @@ class PdfGeneratorService
 
   def initialize(collection)
     @collection = collection
-    raise StandardError.new('Collection is empty') if @collection.recipes.empty? # TODO Test with sad path
+    raise StandardError.new('Collection is empty') if @collection.recipes.empty?
   end
 
   def generate_pdf
