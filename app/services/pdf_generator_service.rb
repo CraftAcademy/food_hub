@@ -11,11 +11,21 @@ class PdfGeneratorService
 
     pdf = create_and_configure_pdf
 
+    front_page(pdf)
+
     @collection.recipes.each do |recipe|
-      pdf.text recipe.title
-      pdf.text recipe.user.email
+      pdf.start_new_page
+      insert_image(pdf, recipe) if recipe.image.attached?
+      pdf.text recipe.title, size: 20, style: :bold, align: :center
+      pdf.move_down 5
+      pdf.text recipe.user.email, size: 10, align: :center
+      pdf.move_down 10
       pdf.text recipe.description
+      pdf.move_down 10
+      pdf.text 'Ingredients:', style: :bold
       pdf.text recipe.ingredients
+      pdf.move_down 10
+      pdf.text 'Directions:', style: :bold
       pdf.text recipe.directions
     end
 
@@ -32,12 +42,30 @@ class PdfGeneratorService
     })
 
     pdf.font 'Futura'
-    pdf.font_size 10
+    pdf.font_size 15
 
     pdf
+  end
+
+  def front_page(pdf)
+    logo = "#{Rails.root}/app/assets/images/craftacademylogo.png" 
+    pdf.move_down 100
+    pdf.image logo, position: :center
+    pdf.move_down 100
+    pdf.text 'My Recipe Book', size: 48, align: :center
+    pdf.move_down 150
+    pdf.text "by: #{ @collection.user.email}", size: 25, align: :right
+    pdf.move_down 10
+    pdf.text 'With Recipes from FoodHub', size: 18, align: :right
   end
 
   def add_attachment(filename)
     @collection.pdf.attach(io: File.open(Rails.root.join(filename)), filename: filename)
   end
+
+  def insert_image(pdf, recipe)
+    pdf.image open(recipe.image.service_url), width: 300, height: 250, position: :center
+    pdf.move_down 15
+  end
+
 end

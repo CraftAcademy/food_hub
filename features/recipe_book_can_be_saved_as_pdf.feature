@@ -47,5 +47,5 @@ Feature: Recipe book can be saved as pdf
     Given I am logged in as "maran@test.com"
     And I visit My Collection page
     And I click "Create pdf from My Collection" 
-    When I click "View pdf"
-    Then I should see the pdf in a new window
+    # When I click "View pdf"
+    # Then I should see the pdf in a new window
