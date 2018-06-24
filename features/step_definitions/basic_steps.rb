@@ -15,7 +15,7 @@ When('I fill in {string} with {string}') do |field, text|
 end
 
 Given("I am logged in as {string}") do |user_email|
-  @user =  user = User.find_by(email: user_email) || create(:user, email: user_email)
+  @user = User.find_by(email: user_email) || create(:user, email: user_email)
   login_as @user, scope: :user
 end
 
