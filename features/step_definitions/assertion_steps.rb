@@ -58,3 +58,8 @@ Then("the pdf should contain {string}") do |content|
   pdf = PDF::Inspector::Text.analyze_file(remote_pdf)
   expect(pdf.strings).to include content
 end
+
+Then("I should see the pdf in a new window") do
+  switch_to_window windows.last
+  expect(page.response_headers['Content-Type']).to eq 'application/pdf'
+end

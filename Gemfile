@@ -37,6 +37,7 @@ group :development, :test do
   gem 'chromedriver-helper', '~> 1.2'
   gem 'selenium-webdriver', '~> 3.12'
   gem 'pdf-inspector', require: 'pdf/inspector'
+  gem 'capybara-webkit', '~> 1.15'
 end
 
 group :development do

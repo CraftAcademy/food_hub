@@ -42,6 +42,7 @@ Feature: Recipe book can be saved as pdf
     When I click "Create pdf from My Collection"
     Then I should see "Collection is empty"
 
+  @javascript
   Scenario: User views pdf
     Given I am logged in as "maran@test.com"
     And I visit My Collection page
