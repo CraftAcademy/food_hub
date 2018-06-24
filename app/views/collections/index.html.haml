@@ -1,5 +1,6 @@
 %h1 My Collection
 = link_to "Create pdf from My Collection", collection_path(@collection)
+
 - @collection.recipes.each do |recipe|
   .recipe
     %h3= link_to recipe.title, recipe_path(recipe)
