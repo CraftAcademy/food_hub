@@ -5,8 +5,8 @@ Feature: User can rate recipes
 
 Background:
   Given We have the following user:
-    | email           | password    |
-    | maran@test.com  | 12345678    |
+    | email           |
+    | maran@test.com  |
 
   Given We have the following recipes:
     | title       	| user            |
@@ -16,16 +16,14 @@ Background:
 
 @javascript
 Scenario: User can rate a recipe when visiting the recipe page
-  Given I visit the site
-  And I click "Meatball-Stew"
+  Given I am on the "Meatball-Stew" recipe show page
   And I click "4" on rating
   Then I should see the notice: "Thank you for your rating"
   And the average rating for "Meatball-Stew" should be "4"
 
 @javascript
 Scenario: User can not rate more than one time per recipe
-  Given I visit the site
-  And I click "Meatball-Stew"
+  Given I am on the "Meatball-Stew" recipe show page
   And I click "4" on rating
   Then I should see the notice: "Thank you for your rating"
   And I refresh the page

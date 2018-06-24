@@ -53,7 +53,7 @@ RSpec.describe Recipe, type: :model do
       expect(subject.image).to be_attached
     end
   end
-  
+
   describe '#rated_by?' do
     let(:rater) {create(:user, email: 'rater@random.com')}
     let(:non_rater) {create(:user, email: 'non_rater@random.com')}
@@ -63,7 +63,7 @@ RSpec.describe Recipe, type: :model do
       expect(recipe.rated_by?(rater)).to eq true
     end
 
-    it 'returns false if user has NOY submitted a rating' do
+    it 'returns false if user has NOT submitted a rating' do
       expect(recipe.rated_by?(non_rater)).to eq false
     end
   end
