@@ -49,6 +49,7 @@ Then("I should be on My Profile page") do
 end
 
 Then("a recipe book should be created") do
+  @user.reload
   expect(@user.collection.pdf.attached?).to eq true
 end
 
