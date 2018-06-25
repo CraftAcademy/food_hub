@@ -3,7 +3,7 @@ Feature: Recipe can only be edited by owner and admin
 
 
     Background:
-        Given We have the following user: 
+        Given We have the following user:
         |email              |role |
         |user_1@random.com  |user |
         |user_2@random.com  |user |
@@ -34,7 +34,7 @@ Feature: Recipe can only be edited by owner and admin
     Scenario: User 2 can NOT edit User 1's recipe even if he tries to access the edit path
         Given I am logged in as "user_2@random.com"
         And I visit the edit page for "Meatball-Stew"
-        Then I should see "You can NOT do this!"
+        Then I should see "You are not authorized to perform this action"
 
     Scenario: Admin can edit all recipes [1]
         Given I am logged in as "admin@random.com"
@@ -55,5 +55,3 @@ Feature: Recipe can only be edited by owner and admin
         And I click "Update Recipe"
         Then I should see "You have successfully edit recipe!"
         And I should see "My Awesome Meatballs"
-
-

@@ -1,7 +1,6 @@
-.recipes.bg-grey
-  .center
-    %h1 Recipes
-    %p= link_to 'New Recipe', new_recipe_path
+%p= link_to 'New Recipe', new_recipe_path
+.center
+  %h1 Recipes
 
 - @categories.each do |category|
   %h3= category.name
@@ -13,3 +12,4 @@
       %p
         Posted by:
         = mail_to recipe.user.email
+      %br
