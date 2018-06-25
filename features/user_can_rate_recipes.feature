@@ -28,3 +28,9 @@ Scenario: User can not rate more than one time per recipe
   Then I should see the notice: "Thank you for your rating"
   And I refresh the page
   And I should not see "Rate"
+
+@javascript
+Scenario: Unauthenticated user tries to rate
+  Given I am not logged in
+  And I am on the "Meatball-Stew" recipe show page
+  
