@@ -66,3 +66,7 @@ end
 Then("I should be on My Profile page") do
   expect(current_path).to eq user_path(@user)
 end
+
+Then("I should be on the login page") do
+  expect(current_path).to eq new_user_session_path
+end
