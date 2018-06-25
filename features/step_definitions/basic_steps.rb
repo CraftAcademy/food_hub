@@ -94,8 +94,5 @@ end
 
 Given("an unauthenticated user tries to rate {string} wth {string}") do |recipe_title, value|
   recipe = Recipe.find_by(title: recipe_title)
-  #binding.pry
   Capybara.current_session.driver.submit :post, recipe_ratings_path(recipe), params: {rating: value.to_i}
-  #page.driver.post recipe_ratings_path(recipe), params: {rating: value.to_i}
-  #follow_redirect!
 end
