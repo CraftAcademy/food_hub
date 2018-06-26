@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_17_230921) do
+ActiveRecord::Schema.define(version: 2018_06_19_215607) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,16 @@ ActiveRecord::Schema.define(version: 2018_06_17_230921) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "ratings", force: :cascade do |t|
+    t.integer "value"
+    t.bigint "recipe_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipe_id"], name: "index_ratings_on_recipe_id"
+    t.index ["user_id"], name: "index_ratings_on_user_id"
+  end
+
   create_table "recipes", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -74,10 +84,18 @@ ActiveRecord::Schema.define(version: 2018_06_17_230921) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+<<<<<<< HEAD
     t.bigint "category_id"
     t.bigint "collection_id"
     t.integer "original_recipe_id"
     t.string "forked_recipes_ids", default: [], array: true
+=======
+    t.integer "original_recipe_id"
+    t.string "forked_recipes_ids", default: [], array: true
+    t.bigint "category_id"
+    t.bigint "collection_id"
+    t.integer "average_rating"
+>>>>>>> 99a02eb08115ba616c4b4f16c16cc64223191d70
     t.index ["category_id"], name: "index_recipes_on_category_id"
     t.index ["collection_id"], name: "index_recipes_on_collection_id"
     t.index ["user_id"], name: "index_recipes_on_user_id"
@@ -106,6 +124,8 @@ ActiveRecord::Schema.define(version: 2018_06_17_230921) do
   add_foreign_key "collections", "users"
   add_foreign_key "comments", "recipes"
   add_foreign_key "comments", "users"
+  add_foreign_key "ratings", "recipes"
+  add_foreign_key "ratings", "users"
   add_foreign_key "recipes", "categories"
   add_foreign_key "recipes", "collections"
   add_foreign_key "recipes", "users"

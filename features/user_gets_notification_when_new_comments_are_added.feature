@@ -19,7 +19,7 @@ Feature: User gets notification when new comments are added
       Given I visit the site
       And "maran2@test.com" is logged-in in another window
       And He is on the show page for "Meatball-Stew"
-      And I fill in "Body" with "I got sick, how do i sue you?"
-      And I click "Create Comment"
+      And I fill in "comment_body" with "I got sick, how do i sue you?"
+      And I click "Comment"
       And I switch to window "1"
       Then I should see "maran2@test.com left a comment on Meatball-Stew"
