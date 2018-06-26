@@ -24,7 +24,7 @@
   - unless @recipe.rated_by?(current_user)
     %p Rate:
     - 5.times do |i|
-      = button_tag "#{i + 1}", data: {rating: "#{i + 1}"}
+      = button_tag image_tag(images/icons/empty_star.svg), class: 'img', "#{i + 1}", data: {rating: "#{i + 1}"}
 
 - @recipe.comments.each do |comment|
   .box
