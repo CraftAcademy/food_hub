@@ -60,7 +60,7 @@
     'header'
     'foodhub'
    }
-   
+
    .navbar {
       grid-area: header;
       background: #1995AD;
@@ -70,7 +70,7 @@
       width: 100%;
       z-index: 99;
    }
-   
+
    .recipes {
       grid-area: projects;
       background-color: #F1F1F2;
@@ -88,7 +88,7 @@
       width: 100%;
       z-index: 99;
    }
-   
+
    .foodhub {
       grid-area: projects;
       background-color: #F1F1F2;
@@ -96,3 +96,7 @@
       text-align: center;
       }
    }
+
+   .checked {
+    color: yellow;
+  }

@@ -3,7 +3,6 @@ class RatingsController < ApplicationController
   before_action :auth_user
 
   def create
-    binding.pry
     recipe = Recipe.find(params[:recipe_id])
     rating = recipe.ratings.create(value: params[:rating].to_i, user: current_user)
     if rating.persisted?
