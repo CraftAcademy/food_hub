@@ -63,9 +63,9 @@ Given("I switch to window {string}") do |index|
   switch_to_window(windows[index.to_i - 1])
 end
 
-When("I click {string} on rating") do |value|
+When("I click {string} on rating") do |star|
   within('#rating') do
-    click_on value
+    find(id: "star-#{i + 1}").click
   end
   sleep 2
 end
