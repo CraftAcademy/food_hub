@@ -9,11 +9,14 @@ class CollectionsController < ApplicationController
     @collection = current_user.collection
     begin
       PdfGeneratorService.new(@collection).generate_pdf
-      redirect_back fallback_location: root_path
+      message ='Your Recipe book has been created'
+      ActionCable.server.broadcast 'notifications', message: message
+      render json: {url: rails_blob_url(@collection.pdf)}, status: :ok
     rescue => e
-      flash[:alert] = e.message
-      redirect_to collections_path
+      message = e.message
+      ActionCable.server.broadcast 'notifications', message: message
     end
+    
   end
 
   def create

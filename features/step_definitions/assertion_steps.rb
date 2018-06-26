@@ -61,6 +61,16 @@ Then("the pdf should contain {string}") do |content|
 end
 
 Then("I should see the pdf in a new window") do
-  switch_to_window windows.last
-  expect(page.response_headers['Content-Type']).to eq 'application/pdf'
+  switch_to_window(windows[1])
+  document = Nokogiri::HTML(page.body)
+  content_type = document.css('embed').attr('type').value
+  expect(content_type).to eq 'application/pdf'
+end
+
+Then("I should be on My Collection page") do
+  expect(current_path).to eq collections_path
+end
+
+Then("stop") do
+  binding.pry
 end

@@ -20,10 +20,13 @@ Feature: Recipe book can be saved as pdf
       | Meatball-Stew |
       | Pizza         |
 
+  @javascript
   Scenario: User saves recipe book as pdf
     Given I am logged in as "maran@test.com"
     And I visit My Collection page
     When I click "Create pdf from My Collection"
+    Then I should see "Your Recipe book has been created"
+    And I should be on My Collection page
     Then a recipe book should be created
     And the pdf should contain "Meatball-Stew"
     And the pdf should contain "maran@test.com"
@@ -36,16 +39,18 @@ Feature: Recipe book can be saved as pdf
     And the pdf should contain "Weat, Water"
     And the pdf should contain "Mix it together"
 
+  @javascript
   Scenario: User has no recipies in his collection
     Given I am logged in as "author@test.com"
-    And I visit My Collection page
+    And I visit the site
+    And I click "My Collection"
     When I click "Create pdf from My Collection"
-    Then I should see "Collection is empty"
+    Then I should see "There's nothing to put in your book. Please add some recipes first"
 
   @javascript
   Scenario: User views pdf
     Given I am logged in as "maran@test.com"
     And I visit My Collection page
     And I click "Create pdf from My Collection" 
-    # When I click "View pdf"
-    # Then I should see the pdf in a new window
+    And I click "View pdf"
+    Then I should see the pdf in a new window
