@@ -9,6 +9,7 @@ class Recipe < ApplicationRecord
   belongs_to :user
   has_and_belongs_to_many :collections, uniq: true
   belongs_to :category
+  has_many :ratings
 
   update_index('recipes') { self }
 
@@ -17,6 +18,10 @@ class Recipe < ApplicationRecord
   def notify
     ActionCable.server.broadcast 'notifications',
                                   message: "<p>#{self.title} was created!</p>"
+  end
+
+  def rated_by?(resource)
+    self.ratings.where(user: resource).any?
   end
 
   def fork(user)
@@ -35,5 +40,12 @@ class Recipe < ApplicationRecord
 
   def forked?
     self.original_recipe_id.present?
+  end
+
+  def calc_average_rating
+    total = self.ratings.map(&:value).sum
+    instances = self.ratings.any? ? self.ratings.count : 1  #to avoid division by zero error
+    average = total / instances
+    self.update_attribute(:average_rating, average)
   end
 end

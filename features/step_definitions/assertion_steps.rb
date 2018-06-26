@@ -2,6 +2,16 @@ Then("I should see {string}") do |expected_text|
   expect(page).to have_content expected_text
 end
 
+Then("I should see the notice: {string}") do |expected_text|
+  notice = page.evaluate_script("document.querySelector('.notice');")
+  expect(notice.text).to eq expected_text
+end
+
+Then("I should see the alert: {string}") do |expected_text|
+  alert = evaluate_script("var notice = document.querySelector('.alert'); notice.innerText")
+  expect(alert).to eq expected_text
+end
+
 Then("I should be redirected to index page") do
   expect(current_path).to eq root_path
 end
@@ -44,6 +54,19 @@ Then("I should be on password reset page") do
   expect(current_path).to eq new_user_password_path
 end
 
+Then("the average rating for {string} should be {string}") do |recipe_title, expected_rating|
+  recipe = Recipe.find_by(title: recipe_title)
+  expect(recipe.average_rating).to eq expected_rating.to_i
+end
+
+Then("I refresh the page") do
+  page.driver.browser.navigate.refresh
+end
+
 Then("I should be on My Profile page") do
   expect(current_path).to eq user_path(@user)
+end
+
+Then("I should be on the login page") do
+  expect(current_path).to eq new_user_session_path
 end
