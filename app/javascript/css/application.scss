@@ -97,7 +97,20 @@
       }
    }
 
-    #rating span:hover:before {
-      content: "\2605";
-      position: absolute;
+   #rating {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    > span {
+      display: inline-block;
+      position: relative;
+      width: 1.1em;
+      &:hover {
+        &:before, ~ span:before {
+          content: "\2605";
+          position: absolute;
+        }
+      }
     }
+  }
+
+
