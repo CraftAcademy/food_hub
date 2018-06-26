@@ -8,11 +8,6 @@ App.notifications = App.cable.subscriptions.create({
 
         connected() {
             // Called when the subscription is ready for use on the server
-            // Display the active connection message
-            // this.container().innerHTML = '<p>Connected to Notification server</p>'
-            // setTimeout(() => {
-            //     this.container().innerHTML = '';
-            // }, 3000);
             console.log('Connected to websocket server ');
         },
 
