@@ -7,7 +7,7 @@ class RatingsController < ApplicationController
     rating = recipe.ratings.create(value: params[:rating].to_i, user: current_user)
     if rating.persisted?
       recipe.calc_average_rating
-      render json: { message: 'Thank you for your rating'}, status: :ok
+      render json: { message: 'Thank you for your rating', average_rating: recipe.calc_average_rating, display_message: "By #{recipe.ratings.count} #{"user".pluralize(recipe.ratings.count)}."}, status: :ok
     else
       render json: { error: 'An error occured'}, status: :unprocessable_entity
     end

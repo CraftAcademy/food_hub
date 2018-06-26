@@ -34,3 +34,6 @@ coverage/public/packs
 yarn-debug.log*
 .yarn-integrity
 package-lock.json
+
+
+*.pdf
