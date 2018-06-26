@@ -61,17 +61,18 @@ end
 
 Given("I switch to window {string}") do |index|
   switch_to_window(windows[index.to_i - 1])
+  sleep 1
 end
 
-When("I click {string} on rating") do |star|
+When("I click {string} on rating") do |value|
   within('#rating') do
-    find(id: "star-#{i + 1}").click
+    find("#star-#{value.to_i}").click
   end
   sleep 2
 end
 
 Then("stop") do
-  sleep 2
+  binding.pry
 end
 
 Given("I attach file") do
