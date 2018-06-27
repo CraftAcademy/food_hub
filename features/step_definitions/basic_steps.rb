@@ -93,7 +93,13 @@ Given("I have {string} in My Collection") do |recipe_title|
   @user.collection.recipes << recipe
 end
 
-Given("an unauthenticated user tries to rate {string} wth {string}") do |recipe_title, value|
+Given("an unauthenticated user tries to rate {string} with {string}") do |recipe_title, value|
   recipe = Recipe.find_by(title: recipe_title)
   Capybara.current_session.driver.submit :post, recipe_ratings_path(recipe), params: {rating: value.to_i}
+end
+
+Given("I submit an unsuccessful rating of {string}") do |recipe_title|
+  recipe = Recipe.find_by(title: recipe_title)
+  visit recipe_path(recipe)
+  Capybara.current_session.driver.submit :post, recipe_ratings_path(recipe), params: {rating: nil}
 end
