@@ -1,33 +1,28 @@
-.header.bg-orange-lightest
+.navbar.text-base.bg-white.border-b
   .container.mx-auto
-    #left-menu
-      %ul.list-reset.flex
-        %li.mr-6
-          = link_to "Home", root_path, class: 'text-orange hover:text-orange-dark'
-        - if user_signed_in?
-          %li.mr-6
-            = link_to "My Collection", collections_path, class: 'text-orange hover:text-orange-dark'
-          %li.mr-6
-            = link_to "My Profile", user_path(current_user), class: 'text-orange hover:text-orange-dark'
+    .flex
+      #logo.flex.items-center.mr-4
+        = image_tag 'foodhub-logo.png', class: 'w-32'
 
-    #right-menu
-      %ul.list-reset.flex
-        %li.mr-6
+
+      #center-menu.flex.items-center.justify-center
+        = link_to "Home", root_path, class: 'py-4 mr-4'
         - if user_signed_in?
-          %li.mr-6
-            .text-grey= "Logged in as: #{current_user.email}"
-            = link_to 'Sign Out', destroy_user_session_path,
-                                  method: :delete,
-                                  class: 'text-orange hover:text-orange-dark'
+          = link_to "My Collection", collections_path, class: 'py-4 mr-4'
+          = link_to "My Profile", user_path(current_user), class: 'py-4 mr-4'
+
+      #search.items-center.py-4.mr-4
+        = form_with url: search_recipes_path, method: :post, local: true do |form|
+          = form.text_field :search, placeholder: 'Search'
+          = form.submit 'Search'
+
+      #right-menu.flex.items-center.text-right
+        - if user_signed_in?
+          .py-4.mr-4.text-grey= "Logged in as: #{current_user.email}"
+          = link_to 'Sign Out', destroy_user_session_path,
+                                method: :delete,
+                                class: 'py-4 mr-4'
         - else
-          %li.mr-6
-            = link_to 'Sign Up', new_user_registration_path, class: 'text-orange hover:text-orange-dark'
-          %li.mr-6
-            = link_to 'Login', new_user_session_path, class: 'text-orange hover:text-orange-dark'
-          %li.mr-6
-            = link_to 'Login with Facebook', user_facebook_omniauth_authorize_path, class: 'text-orange hover:text-orange-dark'
-
-    #search
-      = form_with url: search_recipes_path, method: :post, local: true do |form|
-        = form.text_field :search, placeholder: 'Search'
-        = form.submit 'Search'
+          = link_to 'Sign Up', new_user_registration_path, class: 'py-4 mr-4'
+          = link_to 'Login', new_user_session_path, class: 'py-4 mr-4'
+          = link_to 'Login with Facebook', user_facebook_omniauth_authorize_path, class: 'py-4 mr-4'
