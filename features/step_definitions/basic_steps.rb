@@ -39,7 +39,7 @@ end
 
 Given("We have the following categories:") do |table|
   table.hashes.each do |category|
-  create(:category, category)
+    create(:category, category)
   end
 end
 
@@ -91,6 +91,14 @@ end
 Given("I have {string} in My Collection") do |recipe_title|
   recipe = create(:recipe, title: recipe_title)
   @user.collection.recipes << recipe
+end
+
+Given("{string} has the following recipes in his collection:") do |user_email, table|
+  user = User.find_by(email: user_email)
+  table.hashes.each do |recipe|
+    recipe = Recipe.find_by(title: recipe[:title])
+    user.collection.recipes << recipe
+  end
 end
 
 Given("an unauthenticated user tries to rate {string} with {string}") do |recipe_title, value|

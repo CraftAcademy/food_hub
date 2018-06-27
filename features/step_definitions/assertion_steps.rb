@@ -67,6 +67,33 @@ Then("I should be on My Profile page") do
   expect(current_path).to eq user_path(@user)
 end
 
+Then("a recipe book should be created") do
+  @user.reload
+  expect(@user.collection.pdf.attached?).to eq true
+end
+
+Then("the pdf should contain {string}") do |content|
+  remote_pdf = open(@user.collection.pdf_attachment.blob.filename.to_s)
+
+  pdf = PDF::Inspector::Text.analyze_file(remote_pdf)
+  expect(pdf.strings).to include content
+end
+
+Then("I should see the pdf in a new window") do
+  switch_to_window(windows[1])
+  document = Nokogiri::HTML(page.body)
+  content_type = document.css('embed').attr('type').value
+  expect(content_type).to eq 'application/pdf'
+end
+
+Then("I should be on My Collection page") do
+  expect(current_path).to eq collections_path
+end
+
+Then("stop") do
+  binding.pry
+end
+
 Then("I should be on the login page") do
   expect(current_path).to eq new_user_session_path
 end

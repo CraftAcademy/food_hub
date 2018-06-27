@@ -26,6 +26,6 @@ var timesFunction = function(callback) {
       callback(i);
     }
   };
-  
+
   String.prototype.times = timesFunction;
   Number.prototype.times = timesFunction;

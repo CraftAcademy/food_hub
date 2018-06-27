@@ -33,6 +33,10 @@ coverage/public/packs
 /node_modules
 yarn-debug.log*
 .yarn-integrity
+
+## Ignore generated pdf's
+*.pdf
+
 package-lock.json
 
 

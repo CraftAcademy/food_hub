@@ -15,4 +15,11 @@ RSpec.describe Collection, type: :model do
       expect(create(:collection)).to be_valid
     end
   end
+
+  describe 'Attachment' do
+    it 'is valid  ' do
+      subject.pdf.attach(io: File.open(fixture_path + '/tmp-maran.pdf'), filename: 'attachment.pdf', content_type: 'pdf/pdf')
+      expect(subject.pdf).to be_attached
+    end
+  end
 end
