@@ -18,6 +18,7 @@ gem 'pundit'
 gem 'chewy'
 gem 'redis', '~> 3.0'
 gem "aws-sdk-s3", require: false
+gem 'prawn-rails'
 
 
 group :development, :test do
@@ -35,6 +36,7 @@ group :development, :test do
   gem 'action-cable-testing'
   gem 'chromedriver-helper', '~> 1.2'
   gem 'selenium-webdriver', '~> 3.12'
+  gem 'pdf-inspector', require: 'pdf/inspector'
 end
 
 group :development do
