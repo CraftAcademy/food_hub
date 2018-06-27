@@ -1,22 +1,33 @@
-.wrapper
-  .navbar.flex.items-center.mx-auto.p-6
-    = link_to "Home", root_path
-    |
-    - if user_signed_in?
-      = link_to "My Collection", collections_path
-      |
-      =link_to "My Profile", user_path(current_user)
-      |
-      = "Logged in as: #{current_user.email}"
-      |
-      = link_to 'Sign Out', destroy_user_session_path, method: :delete
-    - else
-      = link_to 'Sign Up', new_user_registration_path
-      |
-      = link_to 'Login', new_user_session_path
-      |
-      = link_to 'Login with Facebook', user_facebook_omniauth_authorize_path
+.header.bg-orange-lightest
+  .container.mx-auto
+    #left-menu
+      %ul.list-reset.flex
+        %li.mr-6
+          = link_to "Home", root_path, class: 'text-orange hover:text-orange-dark'
+        - if user_signed_in?
+          %li.mr-6
+            = link_to "My Collection", collections_path, class: 'text-orange hover:text-orange-dark'
+          %li.mr-6
+            = link_to "My Profile", user_path(current_user), class: 'text-orange hover:text-orange-dark'
 
-    = form_with url: search_recipes_path, method: :post, local: true do |form|
-      = form.text_field :search, placeholder: 'Search'
-      = form.submit 'Search'
+    #right-menu
+      %ul.list-reset.flex
+        %li.mr-6
+        - if user_signed_in?
+          %li.mr-6
+            .text-grey= "Logged in as: #{current_user.email}"
+            = link_to 'Sign Out', destroy_user_session_path,
+                                  method: :delete,
+                                  class: 'text-orange hover:text-orange-dark'
+        - else
+          %li.mr-6
+            = link_to 'Sign Up', new_user_registration_path, class: 'text-orange hover:text-orange-dark'
+          %li.mr-6
+            = link_to 'Login', new_user_session_path, class: 'text-orange hover:text-orange-dark'
+          %li.mr-6
+            = link_to 'Login with Facebook', user_facebook_omniauth_authorize_path, class: 'text-orange hover:text-orange-dark'
+
+    #search
+      = form_with url: search_recipes_path, method: :post, local: true do |form|
+        = form.text_field :search, placeholder: 'Search'
+        = form.submit 'Search'

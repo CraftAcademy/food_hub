@@ -52,55 +52,6 @@
   * @import "utilities/skew-transforms";
   */
 
-  .wrapper {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 200;
-    grid-template-areas:
-    'header'
-    'foodhub'
-   }
-
-   .navbar {
-      grid-area: header;
-      background: #1995AD;
-      color: #BCBABE;
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 99;
-   }
-
-   .recipes {
-      grid-area: projects;
-      float: left;
-      padding-left: 5rem;
-      padding-bottom: 2rem;
-      padding-right: 1rem;
-      background-color: white;
-      h1, h3, p {
-      text-align: center;
-      margin-top: -5rem;
-      margin-bottom: 7rem;
-      line-height: 1rem;
-      max-height: 2vh;
-      }
-   }
-
-   .header {
-      grid-area: header;
-      background: #1995AD;
-      color: #BCBABE;
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 99;
-   }
-
-   .foodhub {
-      grid-area: projects;
-      background-color: #F1F1F2;
-      h1 {
-      text-align: center;
-      }
-   }
+  a {
+    text-decoration: none;
+  }
