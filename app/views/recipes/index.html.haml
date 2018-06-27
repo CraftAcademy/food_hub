@@ -3,24 +3,36 @@
     %h1 Recipes
     %p= link_to 'New Recipe', new_recipe_path
 
-  #recipe-list#recipe-list
-    .recipe
-      - @recipes.each do |recipe|
-        .recipes
-          .empty
-            .card{style: "width: 20rem;"}
-              .max-w-sm.rounded.overflow-hidden.shadow-lg.table
-                %img.w-full{alt: "Sunset in the mountains", src: "https://tailwindcss.com/img/card-top.jpg"}/
-                .px-6.py-4
-                  .font-bold.text-xl.mb-2
-                  %p.text-grey-darker.text-base
-                  %h3= link_to recipe.title, recipe_path(recipe)
-                  %p= recipe.description
-                  %br
-                  %br
-                  %br
-                  %br
-                  %br
-                  %p
-                    Posted by:
-                    = mail_to recipe.user.email
+  -# #recipe-list#recipe-list
+  -#   .recipe
+  -#     - @recipes.each do |recipe|
+  -#       .recipes
+  -#         .empty
+  -#           .card{style: "width: 20rem;"}
+  -#             .max-w-sm.rounded.overflow-hidden.shadow-lg.table
+  -#               %img.w-full{alt: "Sunset in the mountains", src: "https://tailwindcss.com/img/card-top.jpg"}/
+  -#               .px-6.py-4
+  -#                 .font-bold.text-xl.mb-2
+  -#                 %p.text-grey-darker.text-base
+  -#                 %h3= link_to recipe.title, recipe_path(recipe)
+  -#                 %p= recipe.description
+  -#                 %br
+  -#                 %br
+  -#                 %br
+  -#                 %br
+  -#                 %br
+  -#                 %p
+  -#                   Posted by:
+  -#                   = mail_to recipe.user.email
+
+
+- @categories.each do |category|
+  %h3= category.name
+  - category.recipes.each do |recipe|
+    .recipes
+      %h3= link_to recipe.title, recipe_path(recipe)
+      %p= recipe.description
+      = image_tag recipe.image unless recipe.image.attachment.nil?
+      %p
+        Posted by:
+        = mail_to recipe.user.email

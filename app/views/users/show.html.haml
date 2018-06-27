@@ -1,0 +1,47 @@
+%h1 My Profile
+%br
+%p= "Email: #{current_user.email}"
+%br
+
+#my-original-recipes
+  %h1 My Original Recipes
+  %br
+
+  - @original_recipes.each do |recipe|
+    .recipes
+      %h3= link_to recipe.title, recipe_path(recipe)
+      %p= recipe.description
+      %p
+        Posted by:
+        = mail_to recipe.user.email
+      %p
+        = link_to "Edit Recipe", edit_recipe_path(recipe)
+        |
+        = link_to "Fork", forks_path(id: recipe.id), method: :post
+        |
+        - if current_user.collection.recipes.include?(recipe)
+          = "In Collection"
+        - else
+          = link_to "Add to Collection", collections_path(id:recipe.id), method: :post
+
+#my-forked-recipes
+  %h1 My Forked Recipes
+  %br
+
+  - @forked_recipes.each do |recipe|
+    .recipes
+      %h3= link_to recipe.title, recipe_path(recipe)
+      %p= recipe.description
+      %p
+        Posted by:
+        = mail_to recipe.user.email
+      %p
+        = link_to "Edit Recipe", edit_recipe_path(recipe)
+        |
+        = link_to "Fork", forks_path(id: recipe.id), method: :post
+        |
+        - if current_user.collection.recipes.include?(recipe)
+          = "In Collection"
+        - else
+          = link_to "Add to Collection", collections_path(id:recipe.id), method: :post
+

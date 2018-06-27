@@ -1,23 +1,84 @@
 %h3= @recipe.title
+%p= "Average Rating: #{@recipe.average_rating}"
+%br
 %p= @recipe.description
+%br
+= image_tag @recipe.image unless @recipe.image.attachment.nil?
+%br
 %p= @recipe.ingredients
+%br
 %p= @recipe.directions
+%br
 %p
   Posted by:
   = mail_to @recipe.user.email
+%p
+  - if @recipe.forked?
+    Forked from:
+    = link_to @original_recipe.title , recipe_path(@original_recipe)
+%p
+  - if @recipe.forked_recipes_ids.any?
+    = "Forks: #{@recipe.forked_recipes_ids.count}"
+
+#rating
+  - unless @recipe.rated_by?(current_user)
+    %p Rate:
+    - 5.times do |i|
+      = button_tag "#{i + 1}", data: {rating: "#{i + 1}"}
 
 - @recipe.comments.each do |comment|
   .box
     %p= comment.body
     %p
-      Written by
+      Commented by
       = mail_to comment.user.email
-      
+
 = form_with(model: [ @recipe, @recipe.comments.build ], local: true) do |form|
   - if user_signed_in?
-    = form.label :body
-    = form.text_area :body
-    = form.submit
+    = form.text_area :body, placeholder: "Comment here"
+    = form.submit 'Comment'
+
 -if user_signed_in? && policy(@recipe).edit?
-  = link_to "Edit Recipe", edit_recipe_path 
+  = link_to "Edit Recipe", edit_recipe_path
+-if user_signed_in?
+  = link_to "Fork", forks_path(id: @recipe.id), method: :post
+  |
+  - if current_user.collection.recipes.include?(@recipe)
+    = "In Collection"
+  - else
+    = link_to "Add to Collection", collections_path(id:@recipe.id), method: :post
+
+%br
 = link_to "Back", root_path
+:javascript
+    console.log('LOADED!')
+    let ratingButtons = document.querySelectorAll('button')
+    let noticeDiv = document.querySelector('.notice')
+    let alertDiv = document.querySelector('.alert')
+    let ratingDiv = document.querySelector('#rating')
+    ratingButtons.forEach((button)=>{
+      button.addEventListener('click',(event)=>{
+        event.preventDefault()
+        let value = button.dataset.rating
+        let body = JSON.stringify({rating: value })
+        fetch("#{recipe_ratings_path(@recipe)}", {
+          method: 'POST',
+          body: body,
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRF-Token': Rails.csrfToken()
+        }}).then(function(response) {
+          return response.json();
+        }).then(function(data) {
+          noticeDiv.innerHTML = data.message
+          ratingDiv.style.display = 'none'
+          console.log(data)
+        }).catch((error) => {
+          alertDiv.innerHTML = data.error
+          console.log(error)
+        });
+    })
+
+  })

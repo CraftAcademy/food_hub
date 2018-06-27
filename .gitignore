@@ -33,3 +33,4 @@ coverage/public/packs
 /node_modules
 yarn-debug.log*
 .yarn-integrity
+package-lock.json
