@@ -4,8 +4,8 @@ class Comment < ApplicationRecord
 
   after_create :notify
 
-  def notify 
-    ActionCable.server.broadcast 'notifications', 
+  def notify
+    ActionCable.server.broadcast 'notifications',
                                   message: "<p>#{self.user.email} left a comment on #{self.recipe.title}.</p>"
   end
 end

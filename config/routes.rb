@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       post :search
     end
     resources :comments
+    resources :ratings, only: [:create]
   end
   resources :forks, only: [:create]
   resources :collections, only: [:index, :create, :destroy, :show]

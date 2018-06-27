@@ -36,3 +36,5 @@ yarn-debug.log*
 
 ## Ignore generated pdf's
 *.pdf
+
+package-lock.json
