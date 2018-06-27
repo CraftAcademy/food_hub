@@ -9,7 +9,8 @@
     = stylesheet_pack_tag 'application'
   %body
     = render "layouts/navbar"
-    #notifications
-    %p.notice= notice
-    %p.alert= alert
-    = yield
+    .container.mx-auto
+      #notifications
+      %p.notice= notice
+      %p.alert= alert
+      = yield

@@ -64,3 +64,10 @@
   a:hover {
     @apply .text-orange-dark;
   }
+
+  input, textarea{
+    @apply .shadow-md;
+    @apply .rounded;
+    @apply .m-2
+
+  }

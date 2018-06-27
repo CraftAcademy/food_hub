@@ -1,22 +1,23 @@
 .navbar.text-base.bg-white.border-b
   .container.mx-auto
-    .flex
-      #logo.flex.items-center.mr-4
-        = image_tag 'foodhub-logo.png', class: 'w-32'
+    .inline-flex
+      #logo.flex.items-center
+        = link_to image_tag('foodhub-logo.png'), root_path, class: 'w-48 mr-4'
 
-
-      #center-menu.flex.items-center.justify-center
+      #center-menu.flex.justify-center
         = link_to "Home", root_path, class: 'py-4 mr-4'
         - if user_signed_in?
           = link_to "My Collection", collections_path, class: 'py-4 mr-4'
           = link_to "My Profile", user_path(current_user), class: 'py-4 mr-4'
 
-      #search.items-center.py-4.mr-4
-        = form_with url: search_recipes_path, method: :post, local: true do |form|
-          = form.text_field :search, placeholder: 'Search'
-          = form.submit 'Search'
+      #search
+        = form_with url: search_recipes_path, method: :post, local: true, class: 'flex' do |form|
+          = form.text_field :search, placeholder: 'Search for Recipes...',
+                                    class: 'bg-orange-lightest px-2 pt-1 pb-1 mt-3'
+          = form.submit raw("&#x1F50E;"), class: 'text-xl text-orange bg-white mt-3 ml-0 mr-4'
 
-      #right-menu.flex.items-center.text-right
+
+      #right-menu.flex.text-right
         - if user_signed_in?
           .py-4.mr-4.text-grey= "Logged in as: #{current_user.email}"
           = link_to 'Sign Out', destroy_user_session_path,
