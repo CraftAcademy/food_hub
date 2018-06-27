@@ -49,9 +49,9 @@ class PdfGeneratorService
   end
 
   def front_page(pdf)
-    logo = "#{Rails.root}/app/assets/images/craftacademylogo.png" 
+    logo = "#{Rails.root}/app/assets/images/foodhublogo.png"
     pdf.move_down 100
-    pdf.image logo, position: :center
+    pdf.image logo, position: :center, width: 450, height: 150
     pdf.move_down 100
     pdf.text 'My Recipe Book', size: 48, align: :center
     pdf.move_down 150
