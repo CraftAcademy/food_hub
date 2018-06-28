@@ -1,4 +1,5 @@
 Given('I visit the site') do
+  binding.pry
   visit root_path
 end
 

@@ -55,7 +55,7 @@ Feature: Recipe book can be saved as pdf
     And I click "View pdf"
     Then I should see the pdf in a new window
 
-  @javascript  
+ 
   Scenario: User can see View pdf link after refreshing
     Given I am logged in as "maran@test.com"
     And I visit My Collection page

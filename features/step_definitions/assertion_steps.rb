@@ -60,7 +60,9 @@ Then("the average rating for {string} should be {string}") do |recipe_title, exp
 end
 
 Then("I refresh the page") do
-  page.driver.browser.navigate.refresh
+  # page.driver.browser.navigate.refresh
+  binding.pry
+  
 end
 
 Then("I should be on My Profile page") do
