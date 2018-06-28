@@ -61,8 +61,12 @@
     text-decoration: none ;
   }
 
-  a:hover {
-    @apply .text-orange-dark ;
+  .menu-item {
+    @apply .py-4 .mr-4 ;
+  }
+
+  .menu-item:hover {
+    @apply .text-orange-dark .py-3 .border-b-2 .border-orange ;
   }
 
   input, textarea{

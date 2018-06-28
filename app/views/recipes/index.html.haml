@@ -1,6 +1,5 @@
 .container.mx-auto
   %h1 Recipes
-  %p= link_to 'New Recipe', new_recipe_path
   - @categories.each do |category|
     %h3= category.name
     - category.recipes.each do |recipe|
