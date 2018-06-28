@@ -46,6 +46,6 @@ class Recipe < ApplicationRecord
     total = self.ratings.map(&:value).sum
     instances = self.ratings.any? ? self.ratings.count : 1  #to avoid division by zero error
     average = total / instances
-    self.update_attribute(:average_rating, average)
+    average
   end
 end

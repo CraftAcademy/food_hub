@@ -30,6 +30,12 @@ Scenario: User can not rate more than one time per recipe
   And I should not see "Rate"
 
 Scenario: Unauthenticated user tries to rate
-  And an unauthenticated user tries to rate "Meatball-Stew" wth "3"
+  Given an unauthenticated user tries to rate "Meatball-Stew" with "3"
   Then I should see "You need to login first"
   And I should be on the login page
+
+Scenario: Error handler kicks in when rating can not be saved
+    Given I am logged in as "rater@test.com"
+    And I submit an unsuccessful rating of "Meatball-Stew"
+    Then I should see "An error occured"
+
