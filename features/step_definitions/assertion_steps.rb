@@ -59,10 +59,6 @@ Then("the average rating for {string} should be {string}") do |recipe_title, exp
   expect(recipe.calc_average_rating).to eq expected_rating.to_i
 end
 
-Then("I refresh the page") do
-  page.driver.browser.navigate.refresh
-end
-
 Then("I should be on My Profile page") do
   expect(current_path).to eq user_path(@user)
 end
@@ -96,4 +92,8 @@ end
 
 Then("I should be on the login page") do
   expect(current_path).to eq new_user_session_path
+end
+
+Then("I should (still )see a {string} link") do |string|
+  expect(page).to have_css :a, text: 'View pdf'
 end
