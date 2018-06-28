@@ -5,9 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
 
-  has_many :recipes, dependent: :destroy
-  has_one :collection, dependent: :destroy
-  has_many :comments, dependent: :destroy
+  has_many :recipes
+  has_one :collection
+  has_many :comments
 
   after_create :make_collection
 

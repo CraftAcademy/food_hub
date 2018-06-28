@@ -1,5 +1,5 @@
 class Recipe < ApplicationRecord
-  has_many :comments, dependent: :destroy
+  has_many :comments
   belongs_to :user
   has_one_attached :image
   validates :title, presence: true, length: {minimum: 3}
@@ -7,9 +7,9 @@ class Recipe < ApplicationRecord
   validates :ingredients, presence: true
   validates :directions, presence: true
   belongs_to :user
-  has_and_belongs_to_many :collections, uniq: true, dependent: :destroy
+  has_and_belongs_to_many :collections, uniq: true
   belongs_to :category
-  has_many :ratings, dependent: :destroy
+  has_many :ratings
 
   update_index('recipes') { self }
 
