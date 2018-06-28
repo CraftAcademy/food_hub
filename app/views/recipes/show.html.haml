@@ -51,16 +51,16 @@
 %br
 = link_to "Back", root_path
 :javascript
-    console.log('LOADED!')
+  document.addEventListener('turbolinks:load', () => {
     let ratingButtons = document.querySelectorAll('button')
     let noticeDiv = document.querySelector('.notice')
     let alertDiv = document.querySelector('.alert')
     let ratingDiv = document.querySelector('#rating')
-    ratingButtons.forEach((button)=>{
-      button.addEventListener('click',(event)=>{
+    ratingButtons.forEach((button) => {
+      button.addEventListener('click', (event) => {
         event.preventDefault()
         let value = button.dataset.rating
-        let body = JSON.stringify({rating: value })
+        let body = JSON.stringify({ rating: value })
         fetch("#{recipe_ratings_path(@recipe)}", {
           method: 'POST',
           body: body,
@@ -69,9 +69,10 @@
             'Content-Type': 'application/json',
             'X-Requested-With': 'XMLHttpRequest',
             'X-CSRF-Token': Rails.csrfToken()
-        }}).then(function(response) {
+          }
+        }).then(function (response) {
           return response.json();
-        }).then(function(data) {
+        }).then(function (data) {
           noticeDiv.innerHTML = data.message
           ratingDiv.style.display = 'none'
           console.log(data)
@@ -79,6 +80,8 @@
           alertDiv.innerHTML = data.error
           console.log(error)
         });
+      })
+    
     })
-
   })
+

@@ -1,5 +1,4 @@
 Given('I visit the site') do
-  binding.pry
   visit root_path
 end
 
@@ -104,4 +103,9 @@ end
 Given("an unauthenticated user tries to rate {string} wth {string}") do |recipe_title, value|
   recipe = Recipe.find_by(title: recipe_title)
   Capybara.current_session.driver.submit :post, recipe_ratings_path(recipe), params: {rating: value.to_i}
+end
+
+Given("I refresh the page") do
+  include Rails.application.routes.url_helpers
+  page.driver.browser.navigate.refresh  
 end

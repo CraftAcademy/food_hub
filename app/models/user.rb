@@ -1,12 +1,14 @@
 class User < ApplicationRecord
-  has_many :comments
   enum role: [:user, :admin]
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
-  has_many :recipes
-  has_one :collection
+
+  has_many :recipes, dependent: :destroy
+  has_one :collection, dependent: :destroy
+  has_many :comments, dependent: :destroy
+
   after_create :make_collection
 
   def self.new_with_session(params, session)
