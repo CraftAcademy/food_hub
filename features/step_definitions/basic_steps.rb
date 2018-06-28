@@ -106,6 +106,11 @@ Given("an unauthenticated user tries to rate {string} with {string}") do |recipe
   Capybara.current_session.driver.submit :post, recipe_ratings_path(recipe), params: {rating: value.to_i}
 end
 
+Given("I refresh the page") do
+  include Rails.application.routes.url_helpers
+  page.driver.browser.navigate.refresh 
+end
+ 
 Given("I submit an unsuccessful rating of {string}") do |recipe_title|
   recipe = Recipe.find_by(title: recipe_title)
   visit recipe_path(recipe)
