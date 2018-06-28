@@ -66,9 +66,18 @@
   }
 
   .menu-item:hover {
-    @apply .text-orange-dark .py-3 .border-b-2 .border-orange ;
+    @apply .text-orange-dark .py-3 .border-b-2 .border-orange-dark ;
   }
 
   input, textarea{
-    @apply .shadow-md .rounded .m-2 ;
+    @apply .shadow .rounded .m-2 ;
+  }
+
+  #search-mag {
+  @apply .text-xl .text-orange .shadow-none .bg-white ;
+  @apply .mt-3 .ml-0 .mr-4 .cursor-pointer ;
+  }
+
+  #search-mag:hover {
+    @apply .text-orange-dark .text-2xl ;
   }

@@ -10,7 +10,9 @@
   %body
     = render "layouts/navbar"
     .container.mx-auto
-      #notifications
-      %p.notice= notice
-      %p.alert= alert
+      -if notice || alert
+        .bg-orange-lighter.border-t-4.border-orange.rounded-b.shadow
+          .p-2.notice= notice
+          .p-2.alert= alert
+    .container.mx-auto.mt-6
       = yield

@@ -1,10 +1,10 @@
-.navbar.bg-white.border-b
+.navbar.bg-white.border-b.font-semibold
   .container.mx-auto
     .flex.justify-between.border-b
       #logo.flex.items-center
         = link_to image_tag('foodhub-logo.png', class: 'w-48 mr-4'), root_path
 
-      #login-menu.flex
+      #login-menu.flex.items-center
         - if user_signed_in?
           .py-4.mr-4.text-grey= "Logged in as: #{current_user.email}"
           = link_to 'Sign Out', destroy_user_session_path,
@@ -16,16 +16,16 @@
           = link_to 'Login with Facebook', user_facebook_omniauth_authorize_path, class: 'menu-item'
 
     .flex.justify-between
-      #main-menu.flex.justify-start
+      #main-menu.flex.justify-start.items-center
         = link_to "Home", root_path, class: 'menu-item'
         - if user_signed_in?
           = link_to "My Collection", collections_path, class: 'menu-item'
           = link_to "My Profile", user_path(current_user), class: 'menu-item'
-          = link_to 'New Recipe', new_recipe_path, class: 'menu-item'
+          = link_to 'New Recipe', new_recipe_path, class: 'bg-transparent hover:bg-orange text-orange hover:text-white py-2 px-4 border border-orange hover:border-transparent rounded'
 
 
       #search
         = form_with url: search_recipes_path, method: :post, local: true, class: 'flex' do |form|
           = form.text_field :search, placeholder: 'Search for Recipes...',
                                     class: 'bg-orange-lightest px-4 py-2 mt-4'
-          = form.submit raw("&#x1F50E;"), class: 'text-xl text-orange shadow-none bg-white mt-3 ml-0 mr-4'
+          = form.submit raw("&#x1F50E;"), id: 'search-mag'

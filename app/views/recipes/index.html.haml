@@ -1,10 +1,9 @@
-.container.mx-auto
-  %h1 Recipes
-  - @categories.each do |category|
-    %h3= category.name
-    - category.recipes.each do |recipe|
-      = image_tag 'burger.jpeg'
-      -# %img.w-full{alt: "Sunset in the mountains", src: "https://tailwindcss.com/img/card-top.jpg"}
+%h1 Recipes
+- @categories.each do |category|
+  %h3= category.name
+  - category.recipes.each do |recipe|
+    .recipe.bg-white.shadow.rounded.p-4.m-4
+      = image_tag 'burger.jpeg', class: 'w-64'
       = image_tag recipe.image unless recipe.image.attachment.nil?
       %h3= link_to recipe.title, recipe_path(recipe)
       %p= recipe.description
