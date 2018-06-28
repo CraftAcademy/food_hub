@@ -2,12 +2,15 @@
 #average-rating
 
 %br
+%h3 Description
 %p= @recipe.description
 %br
 = image_tag @recipe.image unless @recipe.image.attachment.nil?
 %br
+%h3 Ingredients
 %p= @recipe.ingredients
 %br
+%h3 Directions
 %p= @recipe.directions
 %br
 %p
@@ -42,6 +45,7 @@
 
 -if user_signed_in? && policy(@recipe).edit?
   = link_to "Edit Recipe", edit_recipe_path
+  |
 -if user_signed_in?
   = link_to "Fork", forks_path(id: @recipe.id), method: :post
   |
@@ -50,8 +54,7 @@
   - else
     = link_to "Add to Collection", collections_path(id:@recipe.id), method: :post
 
-%br
-= link_to "Back", root_path
+
 :javascript
     const showRatingFunction = (rating, message) => {
       let dispalyRatingElement = document.getElementById('average-rating')
