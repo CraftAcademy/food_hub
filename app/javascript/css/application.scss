@@ -52,22 +52,19 @@
   * @import "utilities/skew-transforms";
   */
   body {
-    @apply .font-sans;
-    @apply .bg-orange-lightest;
+    @apply .font-sans ;
+    @apply .bg-orange-lightest ;
   }
 
   a {
-    @apply .text-orange;
-    text-decoration: none;
+    @apply .text-orange ;
+    text-decoration: none ;
   }
 
   a:hover {
-    @apply .text-orange-dark;
+    @apply .text-orange-dark ;
   }
 
   input, textarea{
-    @apply .shadow-md;
-    @apply .rounded;
-    @apply .m-2
-
+    @apply .shadow-md .rounded .m-2 ;
   }

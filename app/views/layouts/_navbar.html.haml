@@ -1,23 +1,10 @@
-.navbar.text-base.bg-white.border-b
+.navbar.bg-white.border-b
   .container.mx-auto
-    .inline-flex
+    .flex.justify-between.border-b
       #logo.flex.items-center
-        = link_to image_tag('foodhub-logo.png'), root_path, class: 'w-48 mr-4'
+        = link_to image_tag('foodhub-logo.png', class: 'w-48 mr-4'), root_path
 
-      #center-menu.flex.justify-center
-        = link_to "Home", root_path, class: 'py-4 mr-4'
-        - if user_signed_in?
-          = link_to "My Collection", collections_path, class: 'py-4 mr-4'
-          = link_to "My Profile", user_path(current_user), class: 'py-4 mr-4'
-
-      #search
-        = form_with url: search_recipes_path, method: :post, local: true, class: 'flex' do |form|
-          = form.text_field :search, placeholder: 'Search for Recipes...',
-                                    class: 'bg-orange-lightest px-2 pt-1 pb-1 mt-3'
-          = form.submit raw("&#x1F50E;"), class: 'text-xl text-orange bg-white mt-3 ml-0 mr-4'
-
-
-      #right-menu.flex.text-right
+      #login-menu.flex
         - if user_signed_in?
           .py-4.mr-4.text-grey= "Logged in as: #{current_user.email}"
           = link_to 'Sign Out', destroy_user_session_path,
@@ -27,3 +14,16 @@
           = link_to 'Sign Up', new_user_registration_path, class: 'py-4 mr-4'
           = link_to 'Login', new_user_session_path, class: 'py-4 mr-4'
           = link_to 'Login with Facebook', user_facebook_omniauth_authorize_path, class: 'py-4 mr-4'
+
+    .flex.justify-between
+      #main-menu.flex.justify-start
+        = link_to "Home", root_path, class: 'py-4 mr-4'
+        - if user_signed_in?
+          = link_to "My Collection", collections_path, class: 'py-4 mr-4'
+          = link_to "My Profile", user_path(current_user), class: 'py-4 mr-4'
+
+      #search
+        = form_with url: search_recipes_path, method: :post, local: true, class: 'flex' do |form|
+          = form.text_field :search, placeholder: 'Search for Recipes...',
+                                    class: 'bg-orange-lightest px-4 py-2 mt-4'
+          = form.submit raw("&#x1F50E;"), class: 'text-xl text-orange shadow-none bg-white mt-3 ml-0 mr-4'
