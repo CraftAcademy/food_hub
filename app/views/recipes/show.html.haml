@@ -1,12 +1,15 @@
 %h3= @recipe.title
 %p= "Average Rating: #{@recipe.average_rating}"
 %br
+%h3 Description
 %p= @recipe.description
 %br
 = image_tag @recipe.image unless @recipe.image.attachment.nil?
 %br
+%h3 Ingredients
 %p= @recipe.ingredients
 %br
+%h3 Directions
 %p= @recipe.directions
 %br
 %p
@@ -40,6 +43,7 @@
 
 -if user_signed_in? && policy(@recipe).edit?
   = link_to "Edit Recipe", edit_recipe_path
+  |
 -if user_signed_in?
   = link_to "Fork", forks_path(id: @recipe.id), method: :post
   |
@@ -48,8 +52,7 @@
   - else
     = link_to "Add to Collection", collections_path(id:@recipe.id), method: :post
 
-%br
-= link_to "Back", root_path
+
 :javascript
     console.log('LOADED!')
     let ratingButtons = document.querySelectorAll('button')

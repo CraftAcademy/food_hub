@@ -4,6 +4,6 @@ class ApplicationController < ActionController::Base
 
     private
     def user_not_authorized
-        redirect_to root_path, notice: 'You can NOT do this!'
+        redirect_to root_path, notice: 'You are not authorized to perform this action'
     end
 end

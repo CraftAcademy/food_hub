@@ -1,5 +1,4 @@
 %h1= "Found #{@hits} recipes"
 
 - @recipes.each do |recipe|
-    %h2= recipe.title
-        
+    %h3= link_to recipe.title, recipe_path(recipe)
