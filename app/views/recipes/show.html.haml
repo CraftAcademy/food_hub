@@ -1,5 +1,6 @@
 %h3= @recipe.title
-%p= "Average Rating: #{@recipe.average_rating}"
+#average-rating
+
 %br
 %h3 Description
 %p= @recipe.description
@@ -23,11 +24,12 @@
   - if @recipe.forked_recipes_ids.any?
     = "Forks: #{@recipe.forked_recipes_ids.count}"
 
-#rating
-  - unless @recipe.rated_by?(current_user)
-    %p Rate:
-    - 5.times do |i|
-      = button_tag "#{i + 1}", data: {rating: "#{i + 1}"}
+- unless @recipe.rated_by?(current_user)
+  %p 
+    Rate:
+    %span#rating
+      - 5.times.reverse_each do |i|
+        = content_tag(:span, "&#9734".html_safe, data: {rating: "#{i + 1}"}, id: "star-#{i + 1}", class: 'star')
 
 - @recipe.comments.each do |comment|
   .box
@@ -54,37 +56,83 @@
 
 
 :javascript
-  document.addEventListener('turbolinks:load', () => {
-    let ratingButtons = document.querySelectorAll('button')
-    let noticeDiv = document.querySelector('.notice')
-    let alertDiv = document.querySelector('.alert')
-    let ratingDiv = document.querySelector('#rating')
-    ratingButtons.forEach((button) => {
-      button.addEventListener('click', (event) => {
-        event.preventDefault()
-        let value = button.dataset.rating
-        let body = JSON.stringify({ rating: value })
-        fetch("#{recipe_ratings_path(@recipe)}", {
-          method: 'POST',
-          body: body,
-          credentials: 'include',
-          headers: {
-            'Content-Type': 'application/json',
-            'X-Requested-With': 'XMLHttpRequest',
-            'X-CSRF-Token': Rails.csrfToken()
-          }
-        }).then(function (response) {
-          return response.json();
-        }).then(function (data) {
-          noticeDiv.innerHTML = data.message
-          ratingDiv.style.display = 'none'
-          console.log(data)
-        }).catch((error) => {
-          alertDiv.innerHTML = data.error
-          console.log(error)
-        });
+    const showRatingFunction = (rating, message) => {
+      let dispalyRatingElement = document.getElementById('average-rating')
+      if (rating == 0) {
+        dispalyRatingElement.style.display = 'none';
+        return false;
+      } else {
+        dispalyRatingElement.innerHTML = ''
+        dispalyRatingElement.style.display = '';
+      }
+      
+      // We want to display 5 stars in total
+      let label = document.createElement('span')
+      label.innerText = "Average Rating:"
+      dispalyRatingElement.appendChild(label)
+      // Display black stars based on the current rating
+      rating.times( () => {
+        let content = document.createElement('span')
+        content.innerHTML = "&#9733"
+        dispalyRatingElement.appendChild(content)
+      } );
+      // Display white star based on 5 - current rating
+      let whiteStarCount = 5 - rating
+      whiteStarCount.times( () => {
+        let content = document.createElement('span')
+        content.innerHTML = "&#9734"
+        dispalyRatingElement.appendChild(content)
+      } );
+
+      let usersMessage = document.createElement('span')
+
+      usersMessage.innerText = message
+      dispalyRatingElement.appendChild(usersMessage)
+
+      return false;
+    }
+
+    document.addEventListener('turbolinks:load', () => {
+      let averageRating = #{@recipe.calc_average_rating}
+      let averageRatingMessage = " By #{@recipe.ratings.count} #{'user'.pluralize(@recipe.ratings.count)}."
+      let ratingStars = document.querySelectorAll('span .star')
+      let noticeDiv = document.querySelector('.notice')
+      let alertDiv = document.querySelector('.alert')
+      let ratingDiv = document.querySelector('#rating')
+
+
+      showRatingFunction(averageRating, averageRatingMessage)
+
+      ratingStars.forEach((star)=>{
+        star.addEventListener('click',(event)=>{
+          event.preventDefault()
+          let value = star.dataset.rating
+          let body = JSON.stringify({rating: value })
+          fetch("#{recipe_ratings_path(@recipe)}", {
+            method: 'POST',
+            body: body,
+            credentials: 'include',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-Requested-With': 'XMLHttpRequest',
+              'X-CSRF-Token': Rails.csrfToken()
+          }}).then(function(response) {
+            return response.json();
+          }).then(function(data) {
+            noticeDiv.innerHTML = data.message
+            let displayMessage = data.display_message
+            let averageRating = data.average_rating
+            showRatingFunction(averageRating, displayMessage)
+            ratingDiv.style.display = 'none'
+            console.log(data)
+          }).catch((error) => {
+            alertDiv.innerHTML = error
+            console.log(error)
+          });
+        })
       })
-    
+
+
     })
-  })
+
 

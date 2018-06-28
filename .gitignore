@@ -38,3 +38,6 @@ yarn-debug.log*
 *.pdf
 
 package-lock.json
+
+
+*.pdf

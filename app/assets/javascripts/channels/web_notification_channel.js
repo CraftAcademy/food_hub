@@ -31,7 +31,7 @@ App.notifications = App.cable.subscriptions.create({
             setTimeout(() => {
                 // Remove the node after 3 seconds
                 this.container().removeChild(node);
-            }, 3000);
+            }, 10000);
         },
 
     }

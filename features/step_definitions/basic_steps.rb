@@ -61,17 +61,18 @@ end
 
 Given("I switch to window {string}") do |index|
   switch_to_window(windows[index.to_i - 1])
+  sleep 1
 end
 
 When("I click {string} on rating") do |value|
   within('#rating') do
-    click_on value
+    find("#star-#{value.to_i}").click
   end
   sleep 2
 end
 
 Then("stop") do
-  sleep 2
+  binding.pry
 end
 
 Given("I attach file") do
@@ -100,12 +101,18 @@ Given("{string} has the following recipes in his collection:") do |user_email, t
   end
 end
 
-Given("an unauthenticated user tries to rate {string} wth {string}") do |recipe_title, value|
+Given("an unauthenticated user tries to rate {string} with {string}") do |recipe_title, value|
   recipe = Recipe.find_by(title: recipe_title)
   Capybara.current_session.driver.submit :post, recipe_ratings_path(recipe), params: {rating: value.to_i}
 end
 
 Given("I refresh the page") do
   include Rails.application.routes.url_helpers
-  page.driver.browser.navigate.refresh  
+  page.driver.browser.navigate.refresh 
+end
+ 
+Given("I submit an unsuccessful rating of {string}") do |recipe_title|
+  recipe = Recipe.find_by(title: recipe_title)
+  visit recipe_path(recipe)
+  Capybara.current_session.driver.submit :post, recipe_ratings_path(recipe), params: {rating: nil}
 end

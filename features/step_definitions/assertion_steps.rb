@@ -56,7 +56,7 @@ end
 
 Then("the average rating for {string} should be {string}") do |recipe_title, expected_rating|
   recipe = Recipe.find_by(title: recipe_title)
-  expect(recipe.average_rating).to eq expected_rating.to_i
+  expect(recipe.calc_average_rating).to eq expected_rating.to_i
 end
 
 Then("I should be on My Profile page") do
