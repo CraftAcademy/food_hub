@@ -86,9 +86,6 @@ Then("I should be on My Collection page") do
   expect(current_path).to eq collections_path
 end
 
-Then("stop") do
-  binding.pry
-end
 
 Then("I should be on the login page") do
   expect(current_path).to eq new_user_session_path

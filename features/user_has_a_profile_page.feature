@@ -16,9 +16,11 @@ Background:
 
   And I am logged in as "maran@test.com"
 
+@javascript
 Scenario: User sees his email, own recipes and forked recipes on his profile page
   Given I visit the site
   When I click "My Profile"
+  Then stop
   Then I should be on My Profile page
   And I should see "Email: maran@test.com"
   And I should see "Pizza" in "My Original Recipes" section
