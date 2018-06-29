@@ -12,6 +12,7 @@ Background:
     | title       	| description                 | ingredients        | directions              | user           |
     | Meatball-Stew | This will make you sick     | Meat, onion, stuff | Stir it, mix it, eat it | maran@test.com |
 
+@javascript
 Scenario: User comments on a recipe
   Given I visit the site
   And I am logged in as "maran@test.com"
@@ -20,4 +21,4 @@ Scenario: User comments on a recipe
   And I click "Comment"
   Then I should see "Thank you for your feedback"
   And I should see "I got sick, how do i sue you?"
-  And I should see "Commented by maran@test.com"
+  And I should see "Commented by: maran@test.com"

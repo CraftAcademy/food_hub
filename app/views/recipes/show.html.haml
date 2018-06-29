@@ -65,8 +65,9 @@
         .bg-white.p-4.m-2.rounded.overflow-hidden.shadow-md.w-1by2
           %p= comment.body
           .flex.justify-end.text-sm
-            .mr-2 Commented by:
-            = mail_to comment.user.email
+            .mr-2 
+              Commented by:
+              = mail_to comment.user.email
 
     .comments-form
       - if user_signed_in?
