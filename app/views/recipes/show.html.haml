@@ -61,9 +61,13 @@
     .comments-div
       - count = @recipe.comments.count
       - if  count == 1
-        %h3= "#{count} Comment"
+        .flex
+          %h3.mr-2= "1 Comment"
+          %i.far.fa-comment-dots.mt-3
       - elsif count > 1
-        %h3= "#{count} Comments"
+        .flex
+          %h3.mr-2= "#{count} Comments"
+          %i.far.fa-comment-dots.mt-3
 
       - @recipe.comments.each do |comment|
         .bg-white.p-4.m-2.rounded.overflow-hidden.shadow-md.w-1by2

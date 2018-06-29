@@ -38,10 +38,16 @@
         %h3= link_to recipe.title, recipe_path(recipe)
         %p= recipe.description[0..100] + '...'
 
-        .flex.buttons.mt-2.justify-center.items-end
-          = link_to "Edit Recipe", edit_recipe_path(recipe), class: 'btn'
-          = link_to "Fork", forks_path(id: recipe.id), method: :post, class: 'btn'
+        .buttons.flex.mt-2.justify-center.items-end
+          = link_to edit_recipe_path(recipe), class: 'btn' do
+            .fas.fa-edit
+            Edit Recipe
+          = link_to forks_path(id: recipe.id), method: :post, class: 'btn' do
+            .fas.fa-code-branch
+            Fork
           - if current_user.collection.recipes.include?(recipe)
             .disabled-btn= "In Collection"
           - else
-            = link_to "Add to Collection", collections_path(id:recipe.id), method: :post, class: 'btn'
+            = link_to collections_path(id:recipe.id), method: :post, class: 'btn' do
+              .fas.fa-plus
+              Add to Collection

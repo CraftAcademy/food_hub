@@ -19,7 +19,6 @@ gem 'chewy'
 gem 'redis', '~> 3.0'
 gem "aws-sdk-s3", require: false
 gem 'prawn-rails'
-gem 'font-awesome-sass'
 
 group :development, :test do
   gem 'coveralls', require: false

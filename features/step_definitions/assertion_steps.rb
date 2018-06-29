@@ -22,14 +22,14 @@ end
 
 Then("I should see {string} in {string} recipe") do |expected_text, recipe_title|
   recipe = Recipe.find_by(title: recipe_title)
-  within ("#recipe-#{recipe.id}") do 
+  within ("#recipe-#{recipe.id}") do
     expect(page).to have_content expected_text
   end
 end
 
 Then("I should not see {string} in {string} recipe") do |expected_text, recipe_title|
   recipe = Recipe.find_by(title: recipe_title)
-  within ("#recipe-#{recipe.id}") do 
+  within ("#recipe-#{recipe.id}") do
     expect(page).not_to have_content expected_text
   end
 end
@@ -97,5 +97,5 @@ Then("I should be on the login page") do
 end
 
 Then("I should (still )see a {string} link") do |string|
-  expect(page).to have_css :a, text: 'View pdf'
+  expect(page).to have_css :a, text: 'View PDF'
 end

@@ -1,8 +1,11 @@
 %h1 My Collection
 .buttons.flex
-  = link_to "Create pdf from My Collection", collection_path(@collection), remote: true, id: 'generate-pdf',  data: { disable_with: "Generating recipe book..." }, class: 'btn'
-  = link_to "View pdf", '#', target: '_blank', style: 'display: none;', id: 'view-pdf',  data: { disable_with: "Opening..." }, class: 'btn'
-
+  = link_to collection_path(@collection), remote: true, id: 'generate-pdf',  data: { disable_with: "Generating recipe book..." }, class: 'btn' do
+    .fas.fa-book
+    Create Recipe Book
+  = link_to '#', target: '_blank', style: 'display: none;', id: 'view-pdf',  data: { disable_with: "Opening..." }, class: 'btn' do
+    .far.fa-file-pdf
+    View PDF
 .flex.flex-wrap
   - @collection.recipes.each do |recipe|
     .recipe.bg-white.p-4.m-2.rounded.overflow-hidden.shadow-md.max-w-sm
@@ -12,7 +15,9 @@
         Posted by:
         = mail_to recipe.user.email
       .buttons.flex.justify-center.mt-2
-        = link_to "Remove", collection_path(recipe), method: :delete, class: 'btn'
+        = link_to collection_path(recipe), method: :delete, class: 'btn' do
+          .fas.fa-trash-alt
+          Remove
 
 
 :javascript

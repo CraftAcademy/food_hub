@@ -24,7 +24,7 @@ Feature: Recipe book can be saved as pdf
   Scenario: User saves recipe book as pdf
     Given I am logged in as "maran@test.com"
     And I visit My Collection page
-    When I click "Create pdf from My Collection"
+    When I click "Create Recipe Book"
     Then I should see "Your Recipe book has been created"
     And I should be on My Collection page
     Then a recipe book should be created
@@ -44,22 +44,22 @@ Feature: Recipe book can be saved as pdf
     Given I am logged in as "author@test.com"
     And I visit the site
     And I click "My Collection"
-    When I click "Create pdf from My Collection"
+    When I click "Create Recipe Book"
     Then I should see "There's nothing to put in your book. Please add some recipes first"
 
   @javascript
   Scenario: User views pdf
     Given I am logged in as "maran@test.com"
     And I visit My Collection page
-    And I click "Create pdf from My Collection" 
-    And I click "View pdf"
+    And I click "Create Recipe Book"
+    And I click "View PDF"
     Then I should see the pdf in a new window
 
   @javascript
-  Scenario: User can see View pdf link after refreshing
+  Scenario: User can see View PDF link after refreshing
     Given I am logged in as "maran@test.com"
     And I visit My Collection page
-    And I click "Create pdf from My Collection"
-    Then I should see a "View pdf" link
+    And I click "Create Recipe Book"
+    Then I should see a "View PDF" link
     And I refresh the page
-    Then I should still see a "View pdf" link
+    Then I should still see a "View PDF" link
