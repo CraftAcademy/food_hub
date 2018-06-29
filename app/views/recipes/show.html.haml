@@ -1,63 +1,81 @@
-.recipe.max-w-full.bg-white.p-4.mt-4.rounded.shadow
+.recipe.max-w-full.bg-white.p-4.my-4.rounded.shadow
   .recipe-upper.flex
-    .recipe-left.w-1by2
+    .recipe-left.w-1by2.p-2
       %h1.text-center.text-orange= @recipe.title
-      %p= "Average Rating: #{@recipe.average_rating}"
+      #average-rating
+      %br
+      %p
+        Posted by:
+        = mail_to @recipe.user.email
+      %p
+        - if @recipe.forked?
+          Forked from:
+          = link_to @original_recipe.title , recipe_path(@original_recipe)
+      %p
+        - if @recipe.forked_recipes_ids.any?
+          = "Forks: #{@recipe.forked_recipes_ids.count}"
+
+      %h3 Description
       %p= @recipe.description
 
-    .recipe-right.w-1by2
-      = image_tag @recipe.image, class: 'w-100%' unless @recipe.image.attachment.nil?
+    .recipe-right.w-1by2.p-2
+      .recipe-buttons.flex.items-start.justify-end.mb-4
+        -if user_signed_in? && policy(@recipe).edit?
+          = link_to edit_recipe_path, class: 'btn' do
+            .fas.fa-edit
+            Edit Recipe
 
-  - unless @recipe.rated_by?(current_user)
-    %p
-      Rate:
-      %span#rating
-        - 5.times.reverse_each do |i|
-          = content_tag(:span, "&#9734".html_safe, data: {rating: "#{i + 1}"}, id: "star-#{i + 1}", class: 'star')
 
-  .recipe-down
+        -if user_signed_in?
+          = link_to forks_path(id: @recipe.id), method: :post , class: 'btn' do
+            .fas.fa-code-branch
+            Fork
+
+          - if current_user.collection.recipes.include?(@recipe)
+            .disabled-btn= "In Collection"
+          - else
+            = link_to collections_path(id:@recipe.id), method: :post, class: 'btn' do
+              .fas.fa-plus
+              Add to My Collection
+
+      .self-end= image_tag @recipe.image, class: 'w-100%' unless @recipe.image.attachment.nil?
+
+
+  .recipe-down.p-2
+    %h3 Ingredients
     %p= @recipe.ingredients
-
+    %h3 Directions
     %p= @recipe.directions
 
-    %p
-      Posted by:
-      = mail_to @recipe.user.email
-    %p
-      - if @recipe.forked?
-        Forked from:
-        = link_to @original_recipe.title , recipe_path(@original_recipe)
-    %p
-      - if @recipe.forked_recipes_ids.any?
-        = "Forks: #{@recipe.forked_recipes_ids.count}"
 
-    #rating
-      - unless @recipe.rated_by?(current_user)
-        %p Rate:
-        - 5.times do |i|
-          = button_tag "#{i + 1}", data: {rating: "#{i + 1}"}
+    - unless @recipe.rated_by?(current_user)
+      %h3
+        Rate:
+        %span#rating
+          - 5.times.reverse_each do |i|
+            = content_tag(:span, "&#9734".html_safe, data: {rating: "#{i + 1}"}, id: "star-#{i + 1}", class: 'star')
 
-    - @recipe.comments.each do |comment|
-      .box
-        %p= comment.body
-        %p
-          Commented by
-          = mail_to comment.user.email
+    - count = @recipe.comments.count
+    - if  count == 1
+      %h3= "#{count} Comment"
+    - elsif count > 1
+      %h3= "#{count} Comments"
 
-    = form_with(model: [ @recipe, @recipe.comments.build ], local: true) do |form|
+    .comments-box
+      - @recipe.comments.each do |comment|
+        .bg-white.p-4.m-2.rounded.overflow-hidden.shadow-md.w-1by2
+          %p= comment.body
+          .flex.justify-end.text-sm
+            .mr-2 Commented by:
+            = mail_to comment.user.email
+
+    .comments-form
       - if user_signed_in?
-        = form.text_area :body, placeholder: "Comment here"
-        = form.submit 'Comment'
+        = form_with(model: [ @recipe, @recipe.comments.build ], local: true) do |form|
+          .flex.items-end
+            = form.text_area :body, placeholder: "Comment here"
+            = form.submit 'Comment', class: 'btn'
 
-    -if user_signed_in? && policy(@recipe).edit?
-      = link_to "Edit Recipe", edit_recipe_path
-    -if user_signed_in?
-      = link_to "Fork", forks_path(id: @recipe.id), method: :post
-      |
-      - if current_user.collection.recipes.include?(@recipe)
-        = "In Collection"
-      - else
-        = link_to "Add to Collection", collections_path(id:@recipe.id), method: :post
 
 
 :javascript

@@ -61,6 +61,10 @@
     text-decoration: none ;
   }
 
+  h1, h2, h3 {
+    @apply .mt-2 .mb-2 ;
+  }
+
   .menu-item {
     @apply .py-4 .mr-4 ;
   }
@@ -69,15 +73,59 @@
     @apply .text-orange-dark .py-3 .border-b-2 .border-orange-dark ;
   }
 
-  input, textarea{
-    @apply .shadow .rounded .m-2 ;
-  }
-
   #search-mag {
-  @apply .text-xl .text-orange .shadow-none .bg-white ;
+  @apply .text-xl .text-orange .shadow-none .bg-white .border-none ;
   @apply .mt-3 .ml-0 .mr-4 .cursor-pointer ;
   }
 
   #search-mag:hover {
     @apply .text-orange-dark .text-2xl ;
+  }
+
+  #rating {
+    @apply .text-orange .text-xl .font-bold;
+   unicode-bidi: bidi-override;
+   direction: rtl;
+   > span {
+     display: inline-block;
+     position: relative;
+     width: 1.1em;
+     &:hover {
+       &:before, ~ span:before {
+         content: "\2605";
+         position: absolute;
+       }
+     }
+   }
+  }
+
+  p {
+      text-align: justify;
+  }
+
+  .btn {
+    @apply .bg-white .text-orange ;
+    @apply .py-2 .px-2 ;
+    @apply .m-1 ;
+    @apply .border .border-orange .rounded ;
+  }
+
+  .btn:hover {
+    @apply .bg-orange .text-white ;
+    @apply .border-transparent ;
+  }
+
+  .disabled-btn{
+    @apply .bg-transparent .text-brown ;
+    @apply .py-2 .px-2 ;
+    @apply .m-1 ;
+    @apply .border .border-brown .rounded ;
+  }
+
+  textarea{
+    @apply .shadow .border-b-2 .border-orange .rounded .m-2 .p-4 .w-1by2 ;
+  }
+
+  input[type="submit"]{
+    @apply .btn ;
   }

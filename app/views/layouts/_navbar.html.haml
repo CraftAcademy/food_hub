@@ -21,11 +21,11 @@
         - if user_signed_in?
           = link_to "My Collection", collections_path, class: 'menu-item'
           = link_to "My Profile", user_path(current_user), class: 'menu-item'
-          = link_to 'New Recipe', new_recipe_path, class: 'bg-transparent hover:bg-orange text-orange hover:text-white py-2 px-4 border border-orange hover:border-transparent rounded'
+          = link_to 'New Recipe', new_recipe_path, class: 'btn'
 
 
       #search
         = form_with url: search_recipes_path, method: :post, local: true, class: 'flex' do |form|
           = form.text_field :search, placeholder: 'Search for Recipes...',
-                                    class: 'bg-orange-lightest w-full px-4 py-2 mt-4'
+                                    class: 'bg-orange-lightest border rounded w-full px-4 py-2 mt-4'
           = form.submit raw("&#x1F50E;"), id: 'search-mag'
