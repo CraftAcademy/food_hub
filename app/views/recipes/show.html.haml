@@ -36,10 +36,10 @@
           - else
             = link_to collections_path(id:@recipe.id), method: :post, class: 'btn' do
               .fas.fa-plus
-              Add to My Collection
+              Add to Collection
 
-      .self-end= image_tag @recipe.image, class: 'w-100%' unless @recipe.image.attachment.nil?
-
+      .self-end
+        = image_tag rails_blob_path(@recipe.image), class: 'w-100%' unless @recipe.image.attachment.nil?
 
   .recipe-down.p-2
     .recipe-text.border-b.pb-2.mb-2
@@ -67,8 +67,9 @@
         .bg-white.p-4.m-2.rounded.overflow-hidden.shadow-md.w-1by2
           %p= comment.body
           .flex.justify-end.text-sm
-            .mr-2 Commented by:
-            = mail_to comment.user.email
+            .mr-2
+              Commented by:
+              = mail_to comment.user.email
 
     .comments-form
       - if user_signed_in?
@@ -76,8 +77,6 @@
           .flex.items-end
             = form.text_area :body, placeholder: "Comment here"
             = form.submit 'Comment', class: 'btn'
-
-
 
 :javascript
     const showRatingFunction = (rating, message) => {
@@ -124,7 +123,6 @@
       let alertDiv = document.querySelector('.alert')
       let ratingDiv = document.querySelector('#rating')
 
-
       showRatingFunction(averageRating, averageRatingMessage)
 
       ratingStars.forEach((star)=>{
@@ -155,6 +153,4 @@
           });
         })
       })
-
-
     })

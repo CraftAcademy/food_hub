@@ -1,4 +1,4 @@
-@search
+@search @javascript
 Feature: User can search for recipes
     As a user
     In order to find a specific recipe
@@ -17,8 +17,8 @@ Feature: User can search for recipes
 
     Scenario: User searches for "Meatball" and gets 2 hits
         Given I visit the site
-        And I fill in "Search" with "Meatball"
-        And I click "Search"
+        And I fill in "Search for Recipes..." with "Meatball"
+        And I click "search-mag"
         Then I should see "Found 2 recipes"
         And I should see "Meatball-Stew"
         And I should see "Meatballs"
