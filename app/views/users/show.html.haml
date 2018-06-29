@@ -1,47 +1,40 @@
 %h1 My Profile
 %br
-%p= "Email: #{current_user.email}"
+%p
+  = "Email: "
+  = mail_to current_user.email
 %br
 
 #my-original-recipes
   %h1 My Original Recipes
   %br
+  .category.flex.flex-wrap
+    - @original_recipes.each do |recipe|
+      .recipes.bg-white.p-4.m-2.rounded.overflow-hidden.shadow-md.max-w-sm{id: "recipe-#{recipe.id}"}
+        %h3= link_to recipe.title, recipe_path(recipe)
+        %p= recipe.description[0..100] + '...'
 
-  - @original_recipes.each do |recipe|
-    .recipes
-      %h3= link_to recipe.title, recipe_path(recipe)
-      %p= recipe.description
-      %p
-        Posted by:
-        = mail_to recipe.user.email
-      %p
-        = link_to "Edit Recipe", edit_recipe_path(recipe)
-        |
-        = link_to "Fork", forks_path(id: recipe.id), method: :post
-        |
-        - if current_user.collection.recipes.include?(recipe)
-          = "In Collection"
-        - else
-          = link_to "Add to Collection", collections_path(id:recipe.id), method: :post
+        .flex.buttons.mt-2.justify-center.items-end
+          = link_to "Edit Recipe", edit_recipe_path(recipe), class: 'btn'
+          = link_to "Fork", forks_path(id: recipe.id), method: :post, class: 'btn'
+          - if current_user.collection.recipes.include?(recipe)
+            .disabled-btn= "In Collection"
+          - else
+            = link_to "Add to Collection", collections_path(id:recipe.id), method: :post, class: 'btn'
 
 #my-forked-recipes
   %h1 My Forked Recipes
   %br
+  .category.flex.flex-wrap
+    - @forked_recipes.each do |recipe|
+      .recipes.bg-white.p-4.m-2.rounded.overflow-hidden.shadow-md.max-w-sm{id: "recipe-#{recipe.id}"}
+        %h3= link_to recipe.title, recipe_path(recipe)
+        %p= recipe.description[0..100] + '...'
 
-  - @forked_recipes.each do |recipe|
-    .recipes
-      %h3= link_to recipe.title, recipe_path(recipe)
-      %p= recipe.description
-      %p
-        Posted by:
-        = mail_to recipe.user.email
-      %p
-        = link_to "Edit Recipe", edit_recipe_path(recipe)
-        |
-        = link_to "Fork", forks_path(id: recipe.id), method: :post
-        |
-        - if current_user.collection.recipes.include?(recipe)
-          = "In Collection"
-        - else
-          = link_to "Add to Collection", collections_path(id:recipe.id), method: :post
-
+        .flex.buttons.mt-2.justify-center.items-end
+          = link_to "Edit Recipe", edit_recipe_path(recipe), class: 'btn'
+          = link_to "Fork", forks_path(id: recipe.id), method: :post, class: 'btn'
+          - if current_user.collection.recipes.include?(recipe)
+            .disabled-btn= "In Collection"
+          - else
+            = link_to "Add to Collection", collections_path(id:recipe.id), method: :post, class: 'btn'

@@ -60,7 +60,7 @@
   }
 
   h1, h2, h3 {
-    @apply .mt-2 .mb-4 ;
+    @apply .mt-4 .mb-2 ;
   }
 
   .menu-item {
@@ -135,4 +135,3 @@
   input[type="search"]{
     @apply .bg-orange-lightest .border .border-orange .rounded .w-full .px-4 .py-2 .mt-4 ;
   }
-  
