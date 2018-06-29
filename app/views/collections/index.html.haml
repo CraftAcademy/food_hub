@@ -12,7 +12,7 @@
       %h3= link_to recipe.title, recipe_path(recipe)
       %p= recipe.description[0..100] + '...'
       .flex.flex-wrap.text-sm.mt-4
-        Posted by:
+        .mr-2= "Posted by:"
         = mail_to recipe.user.email, "#{recipe.user.full_name}"
       .buttons.flex.justify-center.mt-2
         = link_to collection_path(recipe), method: :delete, class: 'btn' do
