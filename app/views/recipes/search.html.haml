@@ -1,4 +1,9 @@
 %h1= "Found #{@hits} recipes"
 
 - @recipes.each do |recipe|
+  .recipe.bg-white.p-4.m-2.rounded.overflow-hidden.shadow-md.max-w-sm
     %h3= link_to recipe.title, recipe_path(recipe)
+    %p= recipe.description[0..100] + '...'
+    .flex.flex-wrap.text-sm.mt-4
+      Posted by:
+      = mail_to recipe.user.email
