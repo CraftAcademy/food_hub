@@ -1,15 +1,15 @@
-%p= link_to 'New Recipe', new_recipe_path
-.center
-  %h1 Recipes
-
+%h1.text-center.mb-4 Recipes
 - @categories.each do |category|
-  %h3= category.name
-  - category.recipes.each do |recipe|
-    .recipes
-      %h3= link_to recipe.title, recipe_path(recipe)
-      %p= recipe.description
-      = image_tag recipe.image unless recipe.image.attachment.nil?
-      %p
-        Posted by:
-        = mail_to recipe.user.email
-      %br
+  %h3.text-center= category.name
+  .category.flex.flex-wrap.justify-center
+    - category.recipes.each do |recipe|
+      .recipe.bg-white.p-4.m-2.rounded.overflow-hidden.shadow-md.min-w-2xs.max-w-xs{id: "recipe-#{recipe.id}"}
+        = link_to (image_tag rails_blob_path(recipe.image), class: 'w-full'), recipe_path(recipe) unless recipe.image.attachment.nil?
+        .px-4.py-4
+          %h3.mb-2= link_to recipe.title, recipe_path(recipe)
+          %p.text-grey-darker= recipe.description[0..200] + '...'
+          .px-4.py-4
+            .flex.flex-wrap.justify-center.text-sm
+              .mr-2 
+                Posted by:
+                = mail_to recipe.user.email

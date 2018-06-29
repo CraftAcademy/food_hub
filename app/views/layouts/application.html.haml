@@ -2,6 +2,7 @@
   %head
     %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title FoodHub
+    %link{crossorigin: "anonymous", href: "https://use.fontawesome.com/releases/v5.1.0/css/all.css", integrity: "sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt", rel: "stylesheet"}
     = csrf_meta_tags
     = csp_meta_tag
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
@@ -9,7 +10,9 @@
     = stylesheet_pack_tag 'application'
   %body
     = render "layouts/navbar"
-    #notifications
-    %p.notice= notice
-    %p.alert= alert
-    = yield
+    .container.mx-auto
+      #notifications.flex.bg-orange-lighter.border-t-4.border-orange.rounded-b.shadow.items-center.px-4
+        .notice= notice
+        .alert= alert
+    .container.mx-auto
+      = yield

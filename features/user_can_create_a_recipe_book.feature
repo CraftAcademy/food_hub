@@ -16,6 +16,7 @@ Background:
 
   And I am logged in as "maran@test.com"
 
+@javascript
 Scenario: User adds recipes to recipe book collection
   Given I am on the "Meatball-Stew" page
   And I click "Add to Collection"

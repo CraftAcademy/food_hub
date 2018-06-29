@@ -5,17 +5,18 @@ Feature:
 
   Background:
     Given We have the following user:
-      | email             |
-      | maran@test.com    |
-      | stefan@test.com   |
+      | email           |
+      | maran@test.com  |
+      | stefan@test.com |
 
     And We have the following recipes:
-      | title       	| user             |
-      | Meatball-Stew | maran@test.com   |
-      | Camel Tartar  | stefan@test.com  |
+      | title         | user            |
+      | Meatball-Stew | maran@test.com  |
+      | Camel Tartar  | stefan@test.com |
 
     And I visit the site
 
+  @javascript
   Scenario: Visitor can see authors email on index page
     Then I should see "Posted by: maran@test.com" in "Meatball-Stew" recipe
     And I should see "Posted by: stefan@test.com" in "Camel Tartar" recipe

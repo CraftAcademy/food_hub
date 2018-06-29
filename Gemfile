@@ -20,7 +20,6 @@ gem 'redis', '~> 3.0'
 gem "aws-sdk-s3", require: false
 gem 'prawn-rails'
 
-
 group :development, :test do
   gem 'coveralls', require: false
   gem 'cucumber-rails', '~> 1.6', require: false
