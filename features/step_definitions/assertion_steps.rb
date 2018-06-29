@@ -97,7 +97,16 @@ Then("I should be on the login page") do
 end
 
 Then("I should (still )see a {string} link") do |string|
-  expect(page).to have_css :a, text: 'View PDF'
+  expect(page).to have_css :a, text: string
+end
+
+Then("I should (still )see a {string} link pointing to {string}") do |link_type, string|
+  if link_type == 'mailto'
+    selector = "a[href='#{link_type}:#{string}'"
+  else
+    selector = "a[href='#{string}'"
+  end
+  expect(page).to have_selector(selector)
 end
 
 Then("the name for {string} should be {string}") do |user_email, user_full_name|
