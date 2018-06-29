@@ -21,11 +21,17 @@ Then("I should be redirected to the signup page") do
 end
 
 Then("I should see {string} in {string} recipe") do |expected_text, recipe_title|
-  expect(page.find('.card', text: recipe_title)).to have_content expected_text
+  recipe = Recipe.find_by(title: recipe_title)
+  within ("#recipe-#{recipe.id}") do 
+    expect(page).to have_content expected_text
+  end
 end
 
 Then("I should not see {string} in {string} recipe") do |expected_text, recipe_title|
-  expect(page.find('.card', text: recipe_title)).to have_no_content expected_text
+  recipe = Recipe.find_by(title: recipe_title)
+  within ("#recipe-#{recipe.id}") do 
+    expect(page).not_to have_content expected_text
+  end
 end
 
 Then("show me the page") do

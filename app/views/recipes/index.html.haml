@@ -3,7 +3,7 @@
   %h3.text-center= category.name
   .category.flex.flex-wrap.justify-center
     - category.recipes.each do |recipe|
-      .recipe.bg-white.p-4.m-2.rounded.overflow-hidden.shadow-md.min-w-2xs.max-w-xs
+      .recipe.bg-white.p-4.m-2.rounded.overflow-hidden.shadow-md.min-w-2xs.max-w-xs{id: "recipe-#{recipe.id}"}
         = link_to (image_tag rails_blob_path(recipe.image), class: 'w-full'), recipe_path(recipe) unless recipe.image.attachment.nil?
         -# = image_tag recipe.image, class: 'w-full' unless recipe.image.attachment.nil?
         .px-4.py-4
@@ -11,5 +11,6 @@
           %p.text-grey-darker= recipe.description[0..200] + '...'
           .px-4.py-4
             .flex.flex-wrap.justify-center.text-sm
-              .mr-2 Posted by:
-              = mail_to recipe.user.email
+              .mr-2 
+                Posted by:
+                = mail_to recipe.user.email
