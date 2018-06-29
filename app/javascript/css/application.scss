@@ -120,8 +120,8 @@
     @apply .border .border-brown .rounded ;
   }
 
-  textarea{
-    @apply .shadow .border-b-2 .border-orange .rounded .m-2 .p-4 .w-full ;
+  input[type="text"], textarea{
+    @apply .shadow .border-b-2 .border-orange .rounded .mb-4 .p-4 .w-full ;
   }
 
   input[type="submit"]{
@@ -135,3 +135,4 @@
   input[type="search"]{
     @apply .bg-orange-lightest .border .border-orange .rounded .w-full .px-4 .py-2 .mt-4 ;
   }
+  

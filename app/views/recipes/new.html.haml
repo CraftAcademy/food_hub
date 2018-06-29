@@ -1,25 +1,24 @@
 %h1 Add New Recipe
 
-- if @recipe.errors.any?
-  %ul
-    - @recipe.errors.full_messages.each do |msg|
-      %li= msg
 .recipe-new.flex
 = form_with model: @recipe, local: true do |form|
 
-  %p= form.label :title
-  %p= form.text_field :title
+  %h3= form.label :title
+  = form.text_field :title
 
-  = form.file_field :image
+  %h3 Category
+  #select.text-xl
+    = form.collection_select :category_id, @categories, :id, :name, prompt: 'Please select a Category...', class: 'bg-white'
 
-  %p Collection
-  = form.collection_select :category_id, @categories, :id, :name, class: 'bg-white'
+  %h3= form.label :description
+  = form.text_area :description
+  %h3= form.label :ingredients
+  = form.text_area :ingredients
+  %h3= form.label :directions
+  = form.text_area :directions
 
-  %p= form.label :description
-  .h-32
-    = form.text_area :description
-  %p= form.label :ingredients
-  %p= form.text_area :ingredients
-  %p= form.label :directions
-  %p= form.text_area :directions
-  %p= form.submit
+  %h3 Image
+  #choose.text-xl
+    = form.file_field :image
+  .mt-4.text-xl
+    = form.submit

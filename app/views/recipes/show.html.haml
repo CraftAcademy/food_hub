@@ -75,7 +75,7 @@
       - if user_signed_in?
         = form_with(model: [ @recipe, @recipe.comments.build ], local: true) do |form|
           .flex.items-end
-            .w-1by2.mr-4
+            .w-1by2.mr-4.ml-2.-mb-3
               = form.text_area :body, placeholder: "Comment here"
             = form.submit 'Comment', class: 'btn'
 
