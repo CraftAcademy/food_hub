@@ -5,9 +5,9 @@ Feature: Recipe book can be saved as pdf
 
   Background:
     Given We have the following user:
-      | email           |
-      | maran@test.com  |
-      | author@test.com |
+      | email           | full_name |
+      | maran@test.com  | Maran     |
+      | author@test.com | Author    |
 
     And We have the following recipes:
       | title           | description             | ingredients        | directions              | user            |
@@ -29,12 +29,12 @@ Feature: Recipe book can be saved as pdf
     And I should be on My Collection page
     Then a recipe book should be created
     And the pdf should contain "Meatball-Stew"
-    And the pdf should contain "maran@test.com"
+    And the pdf should contain "Posted by: Maran"
     And the pdf should contain "This will make you sick"
     And the pdf should contain "Meat, onion, stuff"
     And the pdf should contain "Stir it, mix it, eat it"
     And the pdf should contain "Pizza"
-    And the pdf should contain "author@test.com"
+    And the pdf should contain "Posted by: Author"
     And the pdf should contain "Amazing taste"
     And the pdf should contain "Weat, Water"
     And the pdf should contain "Mix it together"

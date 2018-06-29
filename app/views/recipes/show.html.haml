@@ -24,20 +24,20 @@
       .recipe-buttons.flex.items-start.justify-end.mb-4
         -if user_signed_in? && policy(@recipe).edit?
           = link_to edit_recipe_path, class: 'btn' do
-            .fas.fa-edit 
+            .fas.fa-edit
             Edit Recipe
 
 
         -if user_signed_in?
           = link_to forks_path(id: @recipe.id), method: :post , class: 'btn' do
-            .fas.fa-code-branch 
+            .fas.fa-code-branch
             Fork
 
           - if current_user.collection.recipes.include?(@recipe)
             .disabled-btn= "In Collection"
           - else
             = link_to collections_path(id:@recipe.id), method: :post, class: 'btn' do
-              .fas.fa-plus 
+              .fas.fa-plus
               Add to Collection
 
       .self-end

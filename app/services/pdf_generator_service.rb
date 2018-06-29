@@ -19,7 +19,7 @@ class PdfGeneratorService
       insert_image(pdf, recipe) if recipe.image.attached?
       pdf.text recipe.title, size: 20, style: :bold, align: :center
       pdf.move_down 5
-      pdf.text recipe.user.email, size: 10, align: :center
+      pdf.text "Posted by: #{recipe.user.full_name}", size: 10, align: :center
       pdf.move_down 10
       pdf.text recipe.description
       pdf.move_down 10
@@ -55,7 +55,7 @@ class PdfGeneratorService
     pdf.move_down 100
     pdf.text 'My Recipe Book', size: 48, align: :center
     pdf.move_down 150
-    pdf.text "by: #{ @collection.user.email}", size: 25, align: :right
+    pdf.text "by: #{ @collection.user.full_name}", size: 25, align: :right
     pdf.move_down 10
     pdf.text 'With Recipes from FoodHub', size: 18, align: :right
   end

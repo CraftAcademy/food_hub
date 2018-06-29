@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
 
+  validates :full_name, presence: true
+
   has_many :recipes
   has_one :collection
   has_many :comments

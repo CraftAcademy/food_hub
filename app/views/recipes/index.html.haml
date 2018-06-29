@@ -10,6 +10,6 @@
           %p.text-grey-darker= recipe.description[0..200] + '...'
           .px-4.py-4
             .flex.flex-wrap.justify-center.text-sm
-              .mr-2 
+              .mr-2
                 Posted by:
-                = mail_to recipe.user.email
+                = mail_to recipe.user.email, "#{recipe.user.full_name}"
