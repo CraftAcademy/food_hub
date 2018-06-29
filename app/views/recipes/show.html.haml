@@ -14,7 +14,9 @@
       %p
         - if @recipe.forked_recipes_ids.any?
           = "Forks: #{@recipe.forked_recipes_ids.count}"
-
+      %br
+      %h3 Category
+      %p= @recipe.category.name
       %h3 Description
       %p= @recipe.description
 

@@ -1,24 +1,24 @@
 %h1 Add New Recipe
 
-.recipe-new.flex
-= form_with model: @recipe, local: true do |form|
+.recipe-new
+  = form_with model: @recipe, local: true do |form|
 
-  %h3= form.label :title
-  = form.text_field :title
+    %h3= form.label :title
+    = form.text_field :title
 
-  %h3 Category
-  #select.text-xl
-    = form.collection_select :category_id, @categories, :id, :name, prompt: 'Please select a Category...', class: 'bg-white'
+    %h3 Category
+    #select.text-xl
+      = form.collection_select :category_id, @categories, :id, :name, prompt: 'Please select a Category...', class: 'bg-white'
 
-  %h3= form.label :description
-  = form.text_area :description
-  %h3= form.label :ingredients
-  = form.text_area :ingredients
-  %h3= form.label :directions
-  = form.text_area :directions
+    %h3= form.label :description
+    = form.text_area :description
+    %h3= form.label :ingredients
+    = form.text_area :ingredients
+    %h3= form.label :directions
+    = form.text_area :directions
 
-  %h3 Image
-  #choose.text-xl
-    = form.file_field :image
-  .mt-4.text-xl
-    = form.submit
+    %h3 Image
+    #choose.text-xl
+      = form.file_field :image
+    .mt-4.text-xl
+      = form.submit
