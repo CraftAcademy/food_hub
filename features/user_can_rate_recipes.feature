@@ -26,6 +26,7 @@ Scenario: User can not rate more than one time per recipe
   And  I am on the "Meatball-Stew" recipe show page
   And I click "4" on rating
   Then I should see the notice: "Thank you for your rating"
+  And I should see "By 1 user"
   And I refresh the page
   And I should not see "Rate"
 
