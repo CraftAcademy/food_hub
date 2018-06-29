@@ -6,4 +6,4 @@
     %p= recipe.description[0..100] + '...'
     .flex.flex-wrap.text-sm.mt-4
       Posted by:
-      = mail_to recipe.user.email
+      = mail_to recipe.user.email, recipe.user.full_name

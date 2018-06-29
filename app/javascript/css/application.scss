@@ -131,7 +131,7 @@
     @apply .btn ;
   }
 
-  input[type="email"], input[type="password"]{
+  input[type="email"], input[type="password"], input[type="name"]{
     @apply .border .border-orange .rounded .w-auto .px-4 .py-2 .mt-2 .mb-4 ;
   }
 

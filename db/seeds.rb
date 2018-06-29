@@ -1,16 +1,19 @@
 User.create(
   email: 'nader@example.com',
-  password: '123456'
+  password: '123456',
+  full_name: 'Nader'
 )
 
 User.create(
   email: 'george@example.com',
-  password: '123456'
+  password: '123456',
+  full_name: 'George'
 )
 
 User.create(
   email: 'agnes@example.com',
-  password: '123456'
+  password: '123456',
+  full_name: 'Agnes'
 )
 
 Category.create( name: "Appetizer")
@@ -35,7 +38,7 @@ Recipe.create(
                 In a large bowl, combine the egg, milk, cheese, oats and salt. Add the ground beef, mixing well, and form this mixture into eight miniature meatloaves. Place these in a lightly greased 9x13 inch baking dish.
                 In a separate small bowl, combine the ketchup, brown sugar and mustard. Stir thoroughly and spread over each meatloaf.
                 Bake, uncovered, at 350 degrees F (175 degrees C) for 45 minutes.',
-        user: User.find_by(email: 'george@example.com'),
+        user: User.find_by(full_name: 'George'),
  category_id: 2
 )
 
@@ -56,7 +59,7 @@ Recipe.create(
                 6 mini dinner rolls',
   directions: 'Mix the ground turkey, goat cheese, sun-dried tomatoes, garlic, panko bread crumbs, salt, pepper, and hot chili flakes together in a large bowl with your hands until evenly mixed. Form the mixture into patties about 3-inches in diameter. Dust each patty lightly with flour on each side. This will allow patties to brown nicely in oil.
               Heat the olive oil in a large skillet over medium-high heat; cook the patties in the hot oil until browned, 2 to 3 minutes per side. Pour the white wine over the patties, place a cover over the skillet, and continue cooking until the sliders are no longer pink inside and the juices run clear, about 5 minutes. Remove the sliders to a plate lined with paper towels to drain. Serve on the mini dinner rolls.',
-        user: User.find_by(email: 'george@example.com'),
+        user: User.find_by(full_name: 'George'),
  category_id: 1
 )
 
@@ -76,7 +79,7 @@ Recipe.create(
 In a shallow bowl, beat the egg with salt, pepper and 1 teaspoon garlic powder. In a separate dish, mix bread crumbs with 1 teaspoon of garlic powder and Parmesan cheese. Set aside.
 Mix together the melted butter and lemon juice. Pour about 2/3 of the butter mixture into the bottom of a 9x13 inch baking dish. Tilt pan to coat the bottom. Spread mushrooms in an even layer in the bottom of the dish. Dip each chicken breast into the egg mixture, then into the bread crumb mixture. Place on top of the mushrooms. Drizzle remaining butter over the chicken, and sprinkle with parsley.
 Bake uncovered for 45 minutes in the preheated oven, until chicken is golden brown and juices run clear.',
-        user: User.find_by(email: 'agnes@example.com'),
+        user: User.find_by(full_name: 'Agnes'),
  category_id: 3
 )
 
@@ -114,6 +117,6 @@ Recipe.create(
                 Bring a large pot of salted water to boil. Add pasta and cook, stirring occasionally, until tender yet firm to the bite, about 12 minutes. Drain.
                 Divide pasta between the white sauce and the lamb sauce and mix to combine. Pour the pasta with lamb sauce into the prepared baking dish; spread the pasta with white sauce on top.
                 Bake in the preheated oven until top is golden and pastitsio is bubbling, about 30 minutes. Let cool for 5 minutes before serving.',
-        user: User.find_by(email: 'nader@example.com'),
+        user: User.find_by(full_name: 'Nader'),
  category_id: 3
 )

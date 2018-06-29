@@ -1,8 +1,13 @@
 %h1 My Profile
 %br
+%o
+  Name: 
+  %span
+    = current_user.full_name
 %p
-  = "Email: "
-  = mail_to current_user.email
+  Email:
+  %span
+    = mail_to current_user.email
 %br
 
 #my-original-recipes

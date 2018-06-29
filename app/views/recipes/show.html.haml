@@ -6,7 +6,7 @@
       %br
       %p
         Posted by:
-        = mail_to @recipe.user.email
+        = mail_to @recipe.user.email, @recipe.user.full_name
       %p
         - if @recipe.forked?
           Forked from:
@@ -75,7 +75,7 @@
           .flex.justify-end.text-sm
             .mr-2
               Commented by:
-              = mail_to comment.user.email
+              = mail_to comment.user.email, "#{comment.user.full_name}"
 
     .comments-form
       - if user_signed_in?

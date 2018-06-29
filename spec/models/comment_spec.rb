@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
-  let(:user) {create(:user, email: 'whatever@random.com')}
+  let(:user) {create(:user, email: 'whatever@random.com', full_name: 'Anders')}
   let(:recipe) {create(:recipe, title: 'Pizza', user: user)}
   it {is_expected.to have_db_column :body}
   it {is_expected.to belong_to :user}
@@ -16,7 +16,7 @@ RSpec.describe Comment, type: :model do
       expect{ create(:comment, user: user, recipe: recipe)}
       .to have_broadcasted_to('notifications')
       .from_channel(WebNotificationsChannel)
-      .with({message: '<p>whatever@random.com left a comment on Pizza.</p>'})
+      .with({message: '<p>Anders left a comment on Pizza.</p>'})
     end
   end
 end

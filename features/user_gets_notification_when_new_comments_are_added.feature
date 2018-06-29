@@ -5,8 +5,8 @@ Feature: User gets notification when new comments are added
 
   Background:
     Given We have the following user:
-      | email           | password    |
-      | maran2@test.com | 12345678    |
+      | email           | password    | full_name |
+      | maran2@test.com | 12345678    | Maran2    |
 
     And We have the following recipes:
       | title       	|
@@ -22,4 +22,5 @@ Feature: User gets notification when new comments are added
       And I fill in "comment_body" with "I got sick, how do i sue you?"
       And I click "Comment"
       And I switch to window "1"
-      Then I should see "maran2@test.com left a comment on Meatball-Stew"
+      And show me the page
+      Then I should see "Maran2 left a comment on Meatball-Stew"

@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
 
+  validates :full_name, presence: true
+
   has_many :recipes
   has_one :collection
   has_many :comments
@@ -22,7 +24,7 @@ class User < ApplicationRecord
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
-      #user.name = auth.info.name
+      user.full_name = auth.info.name
       user.password = Devise.friendly_token[0,20]
       #user.image = auth.info.image # assuming the user model has an image
     end
