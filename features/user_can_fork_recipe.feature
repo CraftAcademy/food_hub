@@ -5,9 +5,9 @@ Feature: User can fork recipie
 
 Background:
   Given We have the following user:
-    | email             | password |
-    | maran@test.com    | 12345678 |
-    | author@test.com   | 12345678 |
+    | email             | password |  full_name |
+    | maran@test.com    | 12345678 |  Maran     |
+    | author@test.com   | 12345678 |  Author    |
 
   And We have the following recipes:
     | title         | description             | user             |
@@ -23,7 +23,7 @@ Scenario: User forks a recipe edits its title
   When I fill in "Title" with "Maran's Meatball-Stew"
   And I click "Update Recipe"
   Then I should see "Maran's Meatball-Stew"
-  And I should see "Posted by: maran@test.com"
+  And I should see "Posted by: Maran"
   And I should see "Forked from: Meatball-Stew"
 
 Scenario: User can see the number of forks on a recipe
