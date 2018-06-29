@@ -21,11 +21,17 @@ Then("I should be redirected to the signup page") do
 end
 
 Then("I should see {string} in {string} recipe") do |expected_text, recipe_title|
-  expect(page.find('.recipes', text: recipe_title)).to have_content expected_text
+  recipe = Recipe.find_by(title: recipe_title)
+  within ("#recipe-#{recipe.id}") do
+    expect(page).to have_content expected_text
+  end
 end
 
 Then("I should not see {string} in {string} recipe") do |expected_text, recipe_title|
-  expect(page.find('.recipes', text: recipe_title)).to have_no_content expected_text
+  recipe = Recipe.find_by(title: recipe_title)
+  within ("#recipe-#{recipe.id}") do
+    expect(page).not_to have_content expected_text
+  end
 end
 
 Then("show me the page") do
@@ -86,16 +92,15 @@ Then("I should be on My Collection page") do
   expect(current_path).to eq collections_path
 end
 
-
 Then("I should be on the login page") do
   expect(current_path).to eq new_user_session_path
 end
 
 Then("I should (still )see a {string} link") do |string|
-  expect(page).to have_css :a, text: 'View pdf'
+  expect(page).to have_css :a, text: 'View PDF'
 end
 
 Then("the name for {string} should be {string}") do |user_email, user_full_name|
-  # user = User.find_by(email: user_email)
-  # expect(user.full_name).to eq user_full_name
+  user = User.find_by(email: user_email)
+  expect(user.full_name).to eq user_full_name
 end

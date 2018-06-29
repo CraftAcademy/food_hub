@@ -12,6 +12,7 @@ Background:
     | title | description     |   user          | image     |
     | Pizza | An italian dish | maran@test.com  | pizza.png |
 
+@javascript
 Scenario: User views recipes on home page
   Given I visit the site
   Then I should see "Recipes"

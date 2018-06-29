@@ -1,22 +1,29 @@
-.wrapper
-  .navbar.flex.items-center.mx-auto.p-6
-    = link_to "Home", root_path, data: {turbolinks: false}
-    |
-    - if user_signed_in?
-      = link_to "My Collection", collections_path
-      |
-      =link_to "My Profile", user_path(current_user)
-      |
-      = "Logged in as: #{current_user.full_name}"
-      |
-      = link_to 'Sign Out', destroy_user_session_path, method: :delete
-    - else
-      = link_to 'Sign Up', new_user_registration_path
-      |
-      = link_to 'Login', new_user_session_path
-      |
-      = link_to 'Login with Facebook', user_facebook_omniauth_authorize_path
+.navbar.bg-white.border-b.font-semibold
+  .container.mx-auto.px-2
+    .flex.justify-between.border-b
+      #logo.flex.items-center
+        = link_to image_tag('foodhub-logo.png', class: 'w-48 mr-4'), root_path
 
-    = form_with url: search_recipes_path, method: :post, local: true do |form|
-      = form.text_field :search, placeholder: 'Search'
-      = form.submit 'Search'
+      #login-menu.flex.items-center
+        - if user_signed_in?
+          .py-4.mr-4.text-grey= "Logged in as: #{current_user.full_name}"
+          = link_to 'Sign Out', destroy_user_session_path,
+                                method: :delete,
+                                class: 'menu-item'
+        - else
+          = link_to 'Sign Up', new_user_registration_path, class: 'menu-item'
+          = link_to 'Login', new_user_session_path, class: 'menu-item'
+          = link_to 'Login with Facebook', user_facebook_omniauth_authorize_path, class: 'menu-item'
+
+    .flex.justify-between
+      #main-menu.flex.justify-start.items-center
+        = link_to "Home", root_path, class: 'menu-item'
+        - if user_signed_in?
+          = link_to "My Collection", collections_path, class: 'menu-item'
+          = link_to "My Profile", user_path(current_user), class: 'menu-item'
+          = link_to 'New Recipe', new_recipe_path, class: 'btn'
+
+      #search
+        = form_with url: search_recipes_path, method: :post, local: true, class: 'flex' do |form|
+          = form.text_field :search, placeholder: 'Search for Recipes...', type: 'search'
+          = form.submit raw("&#x1F50E;"), id: 'search-mag'
