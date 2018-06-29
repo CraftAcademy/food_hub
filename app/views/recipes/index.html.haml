@@ -5,7 +5,6 @@
     - category.recipes.each do |recipe|
       .recipe.bg-white.p-4.m-2.rounded.overflow-hidden.shadow-md.min-w-2xs.max-w-xs{id: "recipe-#{recipe.id}"}
         = link_to (image_tag rails_blob_path(recipe.image), class: 'w-full'), recipe_path(recipe) unless recipe.image.attachment.nil?
-        -# = image_tag recipe.image, class: 'w-full' unless recipe.image.attachment.nil?
         .px-4.py-4
           %h3.mb-2= link_to recipe.title, recipe_path(recipe)
           %p.text-grey-darker= recipe.description[0..200] + '...'
