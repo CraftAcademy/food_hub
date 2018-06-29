@@ -1,6 +1,6 @@
 Feature: User name is displayed when logged in
   As a user
-  In order to confirm i am logged in
+  In order to confirm I am logged in
   I would like to have my name displayed instead of my email
 
   Background:
