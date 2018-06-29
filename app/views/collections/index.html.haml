@@ -1,35 +1,37 @@
 %h1 My Collection
-#links
-  = link_to "Create pdf from My Collection", collection_path(@collection), remote: true, id: 'generate-pdf',  data: { disable_with: "Generating recipe book..." } 
-  = link_to "View pdf", '#', target: '_blank', style: 'display: none;', id: 'view-pdf',  data: { disable_with: "Opening..." } 
+.buttons.flex
+  = link_to "Create pdf from My Collection", collection_path(@collection), remote: true, id: 'generate-pdf',  data: { disable_with: "Generating recipe book..." }, class: 'btn'
+  = link_to "View pdf", '#', target: '_blank', style: 'display: none;', id: 'view-pdf',  data: { disable_with: "Opening..." }, class: 'btn'
 
+.flex.flex-wrap
   - @collection.recipes.each do |recipe|
-    .recipe
+    .recipe.bg-white.p-4.m-2.rounded.overflow-hidden.shadow-md.max-w-sm
       %h3= link_to recipe.title, recipe_path(recipe)
-      %p= recipe.description
-      %p
+      %p= recipe.description[0..100] + '...'
+      .flex.flex-wrap.text-sm.mt-4
         Posted by:
         = mail_to recipe.user.email
-      %p= link_to "Remove", collection_path(recipe), method: :delete
+      .buttons.flex.justify-center.mt-2
+        = link_to "Remove", collection_path(recipe), method: :delete, class: 'btn'
+
+
 :javascript
   document.addEventListener('turbolinks:load', () => {
 
     let generateLink = document.getElementById('generate-pdf');
     let viewLink = document.getElementById('view-pdf');
     let isPdfGenerated = #{current_user.collection.pdf.attached?}
-    
+
     const setVisibilityOfViewPdfLink = url => {
-      viewLink.href = url 
+      viewLink.href = url
       viewLink.style.display = '';
     }
 
     if ( isPdfGenerated === true) {
       setVisibilityOfViewPdfLink("#{rails_blob_url(@collection.pdf) if @collection.pdf.attached?}");
     }
-    
-    generateLink.addEventListener('ajax:success', event => { 
+
+    generateLink.addEventListener('ajax:success', event => {
       setVisibilityOfViewPdfLink(event.detail[0].url);
     })
   })
-
-
