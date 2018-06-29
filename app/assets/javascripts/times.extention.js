@@ -1,4 +1,4 @@
-const timesFunction = callback => {
+function timesFunction(callback) {
     if (typeof callback !== "function") {
         throw new TypeError("Callback is not a function");
     } else if (isNaN(parseInt(Number(this.valueOf())))) {
