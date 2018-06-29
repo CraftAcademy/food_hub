@@ -4,27 +4,21 @@
   %ul
     - @recipe.errors.full_messages.each do |msg|
       %li= msg
-
+.recipe-new.flex
 = form_with model: @recipe, local: true do |form|
 
-  = form.label :title
-  %br
-  = form.text_field :title
-  %br
+  %p= form.label :title
+  %p= form.text_field :title
+
   = form.file_field :image
-  %br
-  = form.collection_select :category_id, @categories, :id, :name
-  %br
-  = form.label :description
-  %br
-  = form.text_area :description
-  %br
-  = form.label :ingredients
-  %br
-  = form.text_area :ingredients
-  %br
-  = form.label :directions
-  %br
-  = form.text_area :directions
-  %br
-  = form.submit
+
+  %p Collection
+  = form.collection_select :category_id, @categories, :id, :name, class: 'bg-white'
+
+  %p= form.label :description
+  %p= form.text_area :description
+  %p= form.label :ingredients
+  %p= form.text_area :ingredients
+  %p= form.label :directions
+  %p= form.text_area :directions
+  %p= form.submit

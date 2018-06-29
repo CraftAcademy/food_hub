@@ -42,26 +42,27 @@
 
 
   .recipe-down.p-2
-    %h3 Ingredients
-    %p= @recipe.ingredients
-    %h3 Directions
-    %p= @recipe.directions
+    .recipe-text.border-b.pb-2.mb-2
+      %h3 Ingredients
+      %p= @recipe.ingredients
+      %h3 Directions
+      %p= @recipe.directions
 
+    .rating-div.border-b.pb-2.mb-2
+      - unless @recipe.rated_by?(current_user)
+        %h3
+          Rate:
+          %span#rating
+            - 5.times.reverse_each do |i|
+              = content_tag(:span, "&#9734".html_safe, data: {rating: "#{i + 1}"}, id: "star-#{i + 1}", class: 'star')
 
-    - unless @recipe.rated_by?(current_user)
-      %h3
-        Rate:
-        %span#rating
-          - 5.times.reverse_each do |i|
-            = content_tag(:span, "&#9734".html_safe, data: {rating: "#{i + 1}"}, id: "star-#{i + 1}", class: 'star')
+    .comments-div
+      - count = @recipe.comments.count
+      - if  count == 1
+        %h3= "#{count} Comment"
+      - elsif count > 1
+        %h3= "#{count} Comments"
 
-    - count = @recipe.comments.count
-    - if  count == 1
-      %h3= "#{count} Comment"
-    - elsif count > 1
-      %h3= "#{count} Comments"
-
-    .comments-box
       - @recipe.comments.each do |comment|
         .bg-white.p-4.m-2.rounded.overflow-hidden.shadow-md.w-1by2
           %p= comment.body
