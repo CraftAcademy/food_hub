@@ -38,7 +38,8 @@
               .fas.fa-plus
               Add to My Collection
 
-      .self-end= image_tag @recipe.image, class: 'w-100%' unless @recipe.image.attachment.nil?
+      .self-end
+        = image_tag rails_blob_path(@recipe.image), class: 'w-100%' unless @recipe.image.attachment.nil?
 
 
   .recipe-down.p-2
