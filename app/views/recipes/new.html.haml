@@ -16,7 +16,8 @@
   = form.collection_select :category_id, @categories, :id, :name, class: 'bg-white'
 
   %p= form.label :description
-  %p= form.text_area :description
+  .h-32
+    = form.text_area :description
   %p= form.label :ingredients
   %p= form.text_area :ingredients
   %p= form.label :directions

@@ -60,7 +60,7 @@
   }
 
   h1, h2, h3 {
-    @apply .mt-2 .mb-2 ;
+    @apply .mt-2 .mb-4 ;
   }
 
   .menu-item {
@@ -121,9 +121,17 @@
   }
 
   textarea{
-    @apply .shadow .border-b-2 .border-orange .rounded .m-2 .p-4 .w-1by2 ;
+    @apply .shadow .border-b-2 .border-orange .rounded .m-2 .p-4 .w-full ;
   }
 
   input[type="submit"]{
     @apply .btn ;
+  }
+
+  input[type="email"], input[type="password"]{
+    @apply .border .border-orange .rounded .w-auto .px-4 .py-2 .mt-2 .mb-4 ;
+  }
+
+  input[type="search"]{
+    @apply .bg-orange-lightest .border .border-orange .rounded .w-full .px-4 .py-2 .mt-4 ;
   }
