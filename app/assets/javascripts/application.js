@@ -14,5 +14,9 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
-
-
+document.addEventListener('turbolinks:load', () => {
+  let element = document.querySelector('div .notice')
+  setTimeout(() => {
+    element.style.visibility = 'hidden'
+  }, 5000)
+})
