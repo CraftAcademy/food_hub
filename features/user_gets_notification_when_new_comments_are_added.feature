@@ -22,5 +22,6 @@ Feature: User gets notification when new comments are added
       And I fill in "comment_body" with "I got sick, how do i sue you?"
       And I click "Comment"
       And I switch to window "1"
-      And show me the page
       Then I should see "Maran2 left a comment on Meatball-Stew"
+      And I wait for "6" seconds
+      Then I should not see "Maran2 left a comment on Meatball-Stew"
