@@ -7,6 +7,7 @@ class CollectionsController < ApplicationController
 
   def show
     @collection = current_user.collection
+    @collection.recipes.with_preloaded_image
     begin
       PdfGeneratorService.new(@collection).generate_pdf
       message ='Your Recipe book has been created'

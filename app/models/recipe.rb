@@ -11,6 +11,8 @@ class Recipe < ApplicationRecord
   belongs_to :category
   has_many :ratings
 
+  scope :with_preloaded_image, -> { preload(image_attachment: :blob) }
+
   update_index('recipes') { self }
 
   after_create :notify
