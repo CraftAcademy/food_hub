@@ -11,9 +11,7 @@
         - if @recipe.forked?
           Forked from:
           = link_to @original_recipe.title , recipe_path(@original_recipe)
-      %p
-        - if @recipe.forked_recipes_ids.any?
-          = "Forks: #{@recipe.forked_recipes_ids.count}"
+
       %br
       %h3 Category
       %p= @recipe.category.name
@@ -27,11 +25,14 @@
             .fas.fa-edit
             Edit Recipe
 
-
         -if user_signed_in?
           = link_to forks_path(id: @recipe.id), method: :post , class: 'btn' do
-            .fas.fa-code-branch
-            Fork
+            .flex
+              .fas.fa-code-branch
+              Fork
+              - if @recipe.forked_recipes_ids.any?
+                .text-brown.bold.ml-2.pl-2.border-l-2.border-orange
+                  = @recipe.forked_recipes_ids.count
 
           - if current_user.collection.recipes.include?(@recipe)
             .disabled-btn= "In Collection"
