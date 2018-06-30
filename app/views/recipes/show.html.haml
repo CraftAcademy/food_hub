@@ -27,7 +27,7 @@
 
         -if user_signed_in?
           = link_to forks_path(id: @recipe.id), method: :post , class: 'btn' do
-            .flex
+            #fork-button.flex
               .fas.fa-code-branch
               Fork
               - if @recipe.forked_recipes_ids.any?
