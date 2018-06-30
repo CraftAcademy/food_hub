@@ -15,6 +15,19 @@
 //= require turbolinks
 //= require_tree .
 document.addEventListener('turbolinks:load', () => {
+  let imageInput = document.querySelector('#recipe_image')
+  imageInput.addEventListener('change', (event) => {
+    event.preventDefault()
+    let files = event.target.files
+    let image = files[0]
+    let reader = new FileReader()
+    reader.onload = function(file) {
+      const image = new Image();
+      img.src = file.target.result;
+      document.querySelector('#preview').innerHTML = image
+    }
+    debugger
+  })
   let element = document.querySelector('div #flashes')
   setTimeout(() => {
     element.style.visibility = 'hidden'
