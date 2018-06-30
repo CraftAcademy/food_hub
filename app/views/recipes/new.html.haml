@@ -11,20 +11,22 @@
       = form.collection_select :category_id, @categories, :id, :name, prompt: 'Please select a Category...', class: 'bg-white'
 
     %h3= form.label :description
-    = form.text_area :description
+    = form.text_area :description, cols: "30", rows: "10"
     %h3= form.label :ingredients
-    = form.text_area :ingredients
+    = form.text_area :ingredients, cols: "30", rows: "10"
     %h3= form.label :directions
-    = form.text_area :directions
+    = form.text_area :directions, cols: "30", rows: "10"
 
     %h3 Image
-    .overflow-hidden.relative.w-64.mt-4.mb-4
-      %input#uploader.bg-orange.p-4.rounded.overflow-hidden.shadow-md.min-w-2xs.max-w-xs.mt-4.text-xl.text-white{type: 'button', value: 'Upload image'}
-      = form.file_field :image, class: 'cursor-pointer absolute block opacity-0 pin-r pin-t'
+    .flex.mb-4
+      .overflow-hidden.relative.w-64.mt-4.mb-4
+        %input#uploader.bg-orange.p-4.rounded.overflow-hidden.shadow-md.min-w-2xs.max-w-xs.mt-4.text-xl.text-white{type: 'button', value: 'Upload image'}
+        = form.file_field :image, class: 'cursor-pointer absolute block opacity-0 pin-r pin-t'
+      #preview{class: 'w-1/2'} 
+   
     .mt-4.text-xl
       = form.submit
 
-  #preview
 
 :javascript 
   (function() {
@@ -54,7 +56,7 @@
           picReader.addEventListener("load", function (event) {
             var picFile = event.target;
             var div = document.createElement("div");
-            div.innerHTML = "<img class='thumbnail' src='" + picFile.result + "'" +
+            div.innerHTML = "<img class='thumbnail' style='height: 500px; width: auto;' src='" + picFile.result + "'" +
               "title='" + picFile.name + "'/>";
             output.insertBefore(div, null);
           });
