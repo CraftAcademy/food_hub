@@ -15,7 +15,7 @@
 //= require turbolinks
 //= require_tree .
 document.addEventListener('turbolinks:load', () => {
-  let element = document.querySelector('div .notice')
+  let element = document.querySelector('div #flashes')
   setTimeout(() => {
     element.style.visibility = 'hidden'
   }, 5000)

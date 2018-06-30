@@ -13,7 +13,8 @@
     = render "layouts/navbar"
     .container.mx-auto
       #notifications.flex.bg-orange-lighter.border-t-4.border-orange.rounded-b.shadow.items-center.px-4
-        .notice= notice
-        .alert= alert
+        #flashes
+          .notice= notice
+          .alert= alert
     .container.mx-auto
       = yield
