@@ -34,4 +34,4 @@ Scenario: User can see the number of forks on a recipe
   Then I should not see "Forks:"
   When I click "Fork"
   And I am on the "Meatball-Stew" recipe show page
-  Then I should see "Forks: 1"
+  Then I should see "1" in "Fork Button" section
