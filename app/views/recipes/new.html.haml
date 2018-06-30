@@ -18,7 +18,12 @@
     = form.text_area :directions
 
     %h3 Image
-    #choose.text-xl
-      = form.file_field :image
+    .overflow-hidden.relative.w-64.mt-4.mb-4
+      %button.bg-orange.hover:bg-orange-dark.p-4.rounded.overflow-hidden.shadow-md.min-w-2xs.max-w-xs
+        %svg{fill: "#FFF", height: "24", viewBox: "0 -4 24 24", width: "24"}
+          %path{d: "M0 0h24v24H0z", fill: "none"}
+          %path{d: "M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"}
+        %span.mt-4.text-xl.text-white Upload image
+      = form.file_field :image, class: 'cursor-pointer absolute block opacity-0 pin-r pin-t'
     .mt-4.text-xl
       = form.submit
