@@ -113,3 +113,7 @@ Then("the name for {string} should be {string}") do |user_email, user_full_name|
   user = User.find_by(email: user_email)
   expect(user.full_name).to eq user_full_name
 end
+
+Then("I wait for {string} seconds") do |time_value|
+  sleep time_value.to_i
+end
