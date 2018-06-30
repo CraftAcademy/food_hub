@@ -19,13 +19,50 @@
 
     %h3 Image
     .overflow-hidden.relative.w-64.mt-4.mb-4
-      %button.bg-orange.hover:bg-orange-dark.p-4.rounded.overflow-hidden.shadow-md.min-w-2xs.max-w-xs
-        %svg{fill: "#FFF", height: "24", viewBox: "0 -4 24 24", width: "24"}
-          %path{d: "M0 0h24v24H0z", fill: "none"}
-          %path{d: "M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"}
-        %span.mt-4.text-xl.text-white Upload image
+      %input#uploader.bg-orange.p-4.rounded.overflow-hidden.shadow-md.min-w-2xs.max-w-xs.mt-4.text-xl.text-white{type: 'button', value: 'Upload image'}
       = form.file_field :image, class: 'cursor-pointer absolute block opacity-0 pin-r pin-t'
     .mt-4.text-xl
       = form.submit
 
   #preview
+
+:javascript 
+  (function() {
+    if (typeof Turbolinks === "undefined" || Turbolinks === null) {
+      location.reload;
+    }
+
+    Turbolinks.dispatch("turbolinks:load");
+
+  }).call(this);
+  document.addEventListener('turbolinks:load', () => {
+    if (window.File && window.FileList && window.FileReader) {
+      let button = document.getElementById('uploader')
+      var filesInput = document.getElementById("recipe_image");
+      button.addEventListener('click', ()=>{
+        filesInput.click();
+      })
+      filesInput.addEventListener("change", function (event) {
+        var files = event.target.files;
+        var output = document.getElementById("preview");
+        output.innerHTML = ''
+        for (var i = 0; i < files.length; i++) {
+          var file = files[i];
+          if (!file.type.match('image'))
+            continue;
+          var picReader = new FileReader();
+          picReader.addEventListener("load", function (event) {
+            var picFile = event.target;
+            var div = document.createElement("div");
+            div.innerHTML = "<img class='thumbnail' src='" + picFile.result + "'" +
+              "title='" + picFile.name + "'/>";
+            output.insertBefore(div, null);
+          });
+          picReader.readAsDataURL(file);
+        }
+  
+      });
+    }
+  } )
+  
+  
