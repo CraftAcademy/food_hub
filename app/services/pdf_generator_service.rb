@@ -49,15 +49,15 @@ class PdfGeneratorService
   end
 
   def front_page(pdf)
-    logo = "#{Rails.root}/app/assets/images/foodhublogo.png"
+    logo = "#{Rails.root}/app/assets/images/foodhub-logo.png"
     pdf.move_down 100
-    pdf.image logo, position: :center, width: 450, height: 150
+    pdf.image logo, position: :center, width: 200
     pdf.move_down 100
     pdf.text 'My Recipe Book', size: 48, align: :center
     pdf.move_down 150
     pdf.text "by: #{ @collection.user.full_name}", size: 25, align: :right
     pdf.move_down 10
-    pdf.text 'With Recipes from FoodHub', size: 18, align: :right
+    pdf.text 'With recipes from FoodHub', size: 18, align: :right
   end
 
   def add_attachment(filename)
@@ -65,7 +65,10 @@ class PdfGeneratorService
   end
 
   def insert_image(pdf, recipe)
-    pdf.image open(recipe.image.service_url), width: 300, height: 250, position: :center
+    image_url = recipe.image.attachment.blob.service_url(expires_in: 1.hour)
+    #image_url = Rails.application.routes.url_helpers.rails_service_blob_url(recipe.image)
+    pdf.move_down 10
+    pdf.image open(image_url), width: 500, position: :center if image_url
     pdf.move_down 15
   end
 

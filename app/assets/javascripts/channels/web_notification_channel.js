@@ -13,11 +13,6 @@ App.notifications = App.cable.subscriptions.create({
 
         disconnected() {
             // Called when the subscription has been terminated by the server
-            // Display the connection has been lost message
-            this.container().innerHTML = '<p>Disconneced from server</p>'
-            setTimeout(() => {
-                this.container().innerHTML = '';
-            }, 3000);
             console.log('Disconneced');
         },
 

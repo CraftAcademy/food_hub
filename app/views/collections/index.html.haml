@@ -33,7 +33,7 @@
     }
 
     if ( isPdfGenerated === true) {
-      setVisibilityOfViewPdfLink("#{rails_blob_url(@collection.pdf) if @collection.pdf.attached?}");
+      setVisibilityOfViewPdfLink("#{rails_blob_url(@collection.pdf, disposition: "attachment") if @collection.pdf.attached?}");
     }
 
     generateLink.addEventListener('ajax:success', event => {
